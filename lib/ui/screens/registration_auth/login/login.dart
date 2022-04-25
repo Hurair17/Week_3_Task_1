@@ -1,9 +1,11 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
+import 'package:week_3_task/ui/custom_widget/eleveted_button.dart';
 import 'package:week_3_task/ui/custom_widget/text_form_field.dart';
 import 'package:week_3_task/ui/custom_widget/wavy_path.dart';
+import 'package:week_3_task/ui/custom_widget/wrap_txt_button.dart';
+import 'package:week_3_task/ui/screens/registration_auth/signup/signup.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -19,13 +21,18 @@ class _LoginState extends State<Login> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // Top Plant Image with Bottom wavy
             ClipPath(
               child: Image.asset(
-                'assets/loginimage.webp',
+                'assets/plant1.jpg',
                 fit: BoxFit.fitWidth,
               ),
+              // Bottom Wavy Shape
+
               clipper: BottomWaveClipper(),
             ),
+
+            // User Welcome Text and Side Image
             Stack(
               children: [
                 Column(
@@ -45,7 +52,7 @@ class _LoginState extends State<Login> {
                         'Login to your account',
                         style: TextStyle(
                           fontSize: 15.sp,
-                          color: darkgren,
+                          color: gry,
                         ),
                       ),
                     ),
@@ -67,6 +74,7 @@ class _LoginState extends State<Login> {
               padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
               child: Column(
                 children: [
+                  // Text Field for Name And Password
                   TextFomField(
                     hint: 'Full Name',
                     icn: Icon(
@@ -78,11 +86,13 @@ class _LoginState extends State<Login> {
                     height: 20.h,
                   ),
                   TextFomField(
-                    hint: '*****',
+                    hint: '********',
                     icn: Icon(
                       Icons.lock,
                       color: darkgren,
+                      size: 20,
                     ),
+                    obsecure: true,
                   ),
                 ],
               ),
@@ -91,6 +101,7 @@ class _LoginState extends State<Login> {
               padding: const EdgeInsets.only(left: 8.0, right: 8, top: 8),
               child: Row(
                 children: [
+                  //CheckBox Button
                   Checkbox(
                     value: isChecked,
                     onChanged: (bool? value) {
@@ -107,11 +118,43 @@ class _LoginState extends State<Login> {
                   Text(
                     'Remember me',
                     style: TextStyle(
-                      color: darkgren,
+                      color: gry,
                       fontSize: 12.sp,
                     ),
-                  )
+                  ),
+                  const Spacer(),
+
+                  //Forget Passwoed Button
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Forget Password?',
+                      style: TextStyle(
+                        color: darkgren,
+                        fontSize: 12.sp,
+                      ),
+                    ),
+                  ),
                 ],
+              ),
+            ),
+            SizedBox(
+              height: 120.h,
+            ),
+
+            //Bottom Login Button
+            Center(
+              child: CustElevetedButton(
+                next: SignUp(),
+                txt: 'Login',
+              ),
+            ),
+
+            //Wrap Text Button
+            Center(
+              child: CustWrapButton(
+                txt1: 'Don\'t have an account',
+                btntxt: 'Sign Up',
               ),
             )
           ],
