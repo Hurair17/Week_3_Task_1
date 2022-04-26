@@ -5,12 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class TextFomField extends StatelessWidget {
   final String hint;
   final Icon icn;
-
+  final double wdth;
   final bool obsecure;
 
   const TextFomField({
     required this.hint,
     required this.icn,
+    this.wdth = 20,
     this.obsecure = false,
     Key? key,
   }) : super(key: key);
@@ -20,7 +21,7 @@ class TextFomField extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: lightgreen,
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.circular(wdth.r),
       ),
       child: TextFormField(
         obscureText: obsecure,
