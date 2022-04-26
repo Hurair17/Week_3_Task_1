@@ -17,23 +17,21 @@ class TextFomField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      obscureText: obsecure,
-      decoration: InputDecoration(
-        prefixIcon: icn,
-        prefixIconColor: darkgren,
-        border: OutlineInputBorder(
-          borderSide: const BorderSide(
-              color: Color.fromARGB(255, 177, 203, 178), width: 20),
-          borderRadius: BorderRadius.circular(15.w),
+    return Container(
+      decoration: BoxDecoration(
+        color: lightgreen,
+        borderRadius: BorderRadius.circular(20.r),
+      ),
+      child: TextFormField(
+        obscureText: obsecure,
+        decoration: InputDecoration(
+          prefixIcon: icn,
+          border: InputBorder.none,
+          hintText: hint,
+          hintStyle: TextStyle(color: darkgren),
+          focusColor: darkgren,
         ),
-        focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-                color: Color.fromARGB(255, 177, 203, 178), width: 20),
-            borderRadius: BorderRadius.circular(15.w)),
-        hintText: hint,
-        filled: true,
-        fillColor: const Color.fromARGB(255, 177, 203, 178),
+        cursorColor: darkgren,
       ),
     );
   }

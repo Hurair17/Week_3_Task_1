@@ -152,11 +152,11 @@ class _LoginState extends State<Login> {
 
             //Wrap Text Button
             Center(
-              child: CustWrapButton(
+              child: CustWrapButton1(
                 txt1: 'Don\'t have an account',
                 btntxt: 'Sign Up',
               ),
-            )
+            ),
           ],
         ),
       ),
