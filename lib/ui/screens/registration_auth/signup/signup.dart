@@ -20,32 +20,30 @@ class SignUp extends StatelessWidget {
               Align(
                   widthFactor: 20.w,
                   alignment: Alignment.topLeft,
-                  child: ArrowBackIconBtn()),
+                  child: const ArrowBackIconBtn()),
               SizedBox(
                 height: 40.h,
               ),
               Stack(
                 children: [
-                  Container(
-                    child: Column(
-                      children: [
-                        Center(
-                          child: Text(
-                            'Register',
-                            style: TextStyle(
-                                color: darkgren,
-                                fontSize: 40.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
+                  Column(
+                    children: [
+                      Center(
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                              color: darkgren,
+                              fontSize: 40.sp,
+                              fontWeight: FontWeight.bold),
                         ),
-                        Center(
-                          child: Text(
-                            'Create your new account',
-                            style: TextStyle(color: gry),
-                          ),
+                      ),
+                      Center(
+                        child: Text(
+                          'Create your new account',
+                          style: TextStyle(color: gry),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                   Positioned(
                     right: -15.w,
@@ -129,6 +127,7 @@ class SignUp extends StatelessWidget {
                 child: CustWrapButton1(
                   txt1: 'Already have an account?',
                   btntxt: 'Log in',
+                  nxtscreen: Login(),
                 ),
               ),
             ],

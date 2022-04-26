@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:week_3_task/ui/screens/registration_auth/signup/signup.dart';
 import 'ui/screens/registration_auth/login/login.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,11 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(360, 690),
+      designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_) {
-        return SignUp();
+        return Login();
       },
     );
   }

@@ -3,11 +3,14 @@ import 'package:week_3_task/core/constants/color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustWrapButton1 extends StatelessWidget {
-  String txt1;
-  String btntxt;
-  CustWrapButton1({
+  final String txt1;
+  final String btntxt;
+  final Widget nxtscreen;
+
+  const CustWrapButton1({
     required this.txt1,
     required this.btntxt,
+    required this.nxtscreen,
     Key? key,
   }) : super(key: key);
 
@@ -21,7 +24,10 @@ class CustWrapButton1 extends StatelessWidget {
           style: TextStyle(color: gry),
         ),
         TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => nxtscreen));
+            },
             child: Text(
               btntxt,
               style: TextStyle(
@@ -36,10 +42,10 @@ class CustWrapButton1 extends StatelessWidget {
 }
 
 class CustWrapButton2 extends StatelessWidget {
-  String txt1;
-  String btntxt;
-  double wdth;
-  CustWrapButton2({
+  final String txt1;
+  final String btntxt;
+  final double wdth;
+  const CustWrapButton2({
     required this.txt1,
     required this.btntxt,
     required this.wdth,

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:week_3_task/core/constants/color.dart';
 
 class CustElevetedButton extends StatelessWidget {
-  Widget next;
-  String txt;
-  CustElevetedButton({
+  final Widget next;
+  final String txt;
+  const CustElevetedButton({
     required this.next,
     required this.txt,
     Key? key,
@@ -25,9 +25,9 @@ class CustElevetedButton extends StatelessWidget {
       onPressed: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) => next));
       },
-      child: const Text(
-        'Log in',
-        style: TextStyle(
+      child: Text(
+        txt,
+        style: const TextStyle(
           fontSize: 20,
           color: Colors.white,
         ),

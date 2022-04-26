@@ -143,7 +143,7 @@ class _LoginState extends State<Login> {
             ),
 
             //Bottom Login Button
-            Center(
+            const Center(
               child: CustElevetedButton(
                 next: SignUp(),
                 txt: 'Login',
@@ -151,10 +151,11 @@ class _LoginState extends State<Login> {
             ),
 
             //Wrap Text Button
-            Center(
+            const Center(
               child: CustWrapButton1(
                 txt1: 'Don\'t have an account',
                 btntxt: 'Sign Up',
+                nxtscreen: SignUp(),
               ),
             ),
           ],

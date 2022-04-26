@@ -3,12 +3,12 @@ import 'package:week_3_task/core/constants/color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextFomField extends StatelessWidget {
-  String hint;
-  Icon icn;
+  final String hint;
+  final Icon icn;
 
-  bool obsecure;
+  final bool obsecure;
 
-  TextFomField({
+  const TextFomField({
     required this.hint,
     required this.icn,
     this.obsecure = false,
