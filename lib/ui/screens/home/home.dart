@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:week_3_task/ui/custom_widget/card.dart';
 import 'package:week_3_task/ui/custom_widget/text_form_field.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -17,6 +19,7 @@ class Home extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 12, top: 15, right: 15),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
@@ -100,19 +103,23 @@ class Home extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 150,
-                child: TabBarView(
+                height: 20.h,
+              ),
+              SizedBox(
+                height: 220.h,
+                // width: 180.w,
+                child: const TabBarView(
                   children: [
-                    Center(child: Text('Art Page')),
+                    HorizontalCard(),
                     Center(
-                      child: Text('Art Page'),
+                      child: Text('Top'),
                     ),
                     Center(
-                      child: Text('Art Page'),
+                      child: Text('Indoor'),
                     ),
                     Center(
-                      child: Text('Art Page'),
-                    )
+                      child: Text('Outdoor'),
+                    ),
                   ],
                 ),
               ),
