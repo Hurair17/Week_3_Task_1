@@ -5,6 +5,7 @@ import 'package:week_3_task/ui/custom_widget/eleveted_button.dart';
 import 'package:week_3_task/ui/custom_widget/text_form_field.dart';
 import 'package:week_3_task/ui/custom_widget/wrap_txt_button.dart';
 import 'package:week_3_task/ui/screens/registration_auth/login/login.dart';
+import 'package:week_3_task/ui/screens/root.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -122,7 +123,7 @@ class SignUp extends StatelessWidget {
               SizedBox(
                 height: 100.h,
               ),
-              CustElevetedButton(next: Login(), txt: 'Sign Up'),
+              CustElevetedButton(next: RootBar(), txt: 'Sign Up'),
               Center(
                 child: CustWrapButton1(
                   txt1: 'Already have an account?',

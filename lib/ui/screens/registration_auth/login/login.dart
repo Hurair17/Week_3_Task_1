@@ -6,6 +6,7 @@ import 'package:week_3_task/ui/custom_widget/text_form_field.dart';
 import 'package:week_3_task/ui/custom_widget/wavy_path.dart';
 import 'package:week_3_task/ui/custom_widget/wrap_txt_button.dart';
 import 'package:week_3_task/ui/screens/registration_auth/signup/signup.dart';
+import 'package:week_3_task/ui/screens/root.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -145,7 +146,7 @@ class _LoginState extends State<Login> {
             //Bottom Login Button
             const Center(
               child: CustElevetedButton(
-                next: SignUp(),
+                next: RootBar(),
                 txt: 'Login',
               ),
             ),
