@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:week_3_task/ui/screens/product/product_detail.dart';
 import 'package:week_3_task/ui/screens/root.dart';
 import 'ui/screens/registration_auth/login/login.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_) {
-        return RootBar();
+        return PrdouctDetailScreen();
       },
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/ui/custom_widget/card.dart';
+import 'package:week_3_task/ui/custom_widget/card_Htile.dart';
 import 'package:week_3_task/ui/custom_widget/text_form_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -105,19 +106,74 @@ class Home extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              SizedBox(
-                height: 220.h,
+              Container(
+                height: 330.h,
+                // color: black,
                 // width: 180.w,
-                child: const TabBarView(
+                child: TabBarView(
                   children: [
-                    HorizontalCard(),
-                    Center(
-                      child: Text('Top'),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 240.h,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: const [
+                                HorizontalCard(),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                HorizontalCard(),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                HorizontalCard(),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Text(
+                            'Recent View',
+                            style: TextStyle(
+                                color: green,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 17.sp),
+                          ),
+                          SizedBox(
+                            height: 60.h,
+                            // width: 90.w,
+                            child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  HomeScreenDownCard(),
+                                  SizedBox(
+                                    width: 20.w,
+                                  ),
+                                  HomeScreenDownCard(),
+                                  SizedBox(
+                                    width: 20.w,
+                                  ),
+                                  HomeScreenDownCard(),
+                                ]),
+                          ),
+                        ],
+                      ),
                     ),
-                    Center(
+                    const Center(
+                      child: Text('Top das'),
+                    ),
+                    const Center(
                       child: Text('Indoor'),
                     ),
-                    Center(
+                    const Center(
                       child: Text('Outdoor'),
                     ),
                   ],
