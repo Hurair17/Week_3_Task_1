@@ -5,6 +5,8 @@ import 'package:week_3_task/ui/custom_widget/card.dart';
 import 'package:week_3_task/ui/custom_widget/card_Htile.dart';
 import 'package:week_3_task/ui/custom_widget/text_form_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:week_3_task/ui/screens/cart/cart1.dart';
+import 'package:week_3_task/ui/screens/cart/cart2.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -31,19 +33,27 @@ class Home extends StatelessWidget {
                         Spacer(),
                         Padding(
                           padding: EdgeInsets.only(),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: darkgren,
-                            ),
-                            width: 30.w,
-                            height: 30.h,
-                            alignment: Alignment.topRight,
-                            child: Center(
-                              child: Icon(
-                                Icons.shopping_cart_sharp,
-                                size: 20.r,
-                                color: Colors.white,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Cart1()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25),
+                                color: darkgren,
+                              ),
+                              width: 30.w,
+                              height: 30.h,
+                              alignment: Alignment.topRight,
+                              child: Center(
+                                child: Icon(
+                                  Icons.shopping_cart_sharp,
+                                  size: 20.r,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -108,8 +118,6 @@ class Home extends StatelessWidget {
               ),
               Container(
                 height: 330.h,
-                // color: black,
-                // width: 180.w,
                 child: TabBarView(
                   children: [
                     Padding(

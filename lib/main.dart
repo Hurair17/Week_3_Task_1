@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:week_3_task/ui/screens/cart/cart.dart';
+import 'package:week_3_task/ui/screens/cart/cart1.dart';
 import 'package:week_3_task/ui/screens/home/home.dart';
 import 'package:week_3_task/ui/screens/product/product_detail.dart';
 import 'package:week_3_task/ui/screens/root.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_) {
-        return Cart();
+        return Login();
       },
     );
   }

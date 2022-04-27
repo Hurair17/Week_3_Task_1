@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:week_3_task/ui/screens/cart/cart.dart';
+import 'package:week_3_task/ui/screens/cart/cart1.dart';
+import 'package:week_3_task/ui/screens/cart/cart2.dart';
 import 'package:week_3_task/ui/screens/home/home.dart';
+import 'package:week_3_task/ui/screens/list/list.dart';
+import 'package:week_3_task/ui/screens/profile/profile_screen.dart';
 
 class RootBar extends StatefulWidget {
   const RootBar({Key? key}) : super(key: key);
@@ -14,7 +17,9 @@ class _RootBarState extends State<RootBar> {
 
   static List<Widget> Screen = <Widget>[
     Home(),
-    Cart(),
+    Profile(),
+    Cart2(),
+    ListScreen()
   ];
 
   _itemTapedIndex(int index) {
@@ -28,15 +33,20 @@ class _RootBarState extends State<RootBar> {
     return Scaffold(
       body: Screen[_pageIndex],
       bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           currentIndex: _pageIndex,
+          selectedFontSize: 1,
+          // iconSize: 12,
           onTap: _itemTapedIndex,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Cart'),
-            // BottomNavigationBarItem(icon: Icon(Icons.shopping_cart)),
-            // BottomNavigationBarItem(icon: Icon(Icons.list)),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart), label: 'Cart Screen'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.library_add), label: 'List Screen'),
           ]),
     );
   }

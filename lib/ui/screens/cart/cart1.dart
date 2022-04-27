@@ -5,8 +5,8 @@ import 'package:week_3_task/ui/custom_widget/cart_page_card.dart';
 import 'package:week_3_task/ui/custom_widget/eleveted_button.dart';
 import 'package:week_3_task/ui/screens/home/home.dart';
 
-class Cart extends StatelessWidget {
-  const Cart({Key? key}) : super(key: key);
+class Cart1 extends StatelessWidget {
+  const Cart1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
