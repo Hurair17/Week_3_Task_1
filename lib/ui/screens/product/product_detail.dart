@@ -4,6 +4,7 @@ import 'package:week_3_task/core/constants/color.dart';
 import 'package:provider/provider.dart';
 import 'package:week_3_task/ui/screens/cart/cart2.dart';
 import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
+import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 
 class PrdouctDetailScreen extends StatefulWidget {
   const PrdouctDetailScreen({Key? key}) : super(key: key);
@@ -104,7 +105,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '\$25.5',
+                                    '\$${context.watch<CartItemsViewModel>().itemPrice}',
                                     style:
                                         TextStyle(fontSize: 11.sp, color: gry),
                                   ),

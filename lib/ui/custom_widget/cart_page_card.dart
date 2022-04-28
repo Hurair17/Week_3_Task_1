@@ -72,18 +72,22 @@ class CartScreenCard extends StatelessWidget {
                               width: 20.w,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5.r),
-                                border: Border.all(),
+                                border: Border.all(color: green),
                               ),
                               child: Icon(
                                 Icons.add,
                                 size: 10.r,
+                                color: green,
                               ),
                             ),
                           ),
                           SizedBox(
                             width: 8.w,
                           ),
-                          Text('${context.watch<CartItemsViewModel>().items}'),
+                          Text(
+                            '${context.watch<CartItemsViewModel>().items}',
+                            style: TextStyle(color: green),
+                          ),
                           SizedBox(
                             width: 8.w,
                           ),
@@ -96,11 +100,12 @@ class CartScreenCard extends StatelessWidget {
                               width: 20.w,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5.r),
-                                border: Border.all(),
+                                border: Border.all(color: green),
                               ),
                               child: Icon(
                                 Icons.remove,
                                 size: 10.r,
+                                color: green,
                               ),
                             ),
                           ),
@@ -120,10 +125,12 @@ class CartScreenCard extends StatelessWidget {
                         height: 30.h,
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton(
-                            icon: Icon(Icons.more_vert_sharp),
+                            iconDisabledColor: green,
+                            iconEnabledColor: green,
+                            icon: const Icon(Icons.more_vert_sharp),
                             menuMaxHeight: 25.h,
                             onChanged: (String? newValue) {},
-                            items: <String>['delete']
+                            items: <String>['Delete']
                                 .map<DropdownMenuItem<String>>(
                               (String value) {
                                 return DropdownMenuItem<String>(
@@ -134,10 +141,22 @@ class CartScreenCard extends StatelessWidget {
                                   },
                                   value: value,
                                   child: Center(
-                                    child: Text(
-                                      value,
-                                      style: TextStyle(
-                                          fontSize: 15.sp, color: Colors.red),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                          size: 15.r,
+                                        ),
+                                        SizedBox(
+                                          width: 10.w,
+                                        ),
+                                        Text(
+                                          value,
+                                          style: TextStyle(
+                                              fontSize: 15.sp, color: green),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 );
@@ -148,10 +167,13 @@ class CartScreenCard extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 19.h,
+                        height: 22.h,
                       ),
                       Text(
-                          '\$ ${context.watch<CartItemsViewModel>().itemPrice}')
+                        '\$ ${context.watch<CartItemsViewModel>().itemPrice}',
+                        style: TextStyle(
+                            color: lightgreen, fontWeight: FontWeight.w800),
+                      )
                     ],
                   ),
                 )
