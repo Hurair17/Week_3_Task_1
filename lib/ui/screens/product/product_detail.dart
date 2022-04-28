@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
+import 'package:provider/provider.dart';
+import 'package:week_3_task/ui/screens/cart/cart2.dart';
+import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 
 class PrdouctDetailScreen extends StatefulWidget {
   const PrdouctDetailScreen({Key? key}) : super(key: key);
@@ -10,7 +13,7 @@ class PrdouctDetailScreen extends StatefulWidget {
 }
 
 class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
-  final int _count = 0;
+  // final int _count = 0;
   String txt =
       'However, they look like huge white flower, and they bloom thoughout the year and a bit  more frequently in the springtime. This coupled with the plant\'s broad, deep green leaves.';
 
@@ -78,10 +81,13 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                       topRight: Radius.circular(30.r)),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(8.r),
+                  padding: const EdgeInsets.all(15.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // Padding(
+                      //   padding: const EdgeInsets.all(15.0),
+                      //   child:
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -92,74 +98,90 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                                 style: TextStyle(
                                     color: green,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 30.sp),
+                                    fontSize: 22.sp),
                               ),
                               Row(
-                                children: const [
-                                  Text('\$25.5'),
-                                  Star(),
-                                  Star(),
-                                  Star(),
-                                  Star(),
-                                  Star(),
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '\$25.5',
+                                    style:
+                                        TextStyle(fontSize: 11.sp, color: gry),
+                                  ),
+                                  const Star(),
+                                  const Star(),
+                                  const Star(),
+                                  const Star(),
+                                  const Star(),
                                 ],
                               ),
                             ],
                           ),
                           // Spacer(),
                           SizedBox(
-                            width: 137.w,
+                            width: 157.w,
                           ),
 
                           Row(
                             children: [
-                              Container(
-                                height: 20.h,
-                                width: 20.w,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
+                              InkWell(
+                                onTap: () => context
+                                    .read<ProductDetailViewModel>()
+                                    .increment(),
+                                child: Container(
+                                  height: 15.h,
+                                  width: 15.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                      bottomLeft: Radius.circular(10),
+                                    ),
+                                    color: green,
                                   ),
-                                  color: green,
-                                ),
-                                child: const Icon(
-                                  Icons.add,
-                                  size: 10,
-                                  color: Colors.white,
+                                  child: const Icon(
+                                    Icons.add,
+                                    size: 10,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                               Container(
-                                height: 20.h,
-                                width: 30.w,
+                                height: 15.h,
+                                width: 25.w,
                                 color: green,
                                 child: Center(
                                   child: Text(
-                                    '$_count',
+                                    '${context.watch<ProductDetailViewModel>().count}',
                                     style: const TextStyle(color: Colors.white),
                                   ),
                                 ),
                               ),
-                              Container(
-                                height: 20.h,
-                                width: 20.w,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
+                              InkWell(
+                                onTap: () => context
+                                    .read<ProductDetailViewModel>()
+                                    .decrement(),
+                                child: Container(
+                                  height: 15.h,
+                                  width: 15.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                      topRight: Radius.circular(10),
+                                      bottomRight: Radius.circular(10),
+                                    ),
+                                    color: green,
                                   ),
-                                  color: green,
-                                ),
-                                child: const Icon(
-                                  Icons.remove,
-                                  size: 10,
-                                  color: Colors.white,
+                                  child: const Icon(
+                                    Icons.remove,
+                                    size: 10,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ],
                           ),
                         ],
                       ),
+                      // ),
                       SizedBox(
                         height: 20.h,
                       ),
@@ -167,7 +189,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                         'About',
                         style: TextStyle(
                             color: green,
-                            fontSize: 18.sp,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.w700),
                       ),
                       SizedBox(
@@ -175,14 +197,14 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                       ),
                       SizedBox(
                         // height: 30.h,
-                        width: 360.w,
+                        width: 330.w,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: RichText(
                             maxLines: 4,
                             text: TextSpan(
                               text: txt,
-                              style: TextStyle(color: green, fontSize: 15.sp),
+                              style: TextStyle(color: green, fontSize: 12.sp),
                             ),
                           ),
                         ),
@@ -190,8 +212,8 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                       SizedBox(
                         height: 12.h,
                       ),
-                      Container(
-                        width: 348.w,
+                      SizedBox(
+                        width: 328.w,
                         height: 45.h,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
@@ -230,7 +252,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: 12.h,
+                        height: 30.h,
                       ),
                       Row(
                         children: [
@@ -239,8 +261,8 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                               borderRadius: BorderRadius.circular(50),
                               color: green,
                             ),
-                            height: 45.h,
-                            width: 50.w,
+                            height: 40.h,
+                            width: 44.w,
                             child: const Icon(
                               Icons.shopping_cart,
                               color: Colors.white,
@@ -249,31 +271,52 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                           SizedBox(
                             width: 20.w,
                           ),
-                          Container(
-                            height: 50.h,
-                            width: 270.w,
-                            decoration: BoxDecoration(
-                              color: darkgren,
-                              borderRadius: BorderRadius.circular(10.r),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.bookmark,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 12.w,
-                                ),
-                                Text(
-                                  'Buy Now',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15.sp,
-                                      fontWeight: FontWeight.w700),
-                                )
-                              ],
+                          InkWell(
+                            onTap: () {
+                              if (context.read<ProductDetailViewModel>().count >
+                                  0) {
+                                context
+                                    .read<ProductDetailViewModel>()
+                                    .btnincrement();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => const Cart2()),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content:
+                                          Text('Please Select Number of item')),
+                                );
+                              }
+                            },
+                            child: Container(
+                              height: 40.h,
+                              width: 270.w,
+                              decoration: BoxDecoration(
+                                color: darkgren,
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.bookmark,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 12.w,
+                                  ),
+                                  Text(
+                                    'Buy Now',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.w700),
+                                  )
+                                ],
+                              ),
                             ),
                           )
                         ],
@@ -307,12 +350,12 @@ class RowWidgetDown extends StatelessWidget {
             borderRadius: BorderRadius.circular(50),
             color: green,
           ),
-          height: 40.h,
-          width: 45.w,
+          height: 30.h,
+          width: 35.w,
           child: Center(
             child: Icon(
               icon,
-              size: 35.r,
+              size: 25.r,
               color: Colors.white,
             ),
           ),
@@ -320,18 +363,21 @@ class RowWidgetDown extends StatelessWidget {
         SizedBox(
           width: 12.w,
         ),
-        Column(
-          children: [
-            Text(
-              txt1,
-              style: TextStyle(color: green, fontSize: 13.sp),
-            ),
-            Text(
-              txt2,
-              style: TextStyle(
-                  color: green, fontSize: 15.sp, fontWeight: FontWeight.w700),
-            ),
-          ],
+        SizedBox(
+          height: 30.h,
+          child: Column(
+            children: [
+              Text(
+                txt1,
+                style: TextStyle(color: green, fontSize: 12.sp),
+              ),
+              Text(
+                txt2,
+                style: TextStyle(
+                    color: green, fontSize: 13.sp, fontWeight: FontWeight.w700),
+              ),
+            ],
+          ),
         )
       ],
     );
@@ -348,7 +394,7 @@ class Star extends StatelessWidget {
     return const Icon(
       Icons.star,
       color: Colors.amber,
-      size: 15,
+      size: 12,
     );
   }
 }

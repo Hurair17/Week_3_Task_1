@@ -7,12 +7,15 @@ class TextFomField extends StatelessWidget {
   final Icon icn;
   final double wdth;
   final bool obsecure;
-
+  final bool val;
+  final String txt;
   const TextFomField({
     required this.hint,
     required this.icn,
     this.wdth = 20,
     this.obsecure = false,
+    this.val = false,
+    required this.txt,
     Key? key,
   }) : super(key: key);
 

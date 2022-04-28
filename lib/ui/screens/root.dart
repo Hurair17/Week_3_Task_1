@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:week_3_task/ui/screens/cart/cart1.dart';
 import 'package:week_3_task/ui/screens/cart/cart2.dart';
 import 'package:week_3_task/ui/screens/home/home.dart';
 import 'package:week_3_task/ui/screens/list/list.dart';
@@ -15,11 +14,11 @@ class RootBar extends StatefulWidget {
 class _RootBarState extends State<RootBar> {
   int _pageIndex = 0;
 
-  static List<Widget> Screen = <Widget>[
-    Home(),
-    Profile(),
-    Cart2(),
-    ListScreen()
+  static List<Widget> screen = <Widget>[
+    const Home(),
+    const Profile(),
+    const Cart2(),
+    const ListScreen()
   ];
 
   _itemTapedIndex(int index) {
@@ -31,7 +30,7 @@ class _RootBarState extends State<RootBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Screen[_pageIndex],
+      body: screen[_pageIndex],
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,

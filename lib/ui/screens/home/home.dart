@@ -4,9 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/ui/custom_widget/card.dart';
 import 'package:week_3_task/ui/custom_widget/card_Htile.dart';
 import 'package:week_3_task/ui/custom_widget/text_form_field.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:week_3_task/ui/screens/cart/cart1.dart';
-import 'package:week_3_task/ui/screens/cart/cart2.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -20,7 +19,7 @@ class Home extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 12, top: 15, right: 15),
+                padding: const EdgeInsets.only(left: 12, top: 15, right: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -30,34 +29,31 @@ class Home extends StatelessWidget {
                           backgroundImage: NetworkImage(
                               'https://images.ctfassets.net/hrltx12pl8hq/3j5RylRv1ZdswxcBaMi0y7/b84fa97296bd2350db6ea194c0dce7db/Music_Icon.jpg'),
                         ),
-                        Spacer(),
-                        Padding(
-                          padding: EdgeInsets.only(),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Cart1()));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: darkgren,
-                              ),
-                              width: 30.w,
-                              height: 30.h,
-                              alignment: Alignment.topRight,
-                              child: Center(
-                                child: Icon(
-                                  Icons.shopping_cart_sharp,
-                                  size: 20.r,
-                                  color: Colors.white,
-                                ),
+                        const Spacer(),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Cart1()));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              color: darkgren,
+                            ),
+                            width: 30.w,
+                            height: 30.h,
+                            alignment: Alignment.topRight,
+                            child: Center(
+                              child: Icon(
+                                Icons.shopping_cart_sharp,
+                                size: 20.r,
+                                color: Colors.white,
                               ),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                     SizedBox(
@@ -71,8 +67,10 @@ class Home extends StatelessWidget {
                       height: 15.h,
                     ),
                     TextFomField(
+                      val: false,
+                      txt: 'Search',
                       hint: 'Search Plant',
-                      icn: Icon(Icons.search),
+                      icn: const Icon(Icons.search),
                       wdth: 8.w,
                     ),
                     SizedBox(
@@ -116,7 +114,7 @@ class Home extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              Container(
+              SizedBox(
                 height: 330.h,
                 child: TabBarView(
                   children: [
@@ -156,20 +154,23 @@ class Home extends StatelessWidget {
                                 fontSize: 17.sp),
                           ),
                           SizedBox(
-                            height: 60.h,
+                            height: 5.h,
+                          ),
+                          SizedBox(
+                            height: 50.h,
                             // width: 90.w,
                             child: ListView(
                                 scrollDirection: Axis.horizontal,
                                 children: [
-                                  HomeScreenDownCard(),
+                                  const HomeScreenDownCard(),
                                   SizedBox(
                                     width: 20.w,
                                   ),
-                                  HomeScreenDownCard(),
+                                  const HomeScreenDownCard(),
                                   SizedBox(
                                     width: 20.w,
                                   ),
-                                  HomeScreenDownCard(),
+                                  const HomeScreenDownCard(),
                                 ]),
                           ),
                         ],

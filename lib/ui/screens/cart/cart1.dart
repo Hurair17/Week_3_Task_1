@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/ui/custom_widget/cart_page_card.dart';
 import 'package:week_3_task/ui/custom_widget/eleveted_button.dart';
-import 'package:week_3_task/ui/screens/home/home.dart';
+import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
+import 'package:week_3_task/ui/screens/root.dart';
+import 'package:provider/provider.dart';
 
 class Cart1 extends StatelessWidget {
   const Cart1({Key? key}) : super(key: key);
@@ -41,28 +43,39 @@ class Cart1 extends StatelessWidget {
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w700),
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.more_vert_sharp))
+                IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.more_vert_sharp))
               ],
             ),
-            Container(
+            SizedBox(
               height: 400.h,
               // color: gry,
-              child: ListView(
-                children: [
-                  CartScreenCard(),
-                  SizedBox(height: 15.h),
-                  CartScreenCard(),
-                  SizedBox(height: 15.h),
-                  CartScreenCard(),
-                  SizedBox(height: 15.h),
-                  CartScreenCard(),
-                  SizedBox(height: 15.h),
-                  CartScreenCard(),
-                ],
+              child:
+                  // ListView(
+                  //   children: [
+                  //     const CartScreenCard(),
+                  //     SizedBox(height: 15.h),
+                  //     const CartScreenCard(),
+                  //     SizedBox(height: 15.h),
+                  //     const CartScreenCard(),
+                  //     SizedBox(height: 15.h),
+                  //     const CartScreenCard(),
+                  //     SizedBox(height: 15.h),
+                  //     const CartScreenCard(),
+                  //   ],
+                  // ),
+                  ListView.builder(
+                itemCount: context.watch<ProductDetailViewModel>().btnCount,
+                itemBuilder: (BuildContext context, int index) {
+                  return const Padding(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: CartScreenCard(),
+                  );
+                },
               ),
             ),
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(25),
                     topRight: Radius.circular(25)),
@@ -123,8 +136,8 @@ class Cart1 extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  CustElevetedButton(
-                    next: Home(),
+                  const CustElevetedButton(
+                    next: RootBar(),
                     txt: 'Place your order',
                     hight: 40,
                     wdt: 350,

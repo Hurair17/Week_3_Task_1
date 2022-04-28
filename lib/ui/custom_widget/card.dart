@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/ui/custom_widget/wavy_path.dart';
 import 'package:week_3_task/ui/screens/product/product_detail.dart';
 
@@ -11,8 +10,10 @@ class HorizontalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => PrdouctDetailScreen()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const PrdouctDetailScreen()));
       },
       child: Stack(
         children: [
@@ -45,12 +46,12 @@ class HorizontalCard extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text('Peace Lily'),
-                        Spacer(),
-                        Container(
+                        const Text('Peace Lily'),
+                        const Spacer(),
+                        SizedBox(
                           height: 20.h,
                           // width: 20.w,
-                          child: Text('\$18.9'),
+                          child: const Text('\$18.9'),
                         ),
                       ],
                     ),
@@ -65,7 +66,6 @@ class HorizontalCard extends StatelessWidget {
               child: Container(
                 width: 180.w,
                 height: 170.h,
-
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(15.r),
@@ -73,7 +73,6 @@ class HorizontalCard extends StatelessWidget {
                   ),
                   color: Colors.green[300],
                 ),
-                //TODO: Add Image Here
               ),
               clipper: BottomWaveClipper(),
             ),

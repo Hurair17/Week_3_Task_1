@@ -64,6 +64,7 @@ class SignUp extends StatelessWidget {
                 child: Column(
                   children: [
                     TextFomField(
+                        txt: 'name',
                         hint: 'Full Name',
                         icn: Icon(
                           Icons.person,
@@ -73,6 +74,8 @@ class SignUp extends StatelessWidget {
                       height: 20.h,
                     ),
                     TextFomField(
+                        val: true,
+                        txt: 'email',
                         hint: 'jhonsmith@gmail.com',
                         icn: Icon(
                           Icons.email,
@@ -82,6 +85,8 @@ class SignUp extends StatelessWidget {
                       height: 20.h,
                     ),
                     TextFomField(
+                      val: true,
+                      txt: 'password',
                       hint: 'Password',
                       icn: Icon(
                         Icons.lock,
@@ -94,6 +99,8 @@ class SignUp extends StatelessWidget {
                     ),
                     TextFomField(
                       hint: 'Confirm Password',
+                      val: true,
+                      txt: 'password',
                       icn: Icon(
                         Icons.lock,
                         color: darkgren,
@@ -123,7 +130,7 @@ class SignUp extends StatelessWidget {
               SizedBox(
                 height: 100.h,
               ),
-              CustElevetedButton(next: RootBar(), txt: 'Sign Up'),
+              const CustElevetedButton(next: RootBar(), txt: 'Sign Up'),
               Center(
                 child: CustWrapButton1(
                   txt1: 'Already have an account?',

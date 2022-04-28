@@ -11,8 +11,10 @@ class HomeScreenDownCard extends StatelessWidget {
     return SingleChildScrollView(
       child: InkWell(
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => PrdouctDetailScreen()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const PrdouctDetailScreen()));
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -5,15 +5,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CustElevetedButton extends StatelessWidget {
   final Widget next;
   final String txt;
-  int wdt;
-  int hight;
-  int buttonRaduis;
-  CustElevetedButton({
+  final int wdt;
+  final int hight;
+  final int buttonRaduis;
+  final bool val;
+  const CustElevetedButton({
     required this.next,
     required this.txt,
     this.hight = 45,
     this.wdt = 320,
     this.buttonRaduis = 25,
+    this.val = false,
     Key? key,
   }) : super(key: key);
 
@@ -30,7 +32,13 @@ class CustElevetedButton extends StatelessWidget {
         alignment: Alignment.center,
       ),
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => next));
+        if (val == true) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => next));
+        } else {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => next));
+        }
       },
       child: Text(
         txt,

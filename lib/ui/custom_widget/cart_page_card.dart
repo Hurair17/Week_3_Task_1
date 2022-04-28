@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/ui/screens/product/product_detail.dart';
+import 'package:provider/provider.dart';
+import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
+import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 
 class CartScreenCard extends StatelessWidget {
   const CartScreenCard({Key? key}) : super(key: key);
@@ -14,7 +17,7 @@ class CartScreenCard extends StatelessWidget {
         padding: EdgeInsets.only(right: 10.w, left: 10.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.r),
-          color: Color.fromARGB(255, 168, 197, 169),
+          color: const Color.fromARGB(255, 168, 197, 169),
         ),
         child: SizedBox(
           child: InkWell(
@@ -22,7 +25,7 @@ class CartScreenCard extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => PrdouctDetailScreen()));
+                      builder: (context) => const PrdouctDetailScreen()));
             },
             child: Row(
               children: [
@@ -57,39 +60,48 @@ class CartScreenCard extends StatelessWidget {
                         style: TextStyle(color: gry, fontSize: 12.sp),
                       ),
                       SizedBox(
-                        height: 8.h,
+                        height: 15.h,
                       ),
                       Row(
                         children: [
-                          Container(
-                            height: 15.h,
-                            width: 20.w,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5.r),
-                              border: Border.all(),
-                            ),
-                            child: Icon(
-                              Icons.add,
-                              size: 10.r,
+                          InkWell(
+                            onTap: () =>
+                                context.read<CartItemsViewModel>().increment(),
+                            child: Container(
+                              height: 15.h,
+                              width: 20.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5.r),
+                                border: Border.all(),
+                              ),
+                              child: Icon(
+                                Icons.add,
+                                size: 10.r,
+                              ),
                             ),
                           ),
                           SizedBox(
                             width: 8.w,
                           ),
-                          Text('0'),
+                          Text('${context.watch<CartItemsViewModel>().items}'),
                           SizedBox(
                             width: 8.w,
                           ),
-                          Container(
-                            height: 15.h,
-                            width: 20.w,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5.r),
-                              border: Border.all(),
-                            ),
-                            child: Icon(
-                              Icons.remove,
-                              size: 10.r,
+                          InkWell(
+                            onTap: () {
+                              context.read<CartItemsViewModel>().decrement();
+                            },
+                            child: Container(
+                              height: 15.h,
+                              width: 20.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5.r),
+                                border: Border.all(),
+                              ),
+                              child: Icon(
+                                Icons.remove,
+                                size: 10.r,
+                              ),
                             ),
                           ),
                         ],
@@ -97,17 +109,49 @@ class CartScreenCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 SizedBox(
                   height: 70.h,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.more_vert),
+                      // const Icon(Icons.more_vert),
+                      SizedBox(
+                        height: 30.h,
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton(
+                            icon: Icon(Icons.more_vert_sharp),
+                            menuMaxHeight: 25.h,
+                            onChanged: (String? newValue) {},
+                            items: <String>['delete']
+                                .map<DropdownMenuItem<String>>(
+                              (String value) {
+                                return DropdownMenuItem<String>(
+                                  onTap: () {
+                                    context
+                                        .read<ProductDetailViewModel>()
+                                        .btndecrement();
+                                  },
+                                  value: value,
+                                  child: Center(
+                                    child: Text(
+                                      value,
+                                      style: TextStyle(
+                                          fontSize: 15.sp, color: Colors.red),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ).toList(),
+                            onTap: () {},
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         height: 19.h,
                       ),
-                      Text('\$23.3')
+                      Text(
+                          '\$ ${context.watch<CartItemsViewModel>().itemPrice}')
                     ],
                   ),
                 )
