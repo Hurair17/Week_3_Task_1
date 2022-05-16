@@ -4,14 +4,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/ui/custom_widget/card.dart';
 import 'package:week_3_task/ui/custom_widget/card_Htile.dart';
 import 'package:week_3_task/ui/custom_widget/text_form_field.dart';
+import 'package:badges/badges.dart';
 
+import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 import 'package:week_3_task/ui/screens/cart/cart1.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool check = false;
+    if (context.watch<ProductDetailViewModel>().btnCount <= 0) {
+      check = false;
+    } else {
+      check = true;
+    }
+
     return SingleChildScrollView(
       child: SafeArea(
         child: DefaultTabController(
@@ -46,10 +56,22 @@ class Home extends StatelessWidget {
                             height: 30.h,
                             alignment: Alignment.topRight,
                             child: Center(
-                              child: Icon(
-                                Icons.shopping_cart_sharp,
-                                size: 20.r,
-                                color: Colors.white,
+                              // child: Icon(
+                              //   Icons.shopping_cart_sharp,
+                              //   size: 20.r,
+                              //   color: Colors.white,
+                              // ),
+
+                              child: Badge(
+                                showBadge: check,
+                                badgeContent: Text(
+                                    '${context.watch<ProductDetailViewModel>().btnCount}'),
+                                badgeColor: Colors.white,
+                                child: Icon(
+                                  Icons.shopping_cart_sharp,
+                                  size: 20.r,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
