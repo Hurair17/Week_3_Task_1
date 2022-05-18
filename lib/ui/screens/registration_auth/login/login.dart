@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
-import 'package:week_3_task/ui/custom_widget/eleveted_button.dart';
-import 'package:week_3_task/ui/custom_widget/text_form_field.dart';
+import 'package:week_3_task/ui/custom_widget/custom_form_field.dart';
 import 'package:week_3_task/ui/custom_widget/wavy_path.dart';
 import 'package:week_3_task/ui/custom_widget/wrap_txt_button.dart';
+import 'package:week_3_task/ui/screens/registration_auth/login/login_view_model.dart';
 import 'package:week_3_task/ui/screens/registration_auth/signup/signup.dart';
 import 'package:week_3_task/ui/screens/root.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -16,13 +17,15 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   bool isChecked = false;
 
-  final _formKey = GlobalKey<FormState>();
+  var isLoading = false;
+
   @override
   Widget build(BuildContext context) {
+    final validationService = Provider.of<LogINFormProvider>(context);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
-          key: _formKey,
           child: Column(
             children: [
               // Top Plant Image with Bottom wavy
@@ -36,7 +39,7 @@ class _LoginState extends State<Login> {
                 clipper: BottomWaveClipper(),
               ),
 
-              // User Welcome Text and Side Image
+              // User Welcome Text and Side Image Stack
               Stack(
                 children: [
                   Column(
@@ -62,6 +65,8 @@ class _LoginState extends State<Login> {
                       ),
                     ],
                   ),
+
+                  // Side Plant Image
                   Positioned(
                     right: -20.w,
                     child: RotationTransition(
@@ -74,37 +79,43 @@ class _LoginState extends State<Login> {
                   ),
                 ],
               ),
+
+              // Column all Login
               Padding(
                 padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
                 child: Column(
                   children: [
-                    // Text Field for Name And Password
-                    TextFomField(
+                    CustomFormField(
                       hint: 'Full Name',
-                      val: true,
-                      txt: 'name',
                       icn: Icon(
                         Icons.person,
                         color: darkgren,
                       ),
+                      errorText: validationService.name.error,
+                      onChanged: (String value) {
+                        validationService.validateName(value);
+                      },
                     ),
                     SizedBox(
                       height: 20.h,
                     ),
-                    TextFomField(
-                      val: true,
-                      txt: 'password',
-                      hint: '********',
+                    CustomFormField(
+                      hint: '*******',
                       icn: Icon(
-                        Icons.lock,
+                        Icons.person,
                         color: darkgren,
-                        size: 20,
                       ),
+                      errorText: validationService.password.error,
+                      onChanged: (String value) {
+                        validationService.validatePassword(value);
+                      },
                       obsecure: true,
                     ),
                   ],
                 ),
               ),
+
+              //Remember Button
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8, top: 8),
                 child: Row(
@@ -147,19 +158,44 @@ class _LoginState extends State<Login> {
                 ),
               ),
               SizedBox(
-                height: 120.h,
+                height: 130.h,
               ),
 
-              //Bottom Login Button
-              const Center(
-                child: CustElevetedButton(
-                  next: RootBar(),
-                  txt: 'Login',
+              //Text Button of Login
+              Center(
+                child: TextButton(
+                  onPressed: () {
+                    if (!validationService.isValid) {
+                      final snackBar = SnackBar(
+                        content: const Text('Please Input Your Data'),
+                        action: SnackBarAction(
+                          label: 'Undo',
+                          onPressed: () {
+                            // Some code to undo the change.
+                          },
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    } else {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RootBar()));
+                    }
+                  },
+                  child: Text(
+                    'LogIn',
+                    style: TextStyle(fontSize: 20.sp),
+                  ),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                    backgroundColor: darkgren,
+                    fixedSize: Size(350.w, 45.h),
+                    shape: StadiumBorder(),
+                  ),
                 ),
               ),
 
               //Wrap Sign Up Text Button
-              const Center(
+              Center(
                 child: CustWrapButton1(
                   txt1: 'Don\'t have an account',
                   btntxt: 'Sign Up',

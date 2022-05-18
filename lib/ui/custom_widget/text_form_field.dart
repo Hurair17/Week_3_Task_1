@@ -35,6 +35,12 @@ class TextFomField extends StatelessWidget {
           hintStyle: TextStyle(color: darkgren),
           focusColor: darkgren,
         ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please Enter $hint';
+          }
+          return null;
+        },
         cursorColor: darkgren,
       ),
     );

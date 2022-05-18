@@ -5,7 +5,7 @@ class CartItemsViewModel extends ChangeNotifier {
   final double _itemPrice = 20.30;
   int get items => _items;
   double get itemPrice => _itemPrice;
-  double _total = 0.0;
+  final double _total = 0.0;
   double get total => _total;
 
   void increment() {

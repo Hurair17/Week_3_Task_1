@@ -58,26 +58,44 @@ class CustWrapButton2 extends StatelessWidget {
       child: SizedBox(
         height: 20.h,
         width: wdth.w,
-        child: Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
-          alignment: WrapAlignment.start,
-          children: [
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                btntxt,
-                style: TextStyle(
-                  color: darkgren,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
+
+        // With Text Button Code
+
+        // child: Wrap(
+        //   crossAxisAlignment: WrapCrossAlignment.center,
+        //   alignment: WrapAlignment.start,
+        //   children: [
+        //     TextButton(
+        //       onPressed: () {},
+        //       child: Text(
+        //         btntxt,
+        //         style: TextStyle(
+        //           color: darkgren,
+        //           fontWeight: FontWeight.w800,
+        //         ),
+        //       ),
+        //     ),
+        //     Text(
+        //       txt1,
+        //       style: TextStyle(color: gry),
+        //     ),
+        //   ],
+        // ),
+
+        child: RichText(
+            text: TextSpan(children: [
+          TextSpan(
+            text: btntxt,
+            style: TextStyle(
+              color: darkgren,
+              fontWeight: FontWeight.w800,
             ),
-            Text(
-              txt1,
-              style: TextStyle(color: gry),
-            ),
-          ],
-        ),
+          ),
+          TextSpan(
+            text: txt1,
+            style: TextStyle(color: gry),
+          ),
+        ])),
       ),
     );
   }

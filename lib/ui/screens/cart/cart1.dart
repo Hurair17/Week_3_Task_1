@@ -136,7 +136,7 @@ class Cart1 extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  const CustElevetedButton(
+                  CustElevetedButton(
                     next: RootBar(),
                     txt: 'Place your order',
                     hight: 40,
