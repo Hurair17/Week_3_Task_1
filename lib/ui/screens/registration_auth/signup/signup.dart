@@ -17,8 +17,6 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final validationService = Provider.of<SignUpFormProvider>(context);
-
     return Form(
       key: _formKey,
       child: Scaffold(
@@ -83,9 +81,12 @@ class SignUp extends StatelessWidget {
                           Icons.person,
                           color: darkgren,
                         ),
-                        errorText: validationService.name.error,
-                        onChanged: (String value) {
-                          validationService.validateName(value);
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Enter Your Name';
+                          } else {
+                            return null;
+                          }
                         },
                       ),
                       SizedBox(
@@ -93,13 +94,16 @@ class SignUp extends StatelessWidget {
                       ),
                       CustomFormField(
                         hint: 'Email',
-                        errorText: validationService.email.error,
                         icn: Icon(
                           Icons.mail,
                           color: darkgren,
                         ),
-                        onChanged: (String value) {
-                          validationService.validateEmail(value);
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Enter Your Email';
+                          } else {
+                            return null;
+                          }
                         },
                       ),
                       SizedBox(
@@ -112,9 +116,12 @@ class SignUp extends StatelessWidget {
                           Icons.person,
                           color: darkgren,
                         ),
-                        errorText: validationService.password.error,
-                        onChanged: (String value) {
-                          validationService.validatePassword(value);
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Enter Your Password';
+                          } else {
+                            return null;
+                          }
                         },
                       ),
                       SizedBox(
@@ -126,9 +133,12 @@ class SignUp extends StatelessWidget {
                           Icons.person,
                           color: darkgren,
                         ),
-                        errorText: validationService.cPassword.error,
-                        onChanged: (String value) {
-                          validationService.confirmPassword(value);
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Cofirm Your Password';
+                          } else {
+                            return null;
+                          }
                         },
                       ),
                       SizedBox(
@@ -157,22 +167,13 @@ class SignUp extends StatelessWidget {
                         // SignUp Button
                         child: TextButton(
                           onPressed: () {
-                            if (!validationService.isValid) {
-                              //SnakBar for User To Understand to enter Info
-                              final snackBar = SnackBar(
-                                content: const Text('Please Input Your Data'),
-                                action: SnackBarAction(
-                                  label: 'Undo',
-                                  onPressed: () {},
-                                ),
-                              );
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
-                            } else {
+                            if (_formKey.currentState!.validate()) {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => const RootBar()));
+                            } else {
+                              null;
                             }
                           },
                           child: Text(
@@ -192,7 +193,7 @@ class SignUp extends StatelessWidget {
                 ),
 
                 //Already Have acount Login Screen Button
-                const Center(
+                Center(
                   child: CustWrapButton1(
                     txt1: 'Already have an account?',
                     btntxt: 'Log in',

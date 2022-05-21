@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
-import 'package:week_3_task/ui/screens/registration_auth/login/login_view_model.dart';
 import 'package:week_3_task/ui/screens/registration_auth/signup/signup_view_model.dart';
 import 'ui/screens/registration_auth/login/login.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,8 +11,8 @@ void main() {
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => CartItemsViewModel()),
       ChangeNotifierProvider(create: (_) => ProductDetailViewModel()),
-      ChangeNotifierProvider(create: (_) => SignUpFormProvider()),
-      ChangeNotifierProvider(create: (_) => LogINFormProvider()),
+      // ChangeNotifierProvider(create: (_) => SignUpFormProvider()),
+      // ChangeNotifierProvider(create: (_) => LogInFormProvider()),
     ], child: const MaterialApp(home: MyApp())),
   );
 }
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_) {
-        return const Login();
+        return Login();
       },
     );
   }

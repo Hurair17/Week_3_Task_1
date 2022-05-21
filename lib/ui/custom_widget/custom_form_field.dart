@@ -7,14 +7,11 @@ class CustomFormField extends StatelessWidget {
   final Icon icn;
   final double wdth;
   final bool obsecure;
-  final String? errorText;
-  final Function(String)? onChanged;
+  String? Function(String?)? validator;
 
   // final String? Function(String?)? validator;
-  const CustomFormField({
-    this.onChanged,
-    // this.validator,
-    this.errorText,
+  CustomFormField({
+    this.validator,
     required this.hint,
     required this.icn,
     this.wdth = 20,
@@ -36,22 +33,16 @@ class CustomFormField extends StatelessWidget {
         TextFormField(
           obscureText: obsecure,
           decoration: InputDecoration(
-              prefixIcon: icn,
-              // suffixIconColor: green,
-              prefixIconColor: green,
-              border: InputBorder.none,
-              hintText: hint,
-              hintStyle: TextStyle(color: darkgren),
-              focusColor: darkgren,
-              errorText: errorText,
-              iconColor: lightgreen
-
-              // errorStyle:
-              ),
-
-          // validator: validator,
+            prefixIcon: icn,
+            prefixIconColor: green,
+            border: InputBorder.none,
+            hintText: hint,
+            hintStyle: TextStyle(color: darkgren),
+            focusColor: darkgren,
+            iconColor: lightgreen,
+          ),
           cursorColor: darkgren,
-          onChanged: onChanged,
+          validator: validator,
         ),
       ],
     );

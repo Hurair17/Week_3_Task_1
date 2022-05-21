@@ -17,16 +17,14 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  // Bool Check for Remember Me
-  bool isChecked = false;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final validationService = Provider.of<LogINFormProvider>(context);
-
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Form(
+    return ChangeNotifierProvider<LogInFormProvider>(
+      create: (context) => LogInFormProvider(),
+      child: Scaffold(
+        body: SingleChildScrollView(
           child: Column(
             children: [
               // Top Plant Image with Bottom wavy
@@ -82,37 +80,46 @@ class _LoginState extends State<Login> {
               ),
 
               // TextFields Form
-              Padding(
-                padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
-                child: Column(
-                  children: [
-                    CustomFormField(
-                      hint: 'Full Name',
-                      icn: Icon(
-                        Icons.person,
-                        color: darkgren,
+              // LoginForm(),
+              Form(
+                key: _formKey,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
+                  child: Column(
+                    children: [
+                      CustomFormField(
+                        hint: 'Full Name',
+                        icn: Icon(
+                          Icons.person,
+                          color: darkgren,
+                        ),
+                        // errorText: 'Please Input Your Name',
+                        validator: (String? value) {
+                          if (value!.isEmpty) {
+                            return 'Please Enter Your Name';
+                          }
+                          return null;
+                        },
                       ),
-                      errorText: validationService.name.error,
-                      onChanged: (String value) {
-                        validationService.validateName(value);
-                      },
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    CustomFormField(
-                      hint: '*******',
-                      icn: Icon(
-                        Icons.person,
-                        color: darkgren,
+                      SizedBox(
+                        height: 20.h,
                       ),
-                      errorText: validationService.password.error,
-                      onChanged: (String value) {
-                        validationService.validatePassword(value);
-                      },
-                      obsecure: true,
-                    ),
-                  ],
+                      CustomFormField(
+                        hint: '*******',
+                        icn: Icon(
+                          Icons.person,
+                          color: darkgren,
+                        ),
+                        validator: (String? value) {
+                          if (value!.isEmpty) {
+                            return 'Enter Your Password';
+                          }
+                          return null;
+                        },
+                        obsecure: true,
+                      ),
+                    ],
+                  ),
                 ),
               ),
 
@@ -122,19 +129,20 @@ class _LoginState extends State<Login> {
                 child: Row(
                   children: [
                     //CheckBox Button
-                    Checkbox(
-                      value: isChecked,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          isChecked = value!;
-                        });
-                      },
-                      checkColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
-                      activeColor: darkgren,
-                    ),
+                    Consumer<LogInFormProvider>(
+                        builder: (context, provider, child) {
+                      return Checkbox(
+                        value: provider.isNotifiable,
+                        onChanged: (bool? value) {
+                          provider.toggleNotification(isNotifiable: value);
+                        },
+                        checkColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        activeColor: darkgren,
+                      );
+                    }),
                     Text(
                       'Remember me',
                       style: TextStyle(
@@ -166,20 +174,13 @@ class _LoginState extends State<Login> {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    if (validationService.isValid) {
+                    if (_formKey.currentState!.validate()) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const RootBar()));
                     } else {
-                      final snackBar = SnackBar(
-                        content: const Text('Please Input Your Data'),
-                        action: SnackBarAction(
-                          label: 'Undo',
-                          onPressed: () {},
-                        ),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      null;
                     }
                   },
                   child: Text(
@@ -206,6 +207,7 @@ class _LoginState extends State<Login> {
             ],
           ),
         ),
+        // ),
       ),
     );
   }
