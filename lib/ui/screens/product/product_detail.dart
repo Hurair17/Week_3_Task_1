@@ -24,14 +24,18 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               height: 690.h,
             ),
+
+            //Product Image
             Image.asset(
               'assets/product.jpg',
               height: 500.h,
               width: 360.w,
             ),
+
+            // Top Back Arrow Button and Favorite Icon
             Positioned(
                 top: 50.h,
                 left: 20.w,
@@ -72,6 +76,8 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                     ),
                   ],
                 )),
+
+            // Product Detail List like Name Price Amout etc
             Positioned(
               top: 400.h,
               child: Container(
@@ -86,9 +92,6 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Padding(
-                      //   padding: const EdgeInsets.all(15.0),
-                      //   child:
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -334,6 +337,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
   }
 }
 
+//Horizontal ListView on Height Humidity
 class RowWidgetDown extends StatelessWidget {
   final String txt1;
   final String txt2;
@@ -385,6 +389,7 @@ class RowWidgetDown extends StatelessWidget {
   }
 }
 
+//Product Review Stars
 class Star extends StatelessWidget {
   const Star({
     Key? key,

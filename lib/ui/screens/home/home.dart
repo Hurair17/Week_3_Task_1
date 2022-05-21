@@ -33,6 +33,7 @@ class Home extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // CircleAvatar and CartIcon Button
                     Row(
                       children: [
                         const CircleAvatar(
@@ -40,6 +41,7 @@ class Home extends StatelessWidget {
                               'https://images.ctfassets.net/hrltx12pl8hq/3j5RylRv1ZdswxcBaMi0y7/b84fa97296bd2350db6ea194c0dce7db/Music_Icon.jpg'),
                         ),
                         const Spacer(),
+                        // Cart Icon Button
                         InkWell(
                           onTap: () {
                             Navigator.push(
@@ -56,12 +58,7 @@ class Home extends StatelessWidget {
                             height: 30.h,
                             alignment: Alignment.topRight,
                             child: Center(
-                              // child: Icon(
-                              //   Icons.shopping_cart_sharp,
-                              //   size: 20.r,
-                              //   color: Colors.white,
-                              // ),
-
+                              // Cart Badge for Number of items in Cart
                               child: Badge(
                                 showBadge: check,
                                 badgeContent: Text(
@@ -88,6 +85,7 @@ class Home extends StatelessWidget {
                     SizedBox(
                       height: 15.h,
                     ),
+                    //Custom Text Field
                     TextFomField(
                       val: false,
                       txt: 'Search',
@@ -98,6 +96,8 @@ class Home extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
+
+                    // TabBar
                     SizedBox(
                       height: 30.h,
                       child: TabBar(
@@ -136,6 +136,7 @@ class Home extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
+              // TabBar View
               SizedBox(
                 height: 330.h,
                 child: TabBarView(

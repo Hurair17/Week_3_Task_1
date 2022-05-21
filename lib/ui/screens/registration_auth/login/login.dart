@@ -17,9 +17,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  // Bool Check for Remember Me
   bool isChecked = false;
-
-  var isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +81,7 @@ class _LoginState extends State<Login> {
                 ],
               ),
 
-              // Column all Login
+              // TextFields Form
               Padding(
                 padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
                 child: Column(

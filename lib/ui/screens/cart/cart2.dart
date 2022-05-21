@@ -21,6 +21,7 @@ class Cart2 extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // Icon Buttun with Navigation POP to go back
                 InkWell(
                   onTap: () {
                     Navigator.pop(context);
@@ -48,37 +49,27 @@ class Cart2 extends StatelessWidget {
                     onPressed: () {}, icon: const Icon(Icons.more_vert_sharp))
               ],
             ),
+
+            // List of Cart Items
             SizedBox(
                 height: 360.h,
-                child:
-                    //  ListView(
-                    //   children: [
-                    //     const CartScreenCard(),
-                    //     SizedBox(height: 15.h),
-                    //     const CartScreenCard(),
-                    //     SizedBox(height: 15.h),
-                    //     const CartScreenCard(),
-                    //     SizedBox(height: 15.h),
-                    //     const CartScreenCard(),
-                    //     SizedBox(height: 15.h),
-                    //     const CartScreenCard(),
-                    //   ],
-                    // ),
-                    ListView.builder(
-                        itemCount:
-                            context.watch<ProductDetailViewModel>().btnCount,
-                        itemBuilder: (BuildContext context, int index) {
-                          return const Padding(
-                            padding: EdgeInsets.only(bottom: 12.0),
-                            child: CartScreenCard(),
-                          );
-                        })),
+                child: ListView.builder(
+                    itemCount: context.watch<ProductDetailViewModel>().btnCount,
+                    itemBuilder: (BuildContext context, int index) {
+                      return const Padding(
+                        padding: EdgeInsets.only(bottom: 12.0),
+                        child: CartScreenCard(),
+                      );
+                    })),
+
+            //Calculaion of Prices
             Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(25),
                     topRight: Radius.circular(25)),
               ),
+              // Bottom Calculation of Prices
               child: Column(
                 children: [
                   SizedBox(height: 20.h),

@@ -27,6 +27,7 @@ class SignUp extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                // Arow Back Icon Button
                 Align(
                     widthFactor: 15.w,
                     alignment: Alignment.topLeft,
@@ -36,6 +37,7 @@ class SignUp extends StatelessWidget {
                 ),
                 Stack(
                   children: [
+                    // Top Button
                     Column(
                       children: [
                         Center(
@@ -55,6 +57,7 @@ class SignUp extends StatelessWidget {
                         ),
                       ],
                     ),
+                    // Image From Side
                     Positioned(
                       right: -15.w,
                       height: 110.h,
@@ -71,16 +74,15 @@ class SignUp extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 30.0, left: 20, right: 20),
-                  // child: SignUpForm(),
                   child: Column(
                     children: [
+                      // Form TextFormFields with down Height
                       CustomFormField(
                         hint: 'Name',
                         icn: Icon(
                           Icons.person,
                           color: darkgren,
                         ),
-                        // onChanged: _formProvider.validateName('Name'),
                         errorText: validationService.name.error,
                         onChanged: (String value) {
                           validationService.validateName(value);
@@ -132,6 +134,8 @@ class SignUp extends StatelessWidget {
                       SizedBox(
                         height: 20.h,
                       ),
+
+                      // Wrap Text
                       Wrap(
                         children: [
                           CustWrapButton2(
@@ -150,21 +154,16 @@ class SignUp extends StatelessWidget {
                         height: 100.h,
                       ),
                       Center(
-                        // heightFactor: 30,
-
+                        // SignUp Button
                         child: TextButton(
                           onPressed: () {
                             if (!validationService.isValid) {
-                              // validationService.submitData();
-                              // ArrowBackIconBtn();
-                              // InfoMessage();
+                              //SnakBar for User To Understand to enter Info
                               final snackBar = SnackBar(
                                 content: const Text('Please Input Your Data'),
                                 action: SnackBarAction(
                                   label: 'Undo',
-                                  onPressed: () {
-                                    // Some code to undo the change.
-                                  },
+                                  onPressed: () {},
                                 ),
                               );
                               ScaffoldMessenger.of(context)
@@ -191,7 +190,9 @@ class SignUp extends StatelessWidget {
                     ],
                   ),
                 ),
-                 const Center(
+
+                //Already Have acount Login Screen Button
+                const Center(
                   child: CustWrapButton1(
                     txt1: 'Already have an account?',
                     btntxt: 'Log in',
@@ -207,6 +208,7 @@ class SignUp extends StatelessWidget {
   }
 }
 
+// Top Arrow Back Icon Button
 class ArrowBackIconBtn extends StatelessWidget {
   const ArrowBackIconBtn({
     Key? key,
