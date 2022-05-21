@@ -81,7 +81,7 @@ class Cart2 extends StatelessWidget {
                         style: TextStyle(color: green, fontSize: 15.sp),
                       ),
                       Text(
-                        '\$ ${(context.watch<CartItemsViewModel>().itemPrice * context.watch<CartItemsViewModel>().items * context.watch<ProductDetailViewModel>().btnCount).toStringAsFixed(2)}',
+                        '\$ ${(context.watch<ProductDetailViewModel>().itemPrice * context.watch<ProductDetailViewModel>().count * context.watch<ProductDetailViewModel>().btnCount).toStringAsFixed(2)}',
                         style: TextStyle(color: green, fontSize: 15.sp),
                       )
                     ],
@@ -115,7 +115,7 @@ class Cart2 extends StatelessWidget {
                             fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        '\$ ${(10.40 + context.watch<CartItemsViewModel>().itemPrice * context.watch<CartItemsViewModel>().items * context.watch<ProductDetailViewModel>().btnCount).toStringAsFixed(2)}',
+                        '\$ ${(10.40 + context.watch<ProductDetailViewModel>().itemPrice * context.watch<ProductDetailViewModel>().count * context.watch<ProductDetailViewModel>().btnCount).toStringAsFixed(2)}',
                         style: TextStyle(
                             color: green,
                             fontSize: 20.sp,

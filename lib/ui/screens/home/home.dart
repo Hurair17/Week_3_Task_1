@@ -105,7 +105,7 @@ class Home extends StatelessWidget {
                         isScrollable: true,
                         indicator: BoxDecoration(
                             border: Border.all(color: lightgreen),
-                            borderRadius: BorderRadius.circular(50),
+                            borderRadius: BorderRadius.circular(50.r),
                             color: lightgreen),
                         labelColor: darkgren,
                         labelStyle: TextStyle(

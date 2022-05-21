@@ -65,8 +65,9 @@ class CartScreenCard extends StatelessWidget {
                       Row(
                         children: [
                           InkWell(
-                            onTap: () =>
-                                context.read<CartItemsViewModel>().increment(),
+                            onTap: () => context
+                                .read<ProductDetailViewModel>()
+                                .increment(),
                             child: Container(
                               height: 15.h,
                               width: 20.w,
@@ -85,7 +86,7 @@ class CartScreenCard extends StatelessWidget {
                             width: 8.w,
                           ),
                           Text(
-                            '${context.watch<CartItemsViewModel>().items}',
+                            '${context.watch<ProductDetailViewModel>().count}',
                             style: TextStyle(color: green),
                           ),
                           SizedBox(
@@ -93,7 +94,9 @@ class CartScreenCard extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              context.read<CartItemsViewModel>().decrement();
+                              context
+                                  .read<ProductDetailViewModel>()
+                                  .decrement();
                             },
                             child: Container(
                               height: 15.h,
@@ -170,7 +173,7 @@ class CartScreenCard extends StatelessWidget {
                         height: 22.h,
                       ),
                       Text(
-                        '\$ ${context.watch<CartItemsViewModel>().itemPrice}',
+                        '\$ ${context.watch<ProductDetailViewModel>().itemPrice}',
                         style: TextStyle(
                             color: lightgreen, fontWeight: FontWeight.w800),
                       )

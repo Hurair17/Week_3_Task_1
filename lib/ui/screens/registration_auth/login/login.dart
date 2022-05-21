@@ -166,7 +166,12 @@ class _LoginState extends State<Login> {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    if (!validationService.isValid) {
+                    if (validationService.isValid) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const RootBar()));
+                    } else {
                       final snackBar = SnackBar(
                         content: const Text('Please Input Your Data'),
                         action: SnackBarAction(
@@ -175,11 +180,6 @@ class _LoginState extends State<Login> {
                         ),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    } else {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const RootBar()));
                     }
                   },
                   child: Text(

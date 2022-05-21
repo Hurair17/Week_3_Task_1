@@ -108,7 +108,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '\$${context.watch<CartItemsViewModel>().itemPrice}',
+                                    '\$${context.watch<ProductDetailViewModel>().itemPrice}',
                                     style:
                                         TextStyle(fontSize: 11.sp, color: gry),
                                   ),
