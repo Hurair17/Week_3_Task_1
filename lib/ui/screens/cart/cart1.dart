@@ -74,6 +74,8 @@ class Cart1 extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 20.h),
+
+                  // SubTotal and Shipping Cost
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -82,12 +84,13 @@ class Cart1 extends StatelessWidget {
                         style: TextStyle(color: green, fontSize: 15.sp),
                       ),
                       Text(
-                        '\$73.4',
+                        '\$ ${(context.watch<ProductDetailViewModel>().itemPrice * context.watch<ProductDetailViewModel>().count * context.watch<ProductDetailViewModel>().btnCount).toStringAsFixed(2)}',
                         style: TextStyle(color: green, fontSize: 15.sp),
                       )
                     ],
                   ),
                   SizedBox(height: 15.h),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -96,7 +99,7 @@ class Cart1 extends StatelessWidget {
                         style: TextStyle(color: green, fontSize: 15.sp),
                       ),
                       Text(
-                        '\$10.4',
+                        '\$10.40',
                         style: TextStyle(color: green, fontSize: 15.sp),
                       )
                     ],
@@ -105,6 +108,8 @@ class Cart1 extends StatelessWidget {
                     color: gry,
                     height: 45.h,
                   ),
+
+                  // Total Amount
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -116,7 +121,7 @@ class Cart1 extends StatelessWidget {
                             fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        '\$94.4',
+                        '\$ ${(10.40 + context.watch<ProductDetailViewModel>().itemPrice * context.watch<ProductDetailViewModel>().count * context.watch<ProductDetailViewModel>().btnCount).toStringAsFixed(2)}',
                         style: TextStyle(
                             color: green,
                             fontSize: 20.sp,
@@ -127,6 +132,7 @@ class Cart1 extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
+                  // Place Order Button
                   const CustElevetedButton(
                     next: RootBar(),
                     txt: 'Place your order',

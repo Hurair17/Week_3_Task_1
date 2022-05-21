@@ -33,8 +33,9 @@ class ProductDetailViewModel extends ChangeNotifier {
   void btndecrement() {
     if (_btnItems > 0) {
       _btnItems--;
-    } else
+    } else {
       _btnItems = 0;
+    }
 
     if (_btnItems == 0) {
       _items = 1;

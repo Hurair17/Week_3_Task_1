@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/ui/screens/product/product_detail.dart';
 import 'package:provider/provider.dart';
-import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 
 class CartScreenCard extends StatelessWidget {
