@@ -191,7 +191,7 @@ class SignUp extends StatelessWidget {
                     ],
                   ),
                 ),
-                Center(
+                 const Center(
                   child: CustWrapButton1(
                     txt1: 'Already have an account?',
                     btntxt: 'Log in',

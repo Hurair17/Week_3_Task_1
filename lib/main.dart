@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_) {
-        return Login();
+        return const Login();
       },
     );
   }

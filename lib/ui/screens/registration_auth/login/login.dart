@@ -10,6 +10,8 @@ import 'package:week_3_task/ui/screens/root.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
   State<Login> createState() => _LoginState();
 }
