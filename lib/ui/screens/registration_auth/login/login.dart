@@ -170,15 +170,15 @@ class _LoginState extends State<Login> {
                         content: const Text('Please Input Your Data'),
                         action: SnackBarAction(
                           label: 'Undo',
-                          onPressed: () {
-                            // Some code to undo the change.
-                          },
+                          onPressed: () {},
                         ),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     } else {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => RootBar()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const RootBar()));
                     }
                   },
                   child: Text(
@@ -189,7 +189,7 @@ class _LoginState extends State<Login> {
                     primary: Colors.white,
                     backgroundColor: darkgren,
                     fixedSize: Size(350.w, 45.h),
-                    shape: StadiumBorder(),
+                    shape: const StadiumBorder(),
                   ),
                 ),
               ),

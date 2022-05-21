@@ -173,7 +173,7 @@ class SignUp extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => RootBar()));
+                                      builder: (context) => const RootBar()));
                             }
                           },
                           child: Text(
@@ -184,7 +184,7 @@ class SignUp extends StatelessWidget {
                             primary: Colors.white,
                             backgroundColor: darkgren,
                             fixedSize: Size(370.w, 45.h),
-                            shape: StadiumBorder(),
+                            shape: const StadiumBorder(),
                           ),
                         ),
                       ),
