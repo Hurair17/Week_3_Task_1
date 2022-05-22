@@ -17,7 +17,7 @@ class _RootBarState extends State<RootBar> {
   static List<Widget> screen = <Widget>[
     const Home(),
     const Profile(),
-    const Cart2(),
+    Cart2(),
     const ListScreen()
   ];
 

@@ -4,13 +4,13 @@ import 'dart:convert';
 import 'dart:ui';
 
 class Plant {
-  String? id;
-  String? title;
-  String? type;
-  String? description;
-  String? imgUrl;
-  String? shortInfo;
-  double? price;
+  String id;
+  String title;
+  String type;
+  String description;
+  String imgUrl;
+  String shortInfo;
+  double price;
   Plant({
     this.id = 'p0',
     this.title = 'Waterlily',
@@ -63,15 +63,15 @@ class Plant {
 
   factory Plant.fromMap(Map<String, dynamic> map) {
     return Plant(
-      id: map['id'] != null ? map['id'] as String : null,
-      title: map['title'] != null ? map['title'] as String : null,
-      type: map['type'] != null ? map['type'] as String : null,
-      description:
-          map['description'] != null ? map['description'] as String : null,
-      imgUrl: map['imgUrl'] != null ? map['imgUrl'] as String : null,
-      shortInfo: map['shortInfo'] != null ? map['shortInfo'] as String : null,
-      price: map['price'] != null ? map['price'] as double : null,
-    );
+        // id: map['id'] != null ? map['id'] as String : null,
+        //   title: map['title'] != null ? map['title'] as String : null,
+        //   type: map['type'] != null ? map['type'] as String : null,
+        //   description:
+        //       map['description'] != null ? map['description'] as String : null,
+        //   imgUrl: map['imgUrl'] != null ? map['imgUrl'] as String : null,
+        //   shortInfo: map['shortInfo'] != null ? map['shortInfo'] as String : null,
+        //   price: map['price'] != null ? map['price'] as double : null,
+        );
   }
 
   String toJson() => json.encode(toMap());

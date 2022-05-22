@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/ui/custom_widget/cart_page_card.dart';
 import 'package:week_3_task/ui/custom_widget/eleveted_button.dart';
+import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 import 'package:week_3_task/ui/screens/root.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,8 @@ class Cart1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<CartViewModel>(context);
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(top: 50.h, left: 15.w, right: 15.w),
@@ -54,11 +57,20 @@ class Cart1 extends StatelessWidget {
               height: 400.h,
               // color: gry,
               child: ListView.builder(
-                itemCount: context.watch<ProductDetailViewModel>().btnCount,
+                itemCount: cart.itemCount,
                 itemBuilder: (BuildContext context, int index) {
-                  return const Padding(
-                    padding: EdgeInsets.only(bottom: 8.0),
-                    child: CartScreenCard(),
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: CartScreenCard(
+                      // id: cart.items[index].id,
+
+                      id: cart.items.values.toList()[index].id,
+                      title: cart.items.values.toList()[index].title,
+                      quantity: cart.items.values.toList()[index].quantity,
+                      shortInfo: cart.items.values.toList()[index].shortDesc,
+                      price: cart.items.values.toList()[index].price,
+                      imgUrl: cart.items.values.toList()[index].imgUrl,
+                    ),
                   );
                 },
               ),
@@ -84,7 +96,7 @@ class Cart1 extends StatelessWidget {
                         style: TextStyle(color: green, fontSize: 15.sp),
                       ),
                       Text(
-                        '\$ ${(context.watch<ProductDetailViewModel>().itemPrice * context.watch<ProductDetailViewModel>().count * context.watch<ProductDetailViewModel>().btnCount).toStringAsFixed(2)}',
+                        '\$ ${(cart.totalAmount).toStringAsFixed(2)}',
                         style: TextStyle(color: green, fontSize: 15.sp),
                       )
                     ],
@@ -121,7 +133,7 @@ class Cart1 extends StatelessWidget {
                             fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        '\$ ${(10.40 + context.watch<ProductDetailViewModel>().itemPrice * context.watch<ProductDetailViewModel>().count * context.watch<ProductDetailViewModel>().btnCount).toStringAsFixed(2)}',
+                        '\$ ${(10.40 + cart.totalAmount).toStringAsFixed(2)}',
                         style: TextStyle(
                             color: green,
                             fontSize: 20.sp,

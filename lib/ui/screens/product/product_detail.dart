@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:provider/provider.dart';
 import 'package:week_3_task/ui/screens/cart/cart2.dart';
+import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 import 'package:week_3_task/core/models/plant.dart';
@@ -15,6 +16,7 @@ class PrdouctDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productDetailById = Provider.of<HomeViewModel>(context).findById(id);
+    final cartViewModel = Provider.of<CartViewModel>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -272,23 +274,19 @@ class PrdouctDetailScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              if (context.read<ProductDetailViewModel>().count >
-                                  0) {
-                                context
-                                    .read<ProductDetailViewModel>()
-                                    .btnincrement();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => Cart2(id: id,)),
-                                );
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content:
-                                          Text('Please Select Number of item')),
-                                );
-                              }
+                              cartViewModel.addItem(
+                                  productDetailById.id,
+                                  productDetailById.price,
+                                  productDetailById.title,
+                                  productDetailById.shortInfo,
+                                  productDetailById.imgUrl);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => Cart2(
+                                          id: id,
+                                        )),
+                              );
                             },
                             child: Container(
                               height: 40.h,

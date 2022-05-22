@@ -11,18 +11,13 @@ import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 import 'package:week_3_task/ui/screens/cart/cart1.dart';
 import 'package:provider/provider.dart';
 
+import '../cart/cart_view_model.dart';
+
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // bool check = false;
-    // if (context.watch<ProductDetailViewModel>().btnCount <= 0) {
-    //   check = false;
-    // } else {
-    //   check = true;
-    // }
-
     return Consumer<HomeViewModel>(
       builder: (context, value, child) => SingleChildScrollView(
         child: SafeArea(
@@ -40,10 +35,13 @@ class Home extends StatelessWidget {
                         children: [
                           const CircleAvatar(
                             backgroundImage: NetworkImage(
-                                'https://images.ctfassets.net/hrltx12pl8hq/3j5RylRv1ZdswxcBaMi0y7/b84fa97296bd2350db6ea194c0dce7db/Music_Icon.jpg'),
+                              'https://images.ctfassets.net/hrltx12pl8hq/3j5RylRv1ZdswxcBaMi0y7/b84fa97296bd2350db6ea194c0dce7db/Music_Icon.jpg',
+                            ),
                           ),
                           const Spacer(),
                           // Cart Icon Button
+                          // Consumer<CartViewModel>(
+                          //   builder: (context, value, child) =>
                           InkWell(
                             onTap: () {
                               Navigator.push(
@@ -64,7 +62,8 @@ class Home extends StatelessWidget {
                                 child: Badge(
                                   // showBadge: check,
                                   badgeContent: Text(
-                                      '${context.watch<ProductDetailViewModel>().btnCount}'),
+                                      '${context.watch<CartViewModel>().itemCount}'),
+
                                   badgeColor: Colors.white,
                                   child: Icon(
                                     Icons.shopping_cart_sharp,
@@ -75,6 +74,7 @@ class Home extends StatelessWidget {
                               ),
                             ),
                           ),
+                          // ),
                         ],
                       ),
                       SizedBox(

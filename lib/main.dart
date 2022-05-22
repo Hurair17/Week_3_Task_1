@@ -11,8 +11,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() {
   runApp(
     MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_) => CartItemsViewModel()),
-      // ChangeNotifierProvider(create: (_) => ProductDetailViewModel()),
+      ChangeNotifierProvider(create: (_) => CartViewModel()),
+      ChangeNotifierProvider(create: (_) => ProductDetailViewModel()),
+      ChangeNotifierProvider(create: ((context) => CartViewModel())),
       ChangeNotifierProvider(create: (_) => HomeViewModel()),
       // ChangeNotifierProvider(create: (_) => LogInFormProvider()),
     ], child: const MaterialApp(home: MyApp())),

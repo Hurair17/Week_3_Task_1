@@ -1,12 +1,29 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:week_3_task/core/constants/color.dart';
 import 'package:provider/provider.dart';
+
+import 'package:week_3_task/core/constants/color.dart';
+import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 
 class CartScreenCard extends StatelessWidget {
   String? id;
-   CartScreenCard({Key? key,required this.id}) : super(key: key);
+  String? title;
+  String? shortInfo;
+  String? imgUrl;
+  int? quantity;
+  double? price;
+
+  CartScreenCard({
+    Key? key,
+    this.id,
+    this.title,
+    this.shortInfo,
+    this.imgUrl,
+    this.quantity,
+    this.price,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,19 +45,19 @@ class CartScreenCard extends StatelessWidget {
             },
             child: Row(
               children: [
-                SizedBox(
-                  height: 70.h,
-                  width: 80.w,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.r),
-                    child: Image.asset(
-                      'assets/plant3.jpg',
-                      fit: BoxFit.cover,
-                    ),
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.r),
+                      color: Colors.yellow),
+                  height: 60.h,
+                  width: 60.w,
+                  child: Image.asset(
+                    '$imgUrl',
+                    fit: BoxFit.fitHeight,
                   ),
                 ),
                 SizedBox(
-                  width: 15.w,
+                  width: 5.w,
                 ),
                 SizedBox(
                   height: 70.h,
@@ -48,14 +65,14 @@ class CartScreenCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Calathea',
+                        "$title",
                         style: TextStyle(
                             color: green,
                             fontWeight: FontWeight.w600,
                             fontSize: 17.sp),
                       ),
                       Text(
-                        'Its spines don\'t grow',
+                        '$shortInfo',
                         style: TextStyle(color: gry, fontSize: 12.sp),
                       ),
                       SizedBox(
@@ -85,7 +102,7 @@ class CartScreenCard extends StatelessWidget {
                             width: 8.w,
                           ),
                           Text(
-                            '${context.watch<ProductDetailViewModel>().count}',
+                            quantity.toString(),
                             style: TextStyle(color: green),
                           ),
                           SizedBox(
@@ -116,11 +133,12 @@ class CartScreenCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Spacer(),
+                // const Spacer(),
                 SizedBox(
                   height: 70.h,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    // mainAxisAlignment: MainAxisAlignment.start,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // const Icon(Icons.more_vert),
                       SizedBox(
@@ -148,15 +166,12 @@ class CartScreenCard extends StatelessWidget {
                                         Icon(
                                           Icons.delete,
                                           color: Colors.red,
-                                          size: 15.r,
-                                        ),
-                                        SizedBox(
-                                          width: 10.w,
+                                          size: 9.r,
                                         ),
                                         Text(
                                           value,
                                           style: TextStyle(
-                                              fontSize: 15.sp, color: green),
+                                              fontSize: 12.sp, color: green),
                                         ),
                                       ],
                                     ),
@@ -172,7 +187,7 @@ class CartScreenCard extends StatelessWidget {
                         height: 22.h,
                       ),
                       Text(
-                        '\$ ${context.watch<ProductDetailViewModel>().itemPrice}',
+                        '\$ $price',
                         style: TextStyle(
                             color: lightgreen, fontWeight: FontWeight.w800),
                       )

@@ -4,20 +4,20 @@ import 'dart:convert';
 import 'package:week_3_task/core/models/plant.dart';
 
 class Cart {
-  final String id;
-  final String title;
-  final String imgUrl;
-  final String shortDesc;
+  String? id;
+  String? title;
+  String? imgUrl;
+  String? shortDesc;
 
-  final int quantity;
-  final double price;
+  int? quantity;
+  double? price;
   Cart({
-    required this.id,
-    required this.title,
-    required this.imgUrl,
-    required this.shortDesc,
-    required this.quantity,
-    required this.price,
+    this.id,
+    this.title,
+    this.imgUrl,
+    this.shortDesc,
+    this.quantity,
+    this.price,
   });
 
   Cart copyWith({
