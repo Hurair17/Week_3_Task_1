@@ -9,7 +9,8 @@ import 'package:week_3_task/ui/screens/root.dart';
 import 'package:provider/provider.dart';
 
 class Cart2 extends StatelessWidget {
-  const Cart2({Key? key}) : super(key: key);
+  String? id;
+  Cart2({Key? key,required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +57,9 @@ class Cart2 extends StatelessWidget {
                 child: ListView.builder(
                     itemCount: context.watch<ProductDetailViewModel>().btnCount,
                     itemBuilder: (BuildContext context, int index) {
-                      return const Padding(
-                        padding: EdgeInsets.only(bottom: 12.0),
-                        child: CartScreenCard(),
+                      return  Padding(
+                        padding: const EdgeInsets.only(bottom: 12.0),
+                        child: CartScreenCard(id: id,),
                       );
                     })),
 

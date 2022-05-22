@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
-import 'package:week_3_task/ui/screens/product/product_detail.dart';
 import 'package:provider/provider.dart';
 import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 
 class CartScreenCard extends StatelessWidget {
-  const CartScreenCard({Key? key}) : super(key: key);
+  String? id;
+   CartScreenCard({Key? key,required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,10 @@ class CartScreenCard extends StatelessWidget {
         child: SizedBox(
           child: InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const PrdouctDetailScreen()));
+              // Navigator.push(
+              //     context,
+              // MaterialPageRoute(
+              // builder: (context) =>  PrdouctDetailScreen()));
             },
             child: Row(
               children: [

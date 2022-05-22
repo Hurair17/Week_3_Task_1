@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/models/cartModel.dart';
+
 class ProductDetailViewModel extends ChangeNotifier {
   int _items = 1;
   int _btnItems = 1;

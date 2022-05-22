@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/ui/screens/product/product_detail.dart';
+import 'package:week_3_task/core/models/plant.dart';
 
 class HomeScreenDownCard extends StatelessWidget {
-  const HomeScreenDownCard({Key? key}) : super(key: key);
+  Plant? plant;
+  String? id;
+  HomeScreenDownCard({
+    Key? key,
+    this.plant,
+    this.id,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,39 +21,44 @@ class HomeScreenDownCard extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const PrdouctDetailScreen()));
+                  builder: (context) => PrdouctDetailScreen(
+                        id: id,
+                      )));
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
+            Container(
+              padding: EdgeInsets.all(5.r),
               height: 50.h,
               width: 70.w,
-              child: ClipRRect(
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.r),
-                child: Image.asset(
-                  'assets/plant3.jpg',
-                  fit: BoxFit.cover,
-                ),
+                color: Colors.yellow,
+              ),
+              child: Image.asset(
+                '${plant!.imgUrl}',
+                fit: BoxFit.fitHeight,
               ),
             ),
-            SizedBox(
-              width: 5.w,
-            ),
-            Column(
-              children: [
-                Text(
-                  'Calathea',
-                  style: TextStyle(
-                      color: green,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 17.sp),
-                ),
-                Text(
-                  'Its spines don\'t grow',
-                  style: TextStyle(color: gry, fontSize: 12.sp),
-                ),
-              ],
+            Padding(
+              padding: EdgeInsets.all(10.r),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${plant!.title}',
+                    style: TextStyle(
+                        color: green,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 17.sp),
+                  ),
+                  Text(
+                    '${plant!.shortInfo}',
+                    style: TextStyle(color: gry, fontSize: 12.sp),
+                  ),
+                ],
+              ),
             )
           ],
         ),

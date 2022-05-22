@@ -3,22 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:provider/provider.dart';
 import 'package:week_3_task/ui/screens/cart/cart2.dart';
+import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
+import 'package:week_3_task/core/models/plant.dart';
 
-class PrdouctDetailScreen extends StatefulWidget {
-  const PrdouctDetailScreen({Key? key}) : super(key: key);
-
-  @override
-  State<PrdouctDetailScreen> createState() => _PrdouctDetailScreenState();
-}
-
-class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
-  // final int _count = 0;
-  String txt =
-      'However, they look like huge white flower, and they bloom thoughout the year and a bit  more frequently in the springtime. This coupled with the plant\'s broad, deep green leaves.';
+class PrdouctDetailScreen extends StatelessWidget {
+  // Plant? plant;
+  String? id;
+  PrdouctDetailScreen({Key? key, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final productDetailById = Provider.of<HomeViewModel>(context).findById(id);
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -29,7 +25,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
 
             //Product Image
             Image.asset(
-              'assets/product.jpg',
+              '${productDetailById.imgUrl}',
               height: 500.h,
               width: 360.w,
             ),
@@ -97,7 +93,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                           Column(
                             children: [
                               Text(
-                                'Schefflera',
+                                '${productDetailById.title}',
                                 style: TextStyle(
                                     color: green,
                                     fontWeight: FontWeight.bold,
@@ -107,7 +103,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '\$${context.watch<ProductDetailViewModel>().itemPrice}',
+                                    '\$${productDetailById.price}',
                                     style:
                                         TextStyle(fontSize: 11.sp, color: gry),
                                   ),
@@ -199,14 +195,14 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                         height: 12.h,
                       ),
                       SizedBox(
-                        // height: 30.h,
+                        height: 60.h,
                         width: 330.w,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: RichText(
                             maxLines: 4,
                             text: TextSpan(
-                              text: txt,
+                              text: '${productDetailById.description}',
                               style: TextStyle(color: green, fontSize: 12.sp),
                             ),
                           ),
@@ -284,7 +280,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (_) => const Cart2()),
+                                      builder: (_) => Cart2(id: id,)),
                                 );
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
