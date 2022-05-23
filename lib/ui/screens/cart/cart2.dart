@@ -76,7 +76,7 @@ class Cart2 extends StatelessWidget {
                                 .quantity,
                             shortInfo: cartViewModel.items.values
                                 .toList()[index]
-                                .shortDesc,
+                                .shortInfo,
                             price: cartViewModel.items.values
                                 .toList()[index]
                                 .price,

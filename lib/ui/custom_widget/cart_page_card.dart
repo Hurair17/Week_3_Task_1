@@ -31,8 +31,8 @@ class CartScreenCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<CartViewModel>(context);
-    // final homeViewModel = Provider.of<HomeViewModel>(context);
-    print(id);
+    final homeViewModel = Provider.of<HomeViewModel>(context);
+    print(cart.itemAmount);
     return SingleChildScrollView(
       child: Container(
         height: 80.h,
@@ -87,7 +87,10 @@ class CartScreenCard extends StatelessWidget {
                       Row(
                         children: [
                           InkWell(
-                            onTap: () => cart.findByIdIncrement(id!, quantity!),
+                            onTap: () {
+                              homeViewModel.findByIdIncrement(id);
+                              cart.totalAmount;
+                            },
                             child: Container(
                               height: 15.h,
                               width: 20.w,
@@ -106,7 +109,7 @@ class CartScreenCard extends StatelessWidget {
                             width: 8.w,
                           ),
                           Text(
-                            cart.findByIdShow(id),
+                            '${homeViewModel.findByIdShow(id)}',
                             // 's',
                             style: TextStyle(color: green),
                           ),
@@ -115,7 +118,8 @@ class CartScreenCard extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              // homeViewModel.findByIdIdecrement(id);
+                              homeViewModel.findByIdIdecrement(id);
+                              cart.totalAmount;
                             },
                             child: Container(
                               height: 15.h,

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:week_3_task/core/models/cartModel.dart';
+import 'package:week_3_task/core/models/amount_model.dart';
+import 'package:week_3_task/core/models/plant.dart';
 
 class CartViewModel extends ChangeNotifier {
   // int _items = 1;
-  final Map<String, Cart> _items = {};
+  final Map<String, Plant> _items = {};
   // final List _items = [];
   int itemAmount = 1;
 
-  Map<String, Cart> get items {
+  Map<String, Plant> get items {
     // ignore: recursive_getters
     return _items;
   }
@@ -26,36 +27,38 @@ class CartViewModel extends ChangeNotifier {
     return lable;
   }
 
-  double total = 0.0;
+  final _amount = TotalAmount();
   double get totalAmount {
+    double total = _amount.subTotal;
     _items.forEach((key, cartItem) {
-      total += (cartItem.price! * (cartItem.quantity)!.toDouble());
+      total += (cartItem.price * (cartItem.quantity).toDouble());
     });
     return total;
   }
 
   void addItem(String id, double price, String title, String ShortDesc,
       String imgUrl, int qunatity) {
-    // Check it the items is already Present in the Cart
     if (_items.containsKey(id)) {
+      print('object');
       _items.update(
           id,
-          (exitingCartItem) => Cart(
+          (exitingCartItem) => Plant(
                 id: exitingCartItem.id,
                 title: exitingCartItem.title,
                 price: exitingCartItem.price,
                 imgUrl: exitingCartItem.imgUrl,
-                shortDesc: exitingCartItem.shortDesc,
-                quantity: exitingCartItem.quantity! + qunatity,
+                shortInfo: exitingCartItem.shortInfo,
+                quantity: exitingCartItem.quantity + 1,
               ));
     } else {
+      print('not found');
       _items.putIfAbsent(
           id,
-          () => Cart(
+          () => Plant(
               id: id,
               title: title,
               price: price,
-              shortDesc: ShortDesc,
+              shortInfo: ShortDesc,
               imgUrl: imgUrl,
               quantity: qunatity));
     }
@@ -64,22 +67,23 @@ class CartViewModel extends ChangeNotifier {
 
   void remove(String? id) {
     _items.remove(id);
+    totalAmount;
     notifyListeners();
   }
 
-  void findByIdIncrement(String id, int qunatity) {
-    _items.update(
-        id,
-        (exitingCartItem) => Cart(
-              // id: exitingCartItem.id,
-              // title: exitingCartItem.title,
-              // price: exitingCartItem.price,
-              // imgUrl: exitingCartItem.imgUrl,
-              // shortDesc: exitingCartItem.shortDesc,
-              quantity: exitingCartItem.quantity! + 1,
-            ));
-    notifyListeners();
-  }
+  // void findByIdIncrement(String? id, int qunatity) {
+  //   _items.update(
+  //       id!,
+  //       (exitingCartItem) => Cart(
+  //             // id: exitingCartItem.id,
+  //             // title: exitingCartItem.title,
+  //             // price: exitingCartItem.price,
+  //             // imgUrl: exitingCartItem.imgUrl,
+  //             // shortDesc: exitingCartItem.shortDesc,
+  //             quantity: exitingCartItem.quantity + 1,
+  //           ));
+  //   notifyListeners();
+  // }
 
   // void findByIdIdecrement(String? id) {
   //   final total = _plants.firstWhere((element) => element.id == id);
@@ -87,9 +91,10 @@ class CartViewModel extends ChangeNotifier {
   //   notifyListeners();
   // }
 
-  String findByIdShow(String? id) {
-    final total = _items[id]?.quantity;
-    // final total = _items.firstWhere((element) => element.id == id);
-    return total.toString();
-  }
+  // String findByIdShow(String? id) {
+  //   final total = _items[id]?.quantity;
+  //   // final total = _items.firstWhere((element) => element.id == id);
+  //   // notifyListeners();
+  //   return total.toString();
+  // }
 }

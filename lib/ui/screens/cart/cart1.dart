@@ -70,7 +70,7 @@ class Cart1 extends StatelessWidget {
                         ProductId: cart.items.keys.toList()[index],
                         title: cart.items.values.toList()[index].title,
                         quantity: cart.items.values.toList()[index].quantity,
-                        shortInfo: cart.items.values.toList()[index].shortDesc,
+                        shortInfo: cart.items.values.toList()[index].shortInfo,
                         price: cart.items.values.toList()[index].price,
                         imgUrl: cart.items.values.toList()[index].imgUrl,
                       ),

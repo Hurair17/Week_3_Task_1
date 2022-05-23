@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:week_3_task/core/models/plant.dart';
 import 'package:week_3_task/core/services/database_service.dart';
+import '../cart/cart_view_model.dart';
 
 class HomeViewModel extends ChangeNotifier {
   // final _dbServices = DatabaseService();
@@ -16,19 +17,22 @@ class HomeViewModel extends ChangeNotifier {
 
   void findByIdIncrement(String? id) {
     final total = _plants.firstWhere((element) => element.id == id);
-    total.qunatity++;
+    total.quantity++;
     notifyListeners();
   }
 
   void findByIdIdecrement(String? id) {
     final total = _plants.firstWhere((element) => element.id == id);
-    total.qunatity--;
+    if (total.quantity > 1) {
+      total.quantity--;
+    }
+
     notifyListeners();
   }
 
   String findByIdShow(String? id) {
     final total = _plants.firstWhere((element) => element.id == id);
-    return total.qunatity.toString();
+    return total.quantity.toString();
     // notifyListeners();
   }
 }

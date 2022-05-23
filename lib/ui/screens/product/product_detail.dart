@@ -284,7 +284,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                                   productDetailById.title,
                                   productDetailById.shortInfo,
                                   productDetailById.imgUrl,
-                                  productDetailById.qunatity);
+                                  productDetailById.quantity);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

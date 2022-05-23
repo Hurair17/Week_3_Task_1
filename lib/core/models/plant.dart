@@ -11,7 +11,7 @@ class Plant {
   String imgUrl;
   String shortInfo;
   double price;
-  int qunatity;
+  int quantity;
   Plant({
     this.id = 'p0',
     this.title = 'Waterlily',
@@ -19,7 +19,7 @@ class Plant {
     this.description = 'It Grow in Water Obsorb Alot of Water',
     this.imgUrl = 'assets/plant/plant1.png',
     this.shortInfo = 'Long Leaves in water',
-    required this.qunatity,
+    this.quantity = 1,
     this.price = 30.32,
   });
 }
