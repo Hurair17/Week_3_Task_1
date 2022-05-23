@@ -31,6 +31,7 @@ class CartViewModel extends ChangeNotifier {
   double get totalAmount {
     double total = _amount.subTotal;
     _items.forEach((key, cartItem) {
+      // print(key);
       total += (cartItem.price * (cartItem.quantity).toDouble());
     });
     return total;
@@ -39,7 +40,7 @@ class CartViewModel extends ChangeNotifier {
   void addItem(String id, double price, String title, String ShortDesc,
       String imgUrl, int qunatity) {
     if (_items.containsKey(id)) {
-      print('object');
+      print('found $id');
       _items.update(
           id,
           (exitingCartItem) => Plant(
@@ -51,7 +52,7 @@ class CartViewModel extends ChangeNotifier {
                 quantity: exitingCartItem.quantity + 1,
               ));
     } else {
-      print('not found');
+      print('not found $id');
       _items.putIfAbsent(
           id,
           () => Plant(
@@ -71,30 +72,37 @@ class CartViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // void findByIdIncrement(String? id, int qunatity) {
-  //   _items.update(
-  //       id!,
-  //       (exitingCartItem) => Cart(
-  //             // id: exitingCartItem.id,
-  //             // title: exitingCartItem.title,
-  //             // price: exitingCartItem.price,
-  //             // imgUrl: exitingCartItem.imgUrl,
-  //             // shortDesc: exitingCartItem.shortDesc,
-  //             quantity: exitingCartItem.quantity + 1,
-  //           ));
-  //   notifyListeners();
-  // }
+  void removeItem(String id, double price, String title, String ShortDesc,
+      String imgUrl, int qunatity) {
+    if (_items.containsKey(id)) {
+      print('found $id');
+      _items.update(
+          id,
+          (exitingCartItem) => Plant(
+                id: exitingCartItem.id,
+                title: exitingCartItem.title,
+                price: exitingCartItem.price,
+                imgUrl: exitingCartItem.imgUrl,
+                shortInfo: exitingCartItem.shortInfo,
+                quantity: exitingCartItem.quantity - 1,
+              ));
+    } else {
+      print('not found $id');
+      _items.putIfAbsent(
+          id,
+          () => Plant(
+              id: id,
+              title: title,
+              price: price,
+              shortInfo: ShortDesc,
+              imgUrl: imgUrl,
+              quantity: qunatity));
+    }
+    notifyListeners();
+  }
 
-  // void findByIdIdecrement(String? id) {
-  //   final total = _plants.firstWhere((element) => element.id == id);
-  //   total.qunatity--;
-  //   notifyListeners();
-  // }
-
-  // String findByIdShow(String? id) {
-  //   final total = _items[id]?.quantity;
-  //   // final total = _items.firstWhere((element) => element.id == id);
-  //   // notifyListeners();
-  //   return total.toString();
-  // }
+  String findByIdShow(String? id) {
+    final total = _items[id]?.quantity;
+    return total.toString();
+  }
 }

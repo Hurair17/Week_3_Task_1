@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:week_3_task/core/models/plant.dart';
-
-import '../../../core/models/cartModel.dart';
-import '../home/home_view_model.dart';
 
 class ProductDetailViewModel extends ChangeNotifier {
   // int _items = 1;

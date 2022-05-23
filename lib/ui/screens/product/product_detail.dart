@@ -289,7 +289,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => Cart2(
-                                          id: id,
+                                          id: productDetailById.id,
                                         )),
                               );
                             },

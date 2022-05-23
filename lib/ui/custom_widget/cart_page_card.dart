@@ -30,9 +30,9 @@ class CartScreenCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productDetailById = Provider.of<HomeViewModel>(context).findById(id);
     final cart = Provider.of<CartViewModel>(context);
     final homeViewModel = Provider.of<HomeViewModel>(context);
-    print(cart.itemAmount);
     return SingleChildScrollView(
       child: Container(
         height: 80.h,
@@ -88,8 +88,13 @@ class CartScreenCard extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              homeViewModel.findByIdIncrement(id);
-                              cart.totalAmount;
+                              cart.addItem(
+                                  productDetailById.id,
+                                  productDetailById.price,
+                                  productDetailById.title,
+                                  productDetailById.shortInfo,
+                                  productDetailById.imgUrl,
+                                  productDetailById.quantity);
                             },
                             child: Container(
                               height: 15.h,
@@ -109,7 +114,7 @@ class CartScreenCard extends StatelessWidget {
                             width: 8.w,
                           ),
                           Text(
-                            '${homeViewModel.findByIdShow(id)}',
+                            '${cart.findByIdShow(id)}',
                             // 's',
                             style: TextStyle(color: green),
                           ),
@@ -118,8 +123,13 @@ class CartScreenCard extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              homeViewModel.findByIdIdecrement(id);
-                              cart.totalAmount;
+                              cart.removeItem(
+                                  productDetailById.id,
+                                  productDetailById.price,
+                                  productDetailById.title,
+                                  productDetailById.shortInfo,
+                                  productDetailById.imgUrl,
+                                  productDetailById.quantity);
                             },
                             child: Container(
                               height: 15.h,

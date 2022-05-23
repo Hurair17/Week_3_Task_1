@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
-import 'package:week_3_task/core/models/cartModel.dart';
 import 'package:week_3_task/ui/custom_widget/cart_page_card.dart';
 import 'package:week_3_task/ui/custom_widget/eleveted_button.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
