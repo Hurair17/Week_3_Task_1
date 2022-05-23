@@ -13,4 +13,22 @@ class HomeViewModel extends ChangeNotifier {
   Plant findById(String? id) {
     return _plants.firstWhere((element) => element.id == id);
   }
+
+  void findByIdIncrement(String? id) {
+    final total = _plants.firstWhere((element) => element.id == id);
+    total.qunatity++;
+    notifyListeners();
+  }
+
+  void findByIdIdecrement(String? id) {
+    final total = _plants.firstWhere((element) => element.id == id);
+    total.qunatity--;
+    notifyListeners();
+  }
+
+  String findByIdShow(String? id) {
+    final total = _plants.firstWhere((element) => element.id == id);
+    return total.qunatity.toString();
+    // notifyListeners();
+  }
 }

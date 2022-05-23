@@ -1,48 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:week_3_task/core/models/plant.dart';
 
 import '../../../core/models/cartModel.dart';
+import '../home/home_view_model.dart';
 
 class ProductDetailViewModel extends ChangeNotifier {
-  int _items = 1;
-  int _btnItems = 1;
-  final double _itemPrice = 20.30;
+  // int _items = 1;
+  // int _btnItems = 1;
+  // final double _itemPrice = 20.30;
 
-  double get itemPrice => _itemPrice;
-  int get btnCount => _btnItems;
-  int get count => _items;
+  // double get itemPrice => _itemPrice;
+  // int get btnCount => _btnItems;
+  // int get count => _items;
 
-  void increment() {
-    _items++;
-    notifyListeners();
-  }
+  // void increment() {
+  //   _items++;
+  //   notifyListeners();
+  // }
 
-  void decrement() {
-    if (_items > 1) {
-      _items--;
-      notifyListeners();
-    } else {
-      _items = 1;
-      notifyListeners();
-    }
-  }
+  // void decrement() {
+  //   if (_items > 1) {
+  //     _items--;
+  //     notifyListeners();
+  //   } else {
+  //     _items = 1;
+  //     notifyListeners();
+  //   }
+  // }
 
-  void btnincrement() {
-    _btnItems++;
+  // void btnincrement() {
+  //   _btnItems++;
 
-    notifyListeners();
-  }
+  //   notifyListeners();
+  // }
 
-  void btndecrement() {
-    if (_btnItems > 0) {
-      _btnItems--;
-    } else {
-      _btnItems = 0;
-    }
+  // void btndecrement() {
+  //   if (_btnItems > 0) {
+  //     _btnItems--;
+  //   } else {
+  //     _btnItems = 0;
+  //   }
 
-    if (_btnItems == 0) {
-      _items = 1;
-    }
+  //   if (_btnItems == 0) {
+  //     _items = 1;
+  //   }
 
-    notifyListeners();
-  }
+  //   notifyListeners();
+  // }
+
 }

@@ -7,20 +7,6 @@ class CartViewModel extends ChangeNotifier {
   // final List _items = [];
   int itemAmount = 1;
 
-  // void addQuantity(int quantity) {
-  //   quantity++;
-  //   notifyListeners();
-  // }
-
-  // int show(int quantity) {
-  //   return quantity;
-  // }
-
-  // void removeQuantity(int quantity) {
-  //   quantity--;
-  //   notifyListeners();
-  // }
-
   Map<String, Cart> get items {
     // ignore: recursive_getters
     return _items;
@@ -40,8 +26,8 @@ class CartViewModel extends ChangeNotifier {
     return lable;
   }
 
+  double total = 0.0;
   double get totalAmount {
-    double total = 0.0;
     _items.forEach((key, cartItem) {
       total += (cartItem.price! * (cartItem.quantity)!.toDouble());
     });
@@ -66,7 +52,7 @@ class CartViewModel extends ChangeNotifier {
       _items.putIfAbsent(
           id,
           () => Cart(
-              id: DateTime.now().toString(),
+              id: id,
               title: title,
               price: price,
               shortDesc: ShortDesc,
@@ -81,34 +67,29 @@ class CartViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addQuantity(String id, int qunatity) {
-    // Check it the items is already Present in the Cart
-
+  void findByIdIncrement(String id, int qunatity) {
     _items.update(
         id,
         (exitingCartItem) => Cart(
+              // id: exitingCartItem.id,
+              // title: exitingCartItem.title,
+              // price: exitingCartItem.price,
+              // imgUrl: exitingCartItem.imgUrl,
+              // shortDesc: exitingCartItem.shortDesc,
               quantity: exitingCartItem.quantity! + 1,
             ));
-
     notifyListeners();
   }
 
-  void removeQunatity(String id, int qunatity) {
-    // Check it the items is already Present in the Cart
+  // void findByIdIdecrement(String? id) {
+  //   final total = _plants.firstWhere((element) => element.id == id);
+  //   total.qunatity--;
+  //   notifyListeners();
+  // }
 
-    if (qunatity > 1) {
-      _items.update(
-          id,
-          (exitingCartItem) => Cart(
-                quantity: exitingCartItem.quantity! - 1,
-              ));
-    } else {
-      _items.update(
-          id,
-          (exitingCartItem) => Cart(
-                quantity: 1,
-              ));
-    }
-    notifyListeners();
+  String findByIdShow(String? id) {
+    final total = _items[id]?.quantity;
+    // final total = _items.firstWhere((element) => element.id == id);
+    return total.toString();
   }
 }

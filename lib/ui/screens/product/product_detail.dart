@@ -16,6 +16,7 @@ class PrdouctDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productDetailById = Provider.of<HomeViewModel>(context).findById(id);
+    final homeViewModel = Provider.of<HomeViewModel>(context);
     final cartViewModel = Provider.of<CartViewModel>(context);
     return Scaffold(
       body: SingleChildScrollView(
@@ -126,7 +127,9 @@ class PrdouctDetailScreen extends StatelessWidget {
                           Row(
                             children: [
                               InkWell(
-                                onTap: () => productDetailById.qunatity++,
+                                onTap: () =>
+                                    // productDetailById.qunatity++,
+                                    homeViewModel.findByIdIncrement(id),
                                 child: Container(
                                   height: 15.h,
                                   width: 15.w,
@@ -150,7 +153,8 @@ class PrdouctDetailScreen extends StatelessWidget {
                                 color: green,
                                 child: Center(
                                   child: Text(
-                                    '${productDetailById.qunatity}',
+                                    // '${productDetailById.qunatity}',
+                                    homeViewModel.findByIdShow(id),
                                     // '${context.watch<CartViewModel>().show(productDetailById.qunatity)}',
 
                                     style: const TextStyle(color: Colors.white),
@@ -158,7 +162,9 @@ class PrdouctDetailScreen extends StatelessWidget {
                                 ),
                               ),
                               InkWell(
-                                onTap: () => productDetailById.qunatity--,
+                                onTap: () =>
+                                    // productDetailById.qunatity--,
+                                    homeViewModel.findByIdIdecrement(id),
                                 child: Container(
                                   height: 15.h,
                                   width: 15.w,

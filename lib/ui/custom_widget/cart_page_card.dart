@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
+import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 
 class CartScreenCard extends StatelessWidget {
@@ -30,6 +31,7 @@ class CartScreenCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<CartViewModel>(context);
+    // final homeViewModel = Provider.of<HomeViewModel>(context);
     print(id);
     return SingleChildScrollView(
       child: Container(
@@ -85,7 +87,7 @@ class CartScreenCard extends StatelessWidget {
                       Row(
                         children: [
                           InkWell(
-                            onTap: () => cart.addQuantity(id!, quantity!),
+                            onTap: () => cart.findByIdIncrement(id!, quantity!),
                             child: Container(
                               height: 15.h,
                               width: 20.w,
@@ -104,7 +106,8 @@ class CartScreenCard extends StatelessWidget {
                             width: 8.w,
                           ),
                           Text(
-                            quantity.toString(),
+                            cart.findByIdShow(id),
+                            // 's',
                             style: TextStyle(color: green),
                           ),
                           SizedBox(
@@ -112,9 +115,7 @@ class CartScreenCard extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              context
-                                  .read<ProductDetailViewModel>()
-                                  .decrement();
+                              // homeViewModel.findByIdIdecrement(id);
                             },
                             child: Container(
                               height: 15.h,
