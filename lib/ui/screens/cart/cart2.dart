@@ -5,7 +5,6 @@ import 'package:week_3_task/ui/custom_widget/cart_page_card.dart';
 import 'package:week_3_task/ui/custom_widget/eleveted_button.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 
-import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 import 'package:week_3_task/ui/screens/root.dart';
 import 'package:provider/provider.dart';
 

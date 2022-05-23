@@ -5,8 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:week_3_task/ui/screens/cart/cart2.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/home/home_view_model.dart';
-import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
-import 'package:week_3_task/core/models/plant.dart';
 
 class PrdouctDetailScreen extends StatelessWidget {
   // Plant? plant;

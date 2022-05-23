@@ -9,10 +9,8 @@ void main() {
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => CartViewModel()),
-      // ChangeNotifierProvider(create: (_) => ProductDetailViewModel()),
       ChangeNotifierProvider(create: ((context) => CartViewModel())),
       ChangeNotifierProvider(create: (_) => HomeViewModel()),
-      // ChangeNotifierProvider(create: (_) => LogInFormProvider()),
     ], child: const MaterialApp(home: MyApp())),
   );
 }

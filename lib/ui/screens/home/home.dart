@@ -7,7 +7,6 @@ import 'package:week_3_task/ui/custom_widget/text_form_field.dart';
 import 'package:badges/badges.dart';
 import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
-import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 import 'package:week_3_task/ui/screens/cart/cart1.dart';
 import 'package:provider/provider.dart';
 
@@ -176,11 +175,29 @@ class Home extends StatelessWidget {
                               height: 50.h,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: value.plants.length,
+                                itemCount: value.itemCount,
                                 itemBuilder: (BuildContext context, int index) {
                                   return HomeScreenDownCard(
-                                    plant: value.plants[index],
-                                    id: value.plants[index].id,
+                                    id: value.recentView.values
+                                        .toList()[index]
+                                        .id,
+                                    ProductId:
+                                        value.recentView.keys.toList()[index],
+                                    title: value.recentView.values
+                                        .toList()[index]
+                                        .title,
+                                    quantity: value.recentView.values
+                                        .toList()[index]
+                                        .quantity,
+                                    shortInfo: value.recentView.values
+                                        .toList()[index]
+                                        .shortInfo,
+                                    price: value.recentView.values
+                                        .toList()[index]
+                                        .price,
+                                    imgUrl: value.recentView.values
+                                        .toList()[index]
+                                        .imgUrl,
                                   );
                                 },
                               ),

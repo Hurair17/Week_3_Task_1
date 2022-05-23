@@ -1,16 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:week_3_task/core/constants/color.dart';
-import 'package:week_3_task/ui/screens/product/product_detail.dart';
 import 'package:week_3_task/core/models/plant.dart';
+import 'package:week_3_task/ui/screens/product/product_detail.dart';
 
 class HomeScreenDownCard extends StatelessWidget {
-  Plant? plant;
   String? id;
+  final String? ProductId;
+  String? title;
+  String? shortInfo;
+  String? imgUrl;
+  int? quantity;
+  double? price;
   HomeScreenDownCard({
     Key? key,
-    this.plant,
     this.id,
+    this.ProductId,
+    this.title,
+    this.shortInfo,
+    this.imgUrl,
+    this.quantity,
+    this.price,
   }) : super(key: key);
 
   @override
@@ -37,7 +49,7 @@ class HomeScreenDownCard extends StatelessWidget {
                 color: Colors.yellow,
               ),
               child: Image.asset(
-                '${plant!.imgUrl}',
+                '$imgUrl',
                 fit: BoxFit.fitHeight,
               ),
             ),
@@ -47,14 +59,14 @@ class HomeScreenDownCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${plant!.title}',
+                    '$title',
                     style: TextStyle(
                         color: green,
                         fontWeight: FontWeight.w600,
                         fontSize: 17.sp),
                   ),
                   Text(
-                    '${plant!.shortInfo}',
+                    '$shortInfo',
                     style: TextStyle(color: gry, fontSize: 12.sp),
                   ),
                 ],

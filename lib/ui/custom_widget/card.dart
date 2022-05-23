@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/core/models/plant.dart';
-
+import 'package:provider/provider.dart';
 import 'package:week_3_task/ui/custom_widget/wavy_path.dart';
 import 'package:week_3_task/ui/screens/product/product_detail.dart';
+
+import '../screens/home/home_view_model.dart';
 
 class HorizontalCard extends StatelessWidget {
   Plant? plant;
@@ -18,10 +20,21 @@ class HorizontalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeViewModal = Provider.of<HomeViewModel>(context);
+    final productDetailById = Provider.of<HomeViewModel>(context).findById(id);
+
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8),
       child: InkWell(
         onTap: () {
+          homeViewModal.addItem(
+              productDetailById.id,
+              productDetailById.price,
+              productDetailById.title,
+              productDetailById.shortInfo,
+              productDetailById.imgUrl,
+              productDetailById.quantity);
+
           Navigator.push(
               context,
               MaterialPageRoute(

@@ -38,6 +38,39 @@ class DatabaseService {
       price: 40.93,
       // quantity: 1,
     ),
+    Plant(
+      id: 'p4',
+      title: 'Peach ',
+      type: 'outdoor',
+      description:
+          'This is the main description of the Plant use in Detail Screen',
+      imgUrl: 'assets/plant/plant4.png',
+      shortInfo: 'This is short info for cart Screen',
+      price: 21,
+      // quantity: 1,
+    ),
+    Plant(
+      id: 'p5',
+      title: 'Walnut',
+      type: 'outdoor',
+      description:
+          'This is the main description of the Plant use in Detail Screen',
+      imgUrl: 'assets/plant/plant5.png',
+      shortInfo: 'This is short info for cart Screen',
+      price: 100,
+      // quantity: 1,
+    ),
+    Plant(
+      id: 'p6',
+      title: 'WaterIn',
+      type: 'InWater',
+      description:
+          'This is the main description of the Plant use in Detail Screen',
+      imgUrl: 'assets/plant/plant6.png',
+      shortInfo: 'This is short info for cart Screen',
+      price: 21.89,
+      // quantity: 1,
+    ),
   ];
   // }
 }
