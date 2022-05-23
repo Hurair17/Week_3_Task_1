@@ -12,27 +12,27 @@ class SignUpFormProvider extends ChangeNotifier {
     if (value!.isEmpty) {
       return 'Please Enter Your Name';
     }
-    return '';
+    return null;
   }
 
   String? passwordValidation(String? value) {
     if (value!.isEmpty) {
       return 'Please Enter Your Password';
     }
-    return '';
+    return null;
   }
 
   String? emailValidation(String? value) {
     if (value!.isEmpty) {
       return 'Please Enter Your Password';
     }
-    return '';
+    return null;
   }
 
   String? confirmValidation(String? value) {
     if (value!.isEmpty) {
       return 'Please Enter Your Password';
     }
-    return '';
+    return null;
   }
 }
