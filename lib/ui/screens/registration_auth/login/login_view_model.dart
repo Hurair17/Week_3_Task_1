@@ -12,13 +12,11 @@ class LogInFormProvider extends ChangeNotifier {
     if (value!.isEmpty) {
       return 'Please Enter Your Name';
     }
-    return null;
   }
 
   String? passwordValidation(String? value) {
     if (value!.isEmpty) {
       return 'Please Enter Your Password';
     }
-    return null;
   }
 }
