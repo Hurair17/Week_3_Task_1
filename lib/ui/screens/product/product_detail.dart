@@ -126,9 +126,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                           Row(
                             children: [
                               InkWell(
-                                onTap: () => context
-                                    .read<ProductDetailViewModel>()
-                                    .increment(),
+                                onTap: () => productDetailById.qunatity++,
                                 child: Container(
                                   height: 15.h,
                                   width: 15.w,
@@ -152,15 +150,15 @@ class PrdouctDetailScreen extends StatelessWidget {
                                 color: green,
                                 child: Center(
                                   child: Text(
-                                    '${context.watch<ProductDetailViewModel>().count}',
+                                    '${productDetailById.qunatity}',
+                                    // '${context.watch<CartViewModel>().show(productDetailById.qunatity)}',
+
                                     style: const TextStyle(color: Colors.white),
                                   ),
                                 ),
                               ),
                               InkWell(
-                                onTap: () => context
-                                    .read<ProductDetailViewModel>()
-                                    .decrement(),
+                                onTap: () => productDetailById.qunatity--,
                                 child: Container(
                                   height: 15.h,
                                   width: 15.w,
@@ -214,7 +212,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                         height: 12.h,
                       ),
                       SizedBox(
-                        width: 328.w,
+                        width: 338.w,
                         height: 45.h,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
@@ -279,7 +277,8 @@ class PrdouctDetailScreen extends StatelessWidget {
                                   productDetailById.price,
                                   productDetailById.title,
                                   productDetailById.shortInfo,
-                                  productDetailById.imgUrl);
+                                  productDetailById.imgUrl,
+                                  productDetailById.qunatity);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

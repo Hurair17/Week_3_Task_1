@@ -12,7 +12,7 @@ void main() {
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => CartViewModel()),
-      ChangeNotifierProvider(create: (_) => ProductDetailViewModel()),
+      // ChangeNotifierProvider(create: (_) => ProductDetailViewModel()),
       ChangeNotifierProvider(create: ((context) => CartViewModel())),
       ChangeNotifierProvider(create: (_) => HomeViewModel()),
       // ChangeNotifierProvider(create: (_) => LogInFormProvider()),
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (_) {
         // return Login();
-        return Material(child: Home());
+        return Material(child: Login());
       },
     );
   }

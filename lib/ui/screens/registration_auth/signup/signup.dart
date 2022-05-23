@@ -81,13 +81,7 @@ class SignUp extends StatelessWidget {
                           Icons.person,
                           color: darkgren,
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Enter Your Name';
-                          } else {
-                            return null;
-                          }
-                        },
+                        validator: SignUpFormProvider().nameValidation,
                       ),
                       SizedBox(
                         height: 20.h,
@@ -98,13 +92,7 @@ class SignUp extends StatelessWidget {
                           Icons.mail,
                           color: darkgren,
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Enter Your Email';
-                          } else {
-                            return null;
-                          }
-                        },
+                        validator: SignUpFormProvider().emailValidation,
                       ),
                       SizedBox(
                         height: 20.h,
@@ -116,13 +104,7 @@ class SignUp extends StatelessWidget {
                           Icons.person,
                           color: darkgren,
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Enter Your Password';
-                          } else {
-                            return null;
-                          }
-                        },
+                        validator: SignUpFormProvider().passwordValidation,
                       ),
                       SizedBox(
                         height: 20.h,
@@ -133,13 +115,7 @@ class SignUp extends StatelessWidget {
                           Icons.person,
                           color: darkgren,
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Cofirm Your Password';
-                          } else {
-                            return null;
-                          }
-                        },
+                        validator: SignUpFormProvider().confirmValidation,
                       ),
                       SizedBox(
                         height: 20.h,

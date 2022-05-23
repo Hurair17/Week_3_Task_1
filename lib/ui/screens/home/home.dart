@@ -34,9 +34,7 @@ class Home extends StatelessWidget {
                       Row(
                         children: [
                           const CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              'https://images.ctfassets.net/hrltx12pl8hq/3j5RylRv1ZdswxcBaMi0y7/b84fa97296bd2350db6ea194c0dce7db/Music_Icon.jpg',
-                            ),
+                            backgroundImage: AssetImage('assets/my1.jpg'),
                           ),
                           const Spacer(),
                           // Cart Icon Button
@@ -60,10 +58,10 @@ class Home extends StatelessWidget {
                               child: Center(
                                 // Cart Badge for Number of items in Cart
                                 child: Badge(
-                                  // showBadge: check,
+                                  showBadge:
+                                      context.read<CartViewModel>().getlable,
                                   badgeContent: Text(
                                       '${context.watch<CartViewModel>().itemCount}'),
-
                                   badgeColor: Colors.white,
                                   child: Icon(
                                     Icons.shopping_cart_sharp,

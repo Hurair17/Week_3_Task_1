@@ -7,4 +7,18 @@ class LogInFormProvider extends ChangeNotifier {
     this.isNotifiable = isNotifiable;
     notifyListeners();
   }
+
+  String? nameValidation(String? value) {
+    if (value!.isEmpty) {
+      return 'Please Enter Your Name';
+    }
+    return '';
+  }
+
+  String? passwordValidation(String? value) {
+    if (value!.isEmpty) {
+      return 'Please Enter Your Password';
+    }
+    return '';
+  }
 }

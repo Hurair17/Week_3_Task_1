@@ -9,6 +9,7 @@ import 'package:week_3_task/ui/screens/product/product_detail_view_mode.dart';
 
 class CartScreenCard extends StatelessWidget {
   String? id;
+  final String? ProductId;
   String? title;
   String? shortInfo;
   String? imgUrl;
@@ -17,6 +18,7 @@ class CartScreenCard extends StatelessWidget {
 
   CartScreenCard({
     Key? key,
+    this.ProductId,
     this.id,
     this.title,
     this.shortInfo,
@@ -27,6 +29,8 @@ class CartScreenCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<CartViewModel>(context);
+    print(id);
     return SingleChildScrollView(
       child: Container(
         height: 80.h,
@@ -81,9 +85,7 @@ class CartScreenCard extends StatelessWidget {
                       Row(
                         children: [
                           InkWell(
-                            onTap: () => context
-                                .read<ProductDetailViewModel>()
-                                .increment(),
+                            onTap: () => cart.addQuantity(id!, quantity!),
                             child: Container(
                               height: 15.h,
                               width: 20.w,
@@ -137,8 +139,8 @@ class CartScreenCard extends StatelessWidget {
                 SizedBox(
                   height: 70.h,
                   child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.start,
-                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // const Icon(Icons.more_vert),
                       SizedBox(
@@ -155,9 +157,7 @@ class CartScreenCard extends StatelessWidget {
                               (String value) {
                                 return DropdownMenuItem<String>(
                                   onTap: () {
-                                    context
-                                        .read<ProductDetailViewModel>()
-                                        .btndecrement();
+                                    cart.remove(ProductId);
                                   },
                                   value: value,
                                   child: Center(
