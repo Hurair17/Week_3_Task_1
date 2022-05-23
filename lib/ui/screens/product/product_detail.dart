@@ -6,6 +6,7 @@ import 'package:week_3_task/ui/screens/cart/cart2.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
+// ignore: must_be_immutable
 class PrdouctDetailScreen extends StatelessWidget {
   // Plant? plant;
   String? id;
@@ -26,7 +27,7 @@ class PrdouctDetailScreen extends StatelessWidget {
 
             //Product Image
             Image.asset(
-              '${productDetailById.imgUrl}',
+              productDetailById.imgUrl,
               height: 500.h,
               width: 360.w,
             ),
@@ -94,7 +95,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                '${productDetailById.title}',
+                                productDetailById.title,
                                 style: TextStyle(
                                     color: green,
                                     fontWeight: FontWeight.bold,
@@ -206,7 +207,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                           child: RichText(
                             maxLines: 4,
                             text: TextSpan(
-                              text: '${productDetailById.description}',
+                              text: productDetailById.description,
                               style: TextStyle(color: green, fontSize: 12.sp),
                             ),
                           ),

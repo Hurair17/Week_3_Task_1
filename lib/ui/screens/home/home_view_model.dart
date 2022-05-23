@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:week_3_task/core/models/plant.dart';
 import 'package:week_3_task/core/services/database_service.dart';
-import '../cart/cart_view_model.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  // final _dbServices = DatabaseService();
   final List<Plant> _plants = DatabaseService().plants;
 
   List<Plant> get plants {
@@ -46,10 +44,9 @@ class HomeViewModel extends ChangeNotifier {
     return _recentView.length;
   }
 
-  void addItem(String id, double price, String title, String ShortDesc,
+  void addItem(String id, double price, String title, String shortDesc,
       String imgUrl, int qunatity) {
     if (_recentView.containsKey(id)) {
-      print('found $id');
       _recentView.update(
           id,
           (exitingCartItem) => Plant(
@@ -61,14 +58,13 @@ class HomeViewModel extends ChangeNotifier {
                 quantity: exitingCartItem.quantity,
               ));
     } else {
-      print('not found $id');
       _recentView.putIfAbsent(
           id,
           () => Plant(
               id: id,
               title: title,
               price: price,
-              shortInfo: ShortDesc,
+              shortInfo: shortDesc,
               imgUrl: imgUrl,
               quantity: qunatity));
     }

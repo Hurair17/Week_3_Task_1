@@ -7,10 +7,10 @@ class CustomFormField extends StatelessWidget {
   final Icon icn;
   final double wdth;
   final bool obsecure;
-  String? Function(String?)? validator;
+  final String? Function(String?)? validator;
 
   // final String? Function(String?)? validator;
-  CustomFormField({
+  const CustomFormField({
     this.validator,
     required this.hint,
     required this.icn,

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (_) {
         // return Login();
-        return Material(child: Login());
+        return const Material(child: Login());
       },
     );
   }

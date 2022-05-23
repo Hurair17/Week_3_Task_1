@@ -9,6 +9,7 @@ import 'package:week_3_task/ui/screens/product/product_detail.dart';
 
 import '../screens/home/home_view_model.dart';
 
+// ignore: must_be_immutable
 class HorizontalCard extends StatelessWidget {
   Plant? plant;
   String? id;
@@ -68,12 +69,12 @@ class HorizontalCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${plant!.type}',
+                        plant!.type,
                         style: TextStyle(fontSize: 12.sp),
                       ),
                       Row(
                         children: [
-                          Text('${plant!.title}'),
+                          Text(plant!.title),
                           const Spacer(),
                           Container(
                             decoration: BoxDecoration(
@@ -120,7 +121,7 @@ class HorizontalCard extends StatelessWidget {
               left: 0,
               top: 0,
               child: Image.asset(
-                '${plant!.imgUrl}',
+                plant!.imgUrl,
                 width: 120.w,
                 height: 190.h,
               ),

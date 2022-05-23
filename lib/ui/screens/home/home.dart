@@ -181,7 +181,7 @@ class Home extends StatelessWidget {
                                     id: value.recentView.values
                                         .toList()[index]
                                         .id,
-                                    ProductId:
+                                    productId:
                                         value.recentView.keys.toList()[index],
                                     title: value.recentView.values
                                         .toList()[index]
