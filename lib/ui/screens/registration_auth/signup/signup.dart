@@ -9,6 +9,7 @@ import 'package:week_3_task/ui/screens/registration_auth/login/login.dart';
 import 'package:week_3_task/ui/screens/registration_auth/signup/signup_view_model.dart';
 import 'package:week_3_task/ui/screens/root.dart';
 import 'package:week_3_task/ui/custom_widget/custom_form_field.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({Key? key}) : super(key: key);
@@ -168,7 +169,7 @@ class SignUp extends StatelessWidget {
                 ),
 
                 //Already Have acount Login Screen Button
-                const Center(
+                Center(
                   child: CustWrapButton1(
                     txt1: 'Already have an account?',
                     btntxt: 'Log in',

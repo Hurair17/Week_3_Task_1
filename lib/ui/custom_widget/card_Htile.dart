@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:week_3_task/core/constants/color.dart';
+import 'package:week_3_task/core/models/plant.dart';
 import 'package:week_3_task/ui/screens/product/product_detail.dart';
 
-// ignore: must_be_immutable
 class HomeScreenDownCard extends StatelessWidget {
   String? id;
-  final String? productId;
+  final String? ProductId;
   String? title;
   String? shortInfo;
   String? imgUrl;
@@ -17,7 +17,7 @@ class HomeScreenDownCard extends StatelessWidget {
   HomeScreenDownCard({
     Key? key,
     this.id,
-    this.productId,
+    this.ProductId,
     this.title,
     this.shortInfo,
     this.imgUrl,

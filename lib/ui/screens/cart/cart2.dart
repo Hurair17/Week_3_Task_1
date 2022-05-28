@@ -8,7 +8,6 @@ import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/root.dart';
 import 'package:provider/provider.dart';
 
-// ignore: must_be_immutable
 class Cart2 extends StatelessWidget {
   String? id;
   Cart2({Key? key, this.id}) : super(key: key);
@@ -59,13 +58,13 @@ class Cart2 extends StatelessWidget {
               SizedBox(
                   height: 360.h,
                   child: ListView.builder(
-                      // physics: NeverScrollableScrollPhysics(),
+                      physics: NeverScrollableScrollPhysics(),
                       itemCount: cartViewModel.itemCount,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 12.0),
                           child: CartScreenCard(
-                            productId: cartViewModel.items.keys.toList()[index],
+                            ProductId: cartViewModel.items.keys.toList()[index],
                             id: cartViewModel.items.values.toList()[index].id,
                             title: cartViewModel.items.values
                                 .toList()[index]

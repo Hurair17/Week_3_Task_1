@@ -104,7 +104,6 @@ class _LoginState extends State<Login> {
                               Icons.person,
                               color: darkgren,
                             ),
-                            // errorText: 'Please Input Your Name',
                             validator: LogInFormProvider().nameValidation,
                             controller: TextEditingController(
                                 text: provider.logInModel.email),
@@ -188,16 +187,31 @@ class _LoginState extends State<Login> {
                   //Text Button of Login
                   Center(
                     child: TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           // Navigator.push(
                           //     context,
                           //     MaterialPageRoute(
                           //         builder: (context) => const RootBar()));
-                          // LogInFormProvider().signIn(context);
-                          signIn(provider.logInModel.email!,
-                              provider.logInModel.password!);
+                          // void signIn(String email, String password) async {
+                          if (_formKey.currentState!.validate()) {
+                            try {
+                              await _auth
+                                  .signInWithEmailAndPassword(
+                                      email: provider.logInModel.email!,
+                                      password: provider.logInModel.password!)
+                                  .then((uid) {
+                                Fluttertoast.showToast(msg: "Login Successful");
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => const RootBar()));
+                              });
+                            } catch (e) {
+                              Fluttertoast.showToast(msg: e.toString());
+                            }
+                          }
                         }
+                        // }
                       },
                       child: Text(
                         'LogIn',
@@ -226,22 +240,5 @@ class _LoginState extends State<Login> {
             // ),
           );
         }));
-  }
-
-  void signIn(String email, String password) async {
-    if (_formKey.currentState!.validate()) {
-      try {
-        await _auth
-            .signInWithEmailAndPassword(email: email, password: password)
-            .then((uid) {
-          Fluttertoast.showToast(msg: "Login Successful");
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-            return RootBar();
-          }));
-        });
-      } catch (e) {
-        Fluttertoast.showToast(msg: e.toString());
-      }
-    }
   }
 }

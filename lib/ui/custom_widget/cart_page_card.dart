@@ -7,10 +7,9 @@ import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
-// ignore: must_be_immutable
 class CartScreenCard extends StatelessWidget {
   String? id;
-  final String? productId;
+  final String? ProductId;
   String? title;
   String? shortInfo;
   String? imgUrl;
@@ -19,7 +18,7 @@ class CartScreenCard extends StatelessWidget {
 
   CartScreenCard({
     Key? key,
-    this.productId,
+    this.ProductId,
     this.id,
     this.title,
     this.shortInfo,
@@ -32,6 +31,7 @@ class CartScreenCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final productDetailById = Provider.of<HomeViewModel>(context).findById(id);
     final cart = Provider.of<CartViewModel>(context);
+    final homeViewModel = Provider.of<HomeViewModel>(context);
     return SingleChildScrollView(
       child: Container(
         height: 80.h,
@@ -113,7 +113,7 @@ class CartScreenCard extends StatelessWidget {
                             width: 8.w,
                           ),
                           Text(
-                            cart.findByIdShow(id),
+                            '${cart.findByIdShow(id)}',
                             // 's',
                             style: TextStyle(color: green),
                           ),
@@ -171,7 +171,7 @@ class CartScreenCard extends StatelessWidget {
                               (String value) {
                                 return DropdownMenuItem<String>(
                                   onTap: () {
-                                    cart.remove(productId);
+                                    cart.remove(ProductId);
                                   },
                                   value: value,
                                   child: Center(

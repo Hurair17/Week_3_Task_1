@@ -16,7 +16,7 @@ class Cart1 extends StatelessWidget {
 
     return Scaffold(
       body: SingleChildScrollView(
-        // physics: const AlwaysScrollableScrollPhysics(),
+        physics: AlwaysScrollableScrollPhysics(),
         child: Container(
           padding: EdgeInsets.only(top: 50.h, left: 15.w, right: 15.w),
           child: Column(
@@ -56,14 +56,17 @@ class Cart1 extends StatelessWidget {
               // List of Cart Items
               SizedBox(
                 height: 400.h,
+                // color: gry,
                 child: ListView.builder(
+                  // shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: cart.itemCount,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: CartScreenCard(
                         id: cart.items.values.toList()[index].id,
-                        productId: cart.items.keys.toList()[index],
+                        ProductId: cart.items.keys.toList()[index],
                         title: cart.items.values.toList()[index].title,
                         quantity: cart.items.values.toList()[index].quantity,
                         shortInfo: cart.items.values.toList()[index].shortInfo,

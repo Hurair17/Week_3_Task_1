@@ -38,9 +38,10 @@ class CartViewModel extends ChangeNotifier {
     return total;
   }
 
-  void addItem(String id, double price, String title, String shortDesc,
+  void addItem(String id, double price, String title, String ShortDesc,
       String imgUrl, int qunatity) {
     if (_items.containsKey(id)) {
+      print('found $id');
       _items.update(
           id,
           (exitingCartItem) => Plant(
@@ -52,13 +53,14 @@ class CartViewModel extends ChangeNotifier {
                 quantity: exitingCartItem.quantity + 1,
               ));
     } else {
+      print('not found $id');
       _items.putIfAbsent(
           id,
           () => Plant(
               id: id,
               title: title,
               price: price,
-              shortInfo: shortDesc,
+              shortInfo: ShortDesc,
               imgUrl: imgUrl,
               quantity: qunatity));
     }
@@ -71,9 +73,10 @@ class CartViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeItem(String id, double price, String title, String shortDesc,
+  void removeItem(String id, double price, String title, String ShortDesc,
       String imgUrl, int qunatity) {
     if (_items.containsKey(id)) {
+      print('found $id');
       _items.update(
           id,
           (exitingCartItem) => Plant(
@@ -85,13 +88,14 @@ class CartViewModel extends ChangeNotifier {
                 quantity: exitingCartItem.quantity - 1,
               ));
     } else {
+      print('not found $id');
       _items.putIfAbsent(
           id,
           () => Plant(
               id: id,
               title: title,
               price: price,
-              shortInfo: shortDesc,
+              shortInfo: ShortDesc,
               imgUrl: imgUrl,
               quantity: qunatity));
     }
