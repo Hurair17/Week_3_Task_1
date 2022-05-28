@@ -1,13 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/ui/custom_widget/custom_form_field.dart';
 import 'package:week_3_task/ui/custom_widget/wavy_path.dart';
 import 'package:week_3_task/ui/custom_widget/wrap_txt_button.dart';
 import 'package:week_3_task/ui/screens/registration_auth/login/login_view_model.dart';
 import 'package:week_3_task/ui/screens/registration_auth/signup/signup.dart';
-import 'package:week_3_task/ui/screens/root.dart';
 import 'package:provider/provider.dart';
+
+import '../../root.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -18,12 +21,18 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<LogInFormProvider>(
         create: (context) => LogInFormProvider(),
         child: Consumer<LogInFormProvider>(builder: (context, provider, child) {
+          // final TextEditingController emailController =
+          //     TextEditingController(text: provider.logInModel.email);
+          // final TextEditingController passwordController =
+          //     TextEditingController(text: provider.logInModel.password);
+
           return Scaffold(
             body: SingleChildScrollView(
               child: Column(
@@ -90,13 +99,21 @@ class _LoginState extends State<Login> {
                       child: Column(
                         children: [
                           CustomFormField(
-                            hint: 'Full Name',
+                            hint: 'email',
                             icn: Icon(
                               Icons.person,
                               color: darkgren,
                             ),
                             // errorText: 'Please Input Your Name',
                             validator: LogInFormProvider().nameValidation,
+                            controller: TextEditingController(
+                                text: provider.logInModel.email),
+                            // onSaved: (value) {
+                            //   emailController.text = value!;
+                            // },
+                            onChanged: (value) {
+                              provider.logInModel.email = value;
+                            },
                           ),
                           SizedBox(
                             height: 20.h,
@@ -109,6 +126,14 @@ class _LoginState extends State<Login> {
                             ),
                             validator: LogInFormProvider().passwordValidation,
                             obsecure: true,
+                            controller: TextEditingController(
+                                text: provider.logInModel.password),
+                            // onSaved: (value) {
+                            //   provider.logInModel.password = value!;
+                            // },
+                            onChanged: (value) {
+                              provider.logInModel.password = value;
+                            },
                           ),
                         ],
                       ),
@@ -165,10 +190,13 @@ class _LoginState extends State<Login> {
                     child: TextButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const RootBar()));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => const RootBar()));
+                          // LogInFormProvider().signIn(context);
+                          signIn(provider.logInModel.email!,
+                              provider.logInModel.password!);
                         }
                       },
                       child: Text(
@@ -198,5 +226,22 @@ class _LoginState extends State<Login> {
             // ),
           );
         }));
+  }
+
+  void signIn(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        await _auth
+            .signInWithEmailAndPassword(email: email, password: password)
+            .then((uid) {
+          Fluttertoast.showToast(msg: "Login Successful");
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
+            return RootBar();
+          }));
+        });
+      } catch (e) {
+        Fluttertoast.showToast(msg: e.toString());
+      }
+    }
   }
 }

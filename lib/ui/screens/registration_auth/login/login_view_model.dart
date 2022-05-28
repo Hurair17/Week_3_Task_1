@@ -1,9 +1,19 @@
 // ignore_for_file: body_might_complete_normally_nullable, duplicate_ignore
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:week_3_task/core/models/validation_model/login_model.dart';
+import 'package:week_3_task/core/services/firebase_auth.dart';
+
+import '../../../../core/services/database_service.dart';
+import '../../root.dart';
 
 class LogInFormProvider extends ChangeNotifier {
   bool? isNotifiable = false;
+  LogInModel logInModel = LogInModel();
+
+  final auth = FirebaseAuthServices().auth;
+  final _dbService = DatabaseService();
 
   void toggleNotification({bool? isNotifiable = true}) {
     this.isNotifiable = isNotifiable;
@@ -13,6 +23,9 @@ class LogInFormProvider extends ChangeNotifier {
   String? nameValidation(String? value) {
     if (value!.isEmpty) {
       return 'Please Enter Your Name';
+    }
+    if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+      return ("Please enter a valid email");
     }
   }
 

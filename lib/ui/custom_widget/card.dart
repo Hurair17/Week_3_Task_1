@@ -45,12 +45,9 @@ class HorizontalCard extends StatelessWidget {
         },
         child: Stack(
           children: [
-            // Image.asset('assets/plant1.png'),
             Container(
               width: 180.w,
-              // color: Colors.white,
             ),
-
             Positioned(
               top: 120.h,
               child: Container(
@@ -61,7 +58,7 @@ class HorizontalCard extends StatelessWidget {
                     bottomLeft: Radius.circular(15.r),
                     bottomRight: Radius.circular(15.r),
                   ),
-                  color: Colors.green[100],
+                  color: Color.fromARGB(255, 46, 59, 47),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 80.0, left: 5, right: 5),
@@ -79,13 +76,13 @@ class HorizontalCard extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.r),
-                                color: Colors.white),
+                                color: Color.fromARGB(255, 235, 230, 230)),
                             height: 20.h,
                             width: 50.w,
                             // width: 20.w,
                             child: Center(
                               child: Text(
-                                '\$ ${plant!.price}',
+                                '\$ ${plant?.price}',
                                 style: TextStyle(
                                     color: lightgreen,
                                     fontSize: 13.sp,
@@ -102,20 +99,20 @@ class HorizontalCard extends StatelessWidget {
             ),
             Positioned(
               top: 50.h,
-              child: ClipPath(
-                child: Container(
-                  width: 180.w,
-                  height: 170.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(15.r),
-                      topLeft: Radius.circular(15.r),
-                    ),
-                    color: Colors.green[300],
+              // child: ClipPath(
+              child: Container(
+                width: 180.w,
+                height: 170.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(15.r),
+                    topLeft: Radius.circular(15.r),
                   ),
+                  color: Color.fromARGB(255, 208, 131, 36),
                 ),
-                clipper: BottomWaveClipper(),
               ),
+              //   clipper: BottomWaveClipper(),
+              // ),
             ),
             Positioned(
               left: 0,

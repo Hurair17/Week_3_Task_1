@@ -13,6 +13,7 @@ class CartViewModel extends ChangeNotifier {
     return _items;
   }
 
+  // List get items
   int get itemCount {
     return _items.length;
   }

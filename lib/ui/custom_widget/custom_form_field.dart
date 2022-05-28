@@ -8,9 +8,15 @@ class CustomFormField extends StatelessWidget {
   final double wdth;
   final bool obsecure;
   final String? Function(String?)? validator;
+  final TextEditingController? controller;
+  final String? Function(String?)? onSaved;
+  final String? Function(String?)? onChanged;
 
   // final String? Function(String?)? validator;
   const CustomFormField({
+    this.onChanged,
+    this.onSaved,
+    this.controller,
     this.validator,
     required this.hint,
     required this.icn,
@@ -43,6 +49,9 @@ class CustomFormField extends StatelessWidget {
           ),
           cursorColor: darkgren,
           validator: validator,
+          controller: controller,
+          onSaved: onSaved,
+          onChanged: onChanged,
         ),
       ],
     );
