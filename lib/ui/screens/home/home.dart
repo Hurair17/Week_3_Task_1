@@ -29,16 +29,12 @@ class Home extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // CircleAvatar and CartIcon Button
                       Row(
                         children: [
                           const CircleAvatar(
                             backgroundImage: AssetImage('assets/my1.jpg'),
                           ),
                           const Spacer(),
-                          // Cart Icon Button
-                          // Consumer<CartViewModel>(
-                          //   builder: (context, value, child) =>
                           InkWell(
                             onTap: () {
                               Navigator.push(
@@ -113,20 +109,7 @@ class Home extends StatelessWidget {
                               fontWeight: FontWeight.w700),
                           unselectedLabelStyle:
                               TextStyle(color: gry, fontSize: 13.sp),
-                          tabs: const [
-                            Tab(
-                              text: 'Reccomended',
-                            ),
-                            Tab(
-                              text: 'Top',
-                            ),
-                            Tab(
-                              text: 'Indoor',
-                            ),
-                            Tab(
-                              text: 'Outdoor',
-                            ),
-                          ],
+                          tabs: value.tabsList.toList(),
                         ),
                       ),
                     ],

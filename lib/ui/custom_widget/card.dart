@@ -57,7 +57,7 @@ class HorizontalCard extends StatelessWidget {
                     bottomLeft: Radius.circular(15.r),
                     bottomRight: Radius.circular(15.r),
                   ),
-                  color: Color.fromARGB(255, 46, 59, 47),
+                  color: darkgren,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 80.0, left: 5, right: 5),
@@ -98,20 +98,20 @@ class HorizontalCard extends StatelessWidget {
             ),
             Positioned(
               top: 50.h,
-              // child: ClipPath(
-              child: Container(
-                width: 180.w,
-                height: 170.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(15.r),
-                    topLeft: Radius.circular(15.r),
+              child: ClipPath(
+                child: Container(
+                  width: 180.w,
+                  height: 170.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15.r),
+                      topLeft: Radius.circular(15.r),
+                    ),
+                    color: lightgreen,
                   ),
-                  color: Color.fromARGB(255, 208, 131, 36),
                 ),
+                clipper: BottomWaveClipper(),
               ),
-              //   clipper: BottomWaveClipper(),
-              // ),
             ),
             Positioned(
               left: 0,

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:week_3_task/core/models/plant.dart';
 import 'package:week_3_task/core/services/database_service.dart';
 import '../cart/cart_view_model.dart';
@@ -74,4 +75,19 @@ class HomeViewModel extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  List<Tab> tabsList = const [
+    Tab(
+      text: 'Recommended',
+    ),
+    Tab(
+      text: 'Top',
+    ),
+    Tab(
+      text: 'Indoore',
+    ),
+    Tab(
+      text: 'Outdoor',
+    ),
+  ];
 }

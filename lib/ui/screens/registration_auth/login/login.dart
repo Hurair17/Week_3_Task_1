@@ -21,7 +21,6 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -187,31 +186,16 @@ class _LoginState extends State<Login> {
                   //Text Button of Login
                   Center(
                     child: TextButton(
-                      onPressed: () async {
+                      onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           // Navigator.push(
                           //     context,
                           //     MaterialPageRoute(
                           //         builder: (context) => const RootBar()));
-                          // void signIn(String email, String password) async {
-                          if (_formKey.currentState!.validate()) {
-                            try {
-                              await _auth
-                                  .signInWithEmailAndPassword(
-                                      email: provider.logInModel.email!,
-                                      password: provider.logInModel.password!)
-                                  .then((uid) {
-                                Fluttertoast.showToast(msg: "Login Successful");
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) => const RootBar()));
-                              });
-                            } catch (e) {
-                              Fluttertoast.showToast(msg: e.toString());
-                            }
-                          }
+                          // LogInFormProvider().signIn(context);
+                          provider.signIn(provider.logInModel.email!,
+                              provider.logInModel.password!, context);
                         }
-                        // }
                       },
                       child: Text(
                         'LogIn',

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:week_3_task/core/models/validation_model/login_model.dart';
@@ -9,6 +10,7 @@ import '../../root.dart';
 class LogInFormProvider extends ChangeNotifier {
   bool? isNotifiable = false;
   LogInModel logInModel = LogInModel();
+  final _auth = FirebaseAuth.instance;
 
   final auth = FirebaseAuthServices().auth;
   final _dbService = DatabaseService();
@@ -30,6 +32,20 @@ class LogInFormProvider extends ChangeNotifier {
   String? passwordValidation(String? value) {
     if (value!.isEmpty) {
       return 'Please Enter Your Password';
+    }
+  }
+
+  void signIn(String email, String password, BuildContext context) async {
+    try {
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) {
+        Fluttertoast.showToast(msg: "Login Successful");
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => const RootBar()));
+      });
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
     }
   }
 }
