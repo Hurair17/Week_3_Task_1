@@ -41,8 +41,9 @@ class LogInFormProvider extends ChangeNotifier {
           .signInWithEmailAndPassword(email: email, password: password)
           .then((uid) {
         Fluttertoast.showToast(msg: "Login Successful");
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const RootBar()));
+
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => RootBar()));
       });
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString());

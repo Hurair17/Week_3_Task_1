@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:week_3_task/core/constants/color.dart';
-
 import 'package:week_3_task/ui/custom_widget/wrap_txt_button.dart';
-
 import 'package:week_3_task/ui/screens/registration_auth/login/login.dart';
-
 import 'package:week_3_task/ui/screens/registration_auth/signup/signup_view_model.dart';
 import 'package:week_3_task/ui/screens/root.dart';
 import 'package:week_3_task/ui/custom_widget/custom_form_field.dart';
-import 'package:provider/provider.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
+  final nameEditingController = TextEditingController();
+  final emailEditingController = TextEditingController();
+  final passwordEditingController = TextEditingController();
+  final confirmPasswordEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +82,10 @@ class SignUp extends StatelessWidget {
                           color: darkgren,
                         ),
                         validator: SignUpFormProvider().nameValidation,
+                        onSaved: (value) {
+                          nameEditingController.text = value!;
+                        },
+                        controller: nameEditingController,
                       ),
                       SizedBox(
                         height: 20.h,
@@ -93,6 +97,10 @@ class SignUp extends StatelessWidget {
                           color: darkgren,
                         ),
                         validator: SignUpFormProvider().emailValidation,
+                        controller: emailEditingController,
+                        onSaved: (value) {
+                          emailEditingController.text = value!;
+                        },
                       ),
                       SizedBox(
                         height: 20.h,
@@ -105,6 +113,10 @@ class SignUp extends StatelessWidget {
                           color: darkgren,
                         ),
                         validator: SignUpFormProvider().passwordValidation,
+                        controller: passwordEditingController,
+                        onSaved: (value) {
+                          passwordEditingController.text = value!;
+                        },
                       ),
                       SizedBox(
                         height: 20.h,
@@ -115,7 +127,18 @@ class SignUp extends StatelessWidget {
                           Icons.person,
                           color: darkgren,
                         ),
-                        validator: SignUpFormProvider().confirmValidation,
+                        controller: confirmPasswordEditingController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please Enter Your Password';
+                          } else if (confirmPasswordEditingController.text !=
+                              passwordEditingController.text) {
+                            return 'Password Does Not Match';
+                          }
+                        },
+                        onSaved: (value) {
+                          confirmPasswordEditingController.text = value!;
+                        },
                       ),
                       SizedBox(
                         height: 20.h,
@@ -144,10 +167,11 @@ class SignUp extends StatelessWidget {
                         child: TextButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const RootBar()));
+                              SignUpFormProvider().signUp(
+                                  emailEditingController.text,
+                                  passwordEditingController.text,
+                                  nameEditingController.text,
+                                  context);
                             } else {
                               null;
                             }
@@ -169,7 +193,7 @@ class SignUp extends StatelessWidget {
                 ),
 
                 //Already Have acount Login Screen Button
-                Center(
+                const Center(
                   child: CustWrapButton1(
                     txt1: 'Already have an account?',
                     btntxt: 'Log in',

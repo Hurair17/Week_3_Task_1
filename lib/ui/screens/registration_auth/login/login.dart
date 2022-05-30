@@ -89,7 +89,7 @@ class _LoginState extends State<Login> {
                   ),
 
                   // TextFields Form
-                  // LoginForm(),
+
                   Form(
                     key: _formKey,
                     child: Padding(
@@ -106,9 +106,6 @@ class _LoginState extends State<Login> {
                             validator: LogInFormProvider().nameValidation,
                             controller: TextEditingController(
                                 text: provider.logInModel.email),
-                            // onSaved: (value) {
-                            //   emailController.text = value!;
-                            // },
                             onChanged: (value) {
                               provider.logInModel.email = value;
                             },
@@ -126,9 +123,6 @@ class _LoginState extends State<Login> {
                             obsecure: true,
                             controller: TextEditingController(
                                 text: provider.logInModel.password),
-                            // onSaved: (value) {
-                            //   provider.logInModel.password = value!;
-                            // },
                             onChanged: (value) {
                               provider.logInModel.password = value;
                             },
