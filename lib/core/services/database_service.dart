@@ -97,6 +97,16 @@ class DatabaseService {
     }
   }
 
+  //Add Data to Cart
+  Future<void> putPlants(plant) async {
+    try {
+      //  _firestore.collection('carts').doc.add(plant);
+      _firestore.collection('test_cart').doc(plant.id).set(plant.toJson());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
 //   Future<List<TestModel>> getTestDataDb() async {
 //     List<TestModel> listTest = [];
 //     try {

@@ -37,8 +37,8 @@ class Plant {
 
   Plant.fromJson(json, id) {
     this.id = id;
-    title = json['title'] ?? "Ali";
-    type = json['type'] ?? 'DCSE';
+    title = json['title'] ?? "Plant";
+    type = json['type'] ?? 'Envirment';
     description = json['description'] ??
         'This is the main description of the Plant use in Detail Screen';
     imgUrl = json['imgUrl'] ??
