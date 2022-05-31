@@ -1,0 +1,51 @@
+{   "Plants":{
+    "p1":
+    {"title":"Peace Lily",
+    "type":"Indoor",
+    "description":"This is the main description of the Plant use in Detail Screen",
+    "imgUrl":"assets/plant/plant1.png",
+    "shortInfo":"This is short info for cart Screen",
+    "price":21.89
+    },
+    "p2":
+    {"title":"Schefflera",
+    "type":"Outdoor",
+    "description":"This is the main description of the Plant use in Detail Screen",
+    "imgUrl":"assets/plant/plant2.png",
+    "shortInfo":"This is short info for cart Screen",
+    "price":30.93
+    },
+    "p3":
+    {"title":"Waterlily",
+    "type":"Outdoor",
+    "description":"This is the main description of the Plant use in Detail Screen",
+    "imgUrl":"assets/plant/plant3.png",
+    "shortInfo":"This is short info for cart Screen",
+    "price":40.93
+    },
+    "p4":{
+    "title":"Peach ",
+    "type":"outdoor",
+    "description":"This is the main description of the Plant use in Detail Screen",
+    "imgUrl":"assets/plant/plant4.png",
+    "shortInfo":"This is short info for cart Screen",
+    "price":21
+    },
+    "p5":{
+    "title":"Walnut",
+    "type":"outdoor",
+    "description":"This is the main description of the Plant use in Detail Screen",
+    "imgUrl":"assets/plant/plant5.png",
+    "shortInfo":"This is short info for cart Screen",
+    "price":100
+    },
+    "p6":
+    {"title":"WaterIn",
+    "type":"InWater",
+    "description":"This is the main description of the Plant use in Detail Screen",
+    "imgUrl":"assets/plant/plant6.png",
+    "shortInfo":"This is short info for cart Screen",
+    "price":21.89
+}
+  }  
+ }

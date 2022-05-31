@@ -29,7 +29,7 @@ class CartScreenCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productDetailById = Provider.of<HomeViewModel>(context).findById(id);
+    // final productDetailById = Provider.of<HomeViewModel>(context).findById(id);
     final cart = Provider.of<CartViewModel>(context);
     final homeViewModel = Provider.of<HomeViewModel>(context);
     return SingleChildScrollView(
@@ -87,13 +87,13 @@ class CartScreenCard extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              cart.addItem(
-                                  productDetailById.id,
-                                  productDetailById.price,
-                                  productDetailById.title,
-                                  productDetailById.shortInfo,
-                                  productDetailById.imgUrl,
-                                  productDetailById.quantity);
+                              // cart.addItem(
+                              //     productDetailById.id,
+                              //     productDetailById.price,
+                              //     productDetailById.title,
+                              //     productDetailById.shortInfo,
+                              //     productDetailById.imgUrl,
+                              //     productDetailById.quantity);
                             },
                             child: Container(
                               height: 15.h,
@@ -122,13 +122,13 @@ class CartScreenCard extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              cart.removeItem(
-                                  productDetailById.id,
-                                  productDetailById.price,
-                                  productDetailById.title,
-                                  productDetailById.shortInfo,
-                                  productDetailById.imgUrl,
-                                  productDetailById.quantity);
+                              // cart.removeItem(
+                              //     productDetailById.id,
+                              //     productDetailById.price,
+                              //     productDetailById.title,
+                              //     productDetailById.shortInfo,
+                              //     productDetailById.imgUrl,
+                              //     productDetailById.quantity);
                             },
                             child: Container(
                               height: 15.h,

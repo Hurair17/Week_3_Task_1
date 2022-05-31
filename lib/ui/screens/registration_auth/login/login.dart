@@ -182,11 +182,6 @@ class _LoginState extends State<Login> {
                     child: TextButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => const RootBar()));
-                          // LogInFormProvider().signIn(context);
                           provider.signIn(provider.logInModel.email!,
                               provider.logInModel.password!, context);
                         }

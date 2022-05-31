@@ -6,14 +6,15 @@ import 'package:week_3_task/ui/screens/cart/cart2.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
+import '../../../core/models/plant.dart';
+
 class PrdouctDetailScreen extends StatelessWidget {
-  // Plant? plant;
-  String? id;
-  PrdouctDetailScreen({Key? key, required this.id}) : super(key: key);
+  Plant? plant;
+  // String? id;
+  PrdouctDetailScreen({Key? key, required this.plant}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final productDetailById = Provider.of<HomeViewModel>(context).findById(id);
     final homeViewModel = Provider.of<HomeViewModel>(context);
     final cartViewModel = Provider.of<CartViewModel>(context);
     return Scaffold(
@@ -24,9 +25,9 @@ class PrdouctDetailScreen extends StatelessWidget {
               height: 690.h,
             ),
 
-            //Product Image
-            Image.asset(
-              '${productDetailById.imgUrl}',
+            // Product Image
+            Image.network(
+              '${plant!.imgUrl}',
               height: 500.h,
               width: 360.w,
             ),
@@ -94,7 +95,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                '${productDetailById.title}',
+                                '${plant!.title}',
                                 style: TextStyle(
                                     color: green,
                                     fontWeight: FontWeight.bold,
@@ -104,7 +105,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '\$${productDetailById.price}',
+                                    '\$${plant!.price}',
                                     style:
                                         TextStyle(fontSize: 11.sp, color: gry),
                                   ),
@@ -122,66 +123,65 @@ class PrdouctDetailScreen extends StatelessWidget {
                             width: 157.w,
                           ),
 
-                          Row(
-                            children: [
-                              InkWell(
-                                onTap: () =>
-                                    // productDetailById.qunatity++,
-                                    homeViewModel.findByIdIncrement(id),
-                                child: Container(
-                                  height: 15.h,
-                                  width: 15.w,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                    ),
-                                    color: green,
-                                  ),
-                                  child: const Icon(
-                                    Icons.add,
-                                    size: 10,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 15.h,
-                                width: 25.w,
-                                color: green,
-                                child: Center(
-                                  child: Text(
-                                    // '${productDetailById.qunatity}',
-                                    homeViewModel.findByIdShow(id),
-                                    // '${context.watch<CartViewModel>().show(productDetailById.qunatity)}',
+                          // Row(
+                          //   children: [
+                          //     InkWell(onTap: () {}
+                          //         // productDetailById.qunatity++,
+                          //         // homeViewModel.findByIdIncrement(id),
+                          //         // child: Container(
+                          //         //   height: 15.h,
+                          //         //   width: 15.w,
+                          //         //   decoration: BoxDecoration(
+                          //         //     borderRadius: const BorderRadius.only(
+                          //         //       topLeft: Radius.circular(10),
+                          //         //       bottomLeft: Radius.circular(10),
+                          //         //     ),
+                          //         //     color: green,
+                          //         //   ),
+                          //         //   child: const Icon(
+                          //         //     Icons.add,
+                          //         //     size: 10,
+                          //         //     color: Colors.white,
+                          //         //   ),
+                          //         // ),
+                          //         ),
+                          //     Container(
+                          //       height: 15.h,
+                          //       width: 25.w,
+                          //       color: green,
+                          //       child: Center(
+                          //         child: Text(
+                          //           'Total Amount',
+                          //           // '${productDetailById.qunatity}',
+                          //           // homeViewModel.findByIdShow(id),
+                          //           // '${context.watch<CartViewModel>().show(productDetailById.qunatity)}',
 
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () =>
-                                    // productDetailById.qunatity--,
-                                    homeViewModel.findByIdIdecrement(id),
-                                child: Container(
-                                  height: 15.h,
-                                  width: 15.w,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
-                                    ),
-                                    color: green,
-                                  ),
-                                  child: const Icon(
-                                    Icons.remove,
-                                    size: 10,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          //           style: TextStyle(color: Colors.white),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     InkWell(onTap: () {}
+                          //         // productDetailById.qunatity--,
+                          //         // homeViewModel.findByIdIdecrement(id),
+                          //         //   child: Container(
+                          //         //     height: 15.h,
+                          //         //     width: 15.w,
+                          //         //     decoration: BoxDecoration(
+                          //         //       borderRadius: const BorderRadius.only(
+                          //         //         topRight: Radius.circular(10),
+                          //         //         bottomRight: Radius.circular(10),
+                          //         //       ),
+                          //         //       color: green,
+                          //         //     ),
+                          //         //     child: const Icon(
+                          //         //       Icons.remove,
+                          //         //       size: 10,
+                          //         //       color: Colors.white,
+                          //         //     ),
+                          //         //   ),
+                          //         ),
+                          //   ],
+                          // ),
                         ],
                       ),
                       // ),
@@ -206,7 +206,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                           child: RichText(
                             maxLines: 4,
                             text: TextSpan(
-                              text: '${productDetailById.description}',
+                              text: '${plant!.description}',
                               style: TextStyle(color: green, fontSize: 12.sp),
                             ),
                           ),
@@ -276,18 +276,18 @@ class PrdouctDetailScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              cartViewModel.addItem(
-                                  productDetailById.id,
-                                  productDetailById.price,
-                                  productDetailById.title,
-                                  productDetailById.shortInfo,
-                                  productDetailById.imgUrl,
-                                  productDetailById.quantity);
+                              // cartViewModel.addItem(
+                              //     productDetailById.id,
+                              //     productDetailById.price,
+                              //     productDetailById.title,
+                              //     productDetailById.shortInfo,
+                              //     productDetailById.imgUrl,
+                              //     productDetailById.quantity);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => Cart2(
-                                          id: productDetailById.id,
+                                        // id: productDetailById.id,
                                         )),
                               );
                             },

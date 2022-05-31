@@ -33,7 +33,7 @@ class CartViewModel extends ChangeNotifier {
     double total = _amount.subTotal;
     _items.forEach((key, cartItem) {
       // print(key);
-      total += (cartItem.price * (cartItem.quantity).toDouble());
+      total += (cartItem.price! * (cartItem.quantity)!.toDouble());
     });
     return total;
   }
@@ -50,7 +50,7 @@ class CartViewModel extends ChangeNotifier {
                 price: exitingCartItem.price,
                 imgUrl: exitingCartItem.imgUrl,
                 shortInfo: exitingCartItem.shortInfo,
-                quantity: exitingCartItem.quantity + 1,
+                quantity: exitingCartItem.quantity,
               ));
     } else {
       print('not found $id');
@@ -85,7 +85,7 @@ class CartViewModel extends ChangeNotifier {
                 price: exitingCartItem.price,
                 imgUrl: exitingCartItem.imgUrl,
                 shortInfo: exitingCartItem.shortInfo,
-                quantity: exitingCartItem.quantity - 1,
+                quantity: exitingCartItem.quantity,
               ));
     } else {
       print('not found $id');
