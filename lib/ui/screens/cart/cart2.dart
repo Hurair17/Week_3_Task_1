@@ -88,7 +88,7 @@ class Cart2 extends StatelessWidget {
                           style: TextStyle(color: green, fontSize: 15.sp),
                         ),
                         Text(
-                          '\$ ${cart.totalCost}',
+                          '\$ ${(cart.totalCost).toStringAsFixed(2)}',
                           style: TextStyle(color: green, fontSize: 15.sp),
                         )
                       ],
@@ -102,7 +102,7 @@ class Cart2 extends StatelessWidget {
                           style: TextStyle(color: green, fontSize: 15.sp),
                         ),
                         Text(
-                          '\$10.00',
+                          '\$ 10.00',
                           style: TextStyle(color: green, fontSize: 15.sp),
                         )
                       ],
@@ -122,7 +122,7 @@ class Cart2 extends StatelessWidget {
                               fontWeight: FontWeight.w700),
                         ),
                         Text(
-                          '\$ ${cart.totalCost + 10.00}',
+                          '\$ ${(cart.totalCost + 10.00).toStringAsFixed(2)}',
                           style: TextStyle(
                               color: green,
                               fontSize: 20.sp,

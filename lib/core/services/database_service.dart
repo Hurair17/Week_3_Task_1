@@ -175,4 +175,23 @@ class DatabaseService {
       return [];
     }
   }
+
+  Future<void> incrementquantity(cartId) async {
+    _firestore
+        .collection('test_cart')
+        .doc('put-user-id-3')
+        .collection('UserCart')
+        .where("cartId", isEqualTo: cartId)
+        .get()
+        .then((querySnapshot) {
+      querySnapshot.docs.forEach((element) {
+        FirebaseFirestore.instance
+            .collection('test_cart')
+            .doc('put-user-id-3')
+            .collection('UserCart')
+            .doc(element.id)
+            .update({'quantity': FieldValue.increment(1)});
+      });
+    });
+  }
 }

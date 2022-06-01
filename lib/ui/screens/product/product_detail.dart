@@ -10,12 +10,18 @@ import 'package:week_3_task/ui/screens/product/product_view_model.dart';
 
 import '../../../core/models/plant.dart';
 
-class PrdouctDetailScreen extends StatelessWidget {
+class PrdouctDetailScreen extends StatefulWidget {
   Plant? plant;
   // String? id;
   PrdouctDetailScreen({Key? key, required this.plant}) : super(key: key);
 
   @override
+  State<PrdouctDetailScreen> createState() => _PrdouctDetailScreenState();
+}
+
+class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
+  @override
+  int count = 1;
   Widget build(BuildContext context) {
     // final homeViewModel = Provider.of<HomeViewModel>(context);
     final cartViewModel = Provider.of<CartViewModel>(context);
@@ -36,7 +42,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                   child: Hero(
                     tag: 'Prdouct Image',
                     child: Image.network(
-                      '${plant!.imgUrl}',
+                      '${widget.plant!.imgUrl}',
                       height: 400.h,
                       width: 360.w,
                     ),
@@ -106,7 +112,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                    '${plant!.title}',
+                                    '${widget.plant!.title}',
                                     style: TextStyle(
                                         color: green,
                                         fontWeight: FontWeight.bold,
@@ -116,7 +122,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '\$${plant!.price}',
+                                        '\$${widget.plant!.price}',
                                         style: TextStyle(
                                             fontSize: 11.sp, color: gry),
                                       ),
@@ -136,26 +142,30 @@ class PrdouctDetailScreen extends StatelessWidget {
 
                               Row(
                                 children: [
-                                  // InkWell(onTap: () {
-                                  // plant!.quantity;
-                                  // }),
                                   // productDetailById.qunatity++,
                                   // homeViewModel.findByIdIncrement(id),
                                   // child:
-                                  Container(
-                                    height: 15.h,
-                                    width: 15.w,
-                                    decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        count++;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 15.h,
+                                      width: 15.w,
+                                      decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          bottomLeft: Radius.circular(10),
+                                        ),
+                                        color: green,
                                       ),
-                                      color: green,
-                                    ),
-                                    child: const Icon(
-                                      Icons.add,
-                                      size: 10,
-                                      color: Colors.white,
+                                      child: const Icon(
+                                        Icons.add,
+                                        size: 10,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                   // ),
@@ -165,7 +175,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                                     color: green,
                                     child: Center(
                                       child: Text(
-                                        '${plant!.quantity}',
+                                        '${count}',
                                         // '${productDetailById.qunatity}',
                                         // homeViewModel.findByIdShow(id),
                                         // '${context.watch<CartViewModel>().show(productDetailById.qunatity)}',
@@ -174,24 +184,35 @@ class PrdouctDetailScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  // InkWell(onTap: () {}
+                                  // InkWell(onTap: () {
+                                  //   setState(() {
+                                  //     count--;
+                                  //   });
+                                  // }),
                                   // productDetailById.qunatity--,
                                   // homeViewModel.findByIdIdecrement(id),
                                   //   child:
-                                  Container(
-                                    height: 15.h,
-                                    width: 15.w,
-                                    decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        count--;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 15.h,
+                                      width: 15.w,
+                                      decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.only(
+                                          topRight: Radius.circular(10),
+                                          bottomRight: Radius.circular(10),
+                                        ),
+                                        color: green,
                                       ),
-                                      color: green,
-                                    ),
-                                    child: const Icon(
-                                      Icons.remove,
-                                      size: 10,
-                                      color: Colors.white,
+                                      child: const Icon(
+                                        Icons.remove,
+                                        size: 10,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                   // ),
@@ -221,7 +242,7 @@ class PrdouctDetailScreen extends StatelessWidget {
                               child: RichText(
                                 maxLines: 4,
                                 text: TextSpan(
-                                  text: '${plant!.description}',
+                                  text: '${widget.plant!.description}',
                                   style:
                                       TextStyle(color: green, fontSize: 12.sp),
                                 ),
@@ -293,12 +314,12 @@ class PrdouctDetailScreen extends StatelessWidget {
                               InkWell(
                                 onTap: () {
                                   value.putPlantsData(
-                                      cartId: plant!.id,
-                                      price: plant!.price,
-                                      title: plant!.title,
-                                      shortInfo: plant!.shortInfo,
-                                      imgUrl: plant!.imgUrl,
-                                      quantity: plant!.quantity);
+                                      cartId: widget.plant!.id,
+                                      price: widget.plant!.price,
+                                      title: widget.plant!.title,
+                                      shortInfo: widget.plant!.shortInfo,
+                                      imgUrl: widget.plant!.imgUrl,
+                                      quantity: count);
                                   cartViewModel.getCartPlantsData();
                                   cartViewModel.totalAmount();
 

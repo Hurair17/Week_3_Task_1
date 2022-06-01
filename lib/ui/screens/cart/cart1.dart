@@ -7,9 +7,14 @@ import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/root.dart';
 import 'package:provider/provider.dart';
 
-class Cart1 extends StatelessWidget {
+class Cart1 extends StatefulWidget {
   const Cart1({Key? key}) : super(key: key);
 
+  @override
+  State<Cart1> createState() => _Cart1State();
+}
+
+class _Cart1State extends State<Cart1> {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<CartViewModel>(context);
@@ -71,6 +76,7 @@ class Cart1 extends StatelessWidget {
                             padding: const EdgeInsets.only(bottom: 8.0),
                             child: CartScreenCard(
                               cartModel: cart.cartPlants[index],
+                              // count: cart.count,
                             ),
                           );
                         },
@@ -97,7 +103,7 @@ class Cart1 extends StatelessWidget {
                                 style: TextStyle(color: green, fontSize: 15.sp),
                               ),
                               Text(
-                                '\$ ${cart.totalCost}',
+                                '\$ ${(cart.totalCost).toStringAsFixed(2)}',
                                 style: TextStyle(color: green, fontSize: 15.sp),
                               )
                             ],
@@ -112,7 +118,7 @@ class Cart1 extends StatelessWidget {
                                 style: TextStyle(color: green, fontSize: 15.sp),
                               ),
                               Text(
-                                '\$10.00',
+                                '\$ 10.00',
                                 style: TextStyle(color: green, fontSize: 15.sp),
                               )
                             ],
@@ -134,7 +140,7 @@ class Cart1 extends StatelessWidget {
                                     fontWeight: FontWeight.w700),
                               ),
                               Text(
-                                '\$ ${(cart.totalCost) + 10.00}',
+                                '\$ ${((cart.totalCost) + 10.00).toStringAsFixed(2)}',
                                 style: TextStyle(
                                     color: green,
                                     fontSize: 20.sp,

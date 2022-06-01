@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:week_3_task/core/models/amount_model.dart';
 import 'package:week_3_task/core/models/cart_model.dart';
@@ -7,15 +9,12 @@ import '../../../core/services/database_service.dart';
 
 class CartViewModel extends ChangeNotifier {
   final dbService = DatabaseService();
-  final count = DatabaseService().cartItems().toString();
+  int count = TotalAmountModel().count;
 
   List<CartModel> cartPlants = [];
   bool isLoading = false;
-
-  // CartViewModel() {
-  //   getCartPlantsData();
-  // }
   bool lable = false;
+  // int count = 1;
 
   getCartPlantsData() async {
     isLoading = true;
@@ -23,15 +22,27 @@ class CartViewModel extends ChangeNotifier {
     cartPlants = await dbService.getCartPlants();
     debugPrint('testData Length View Model => ${cartPlants.length}');
     isLoading = false;
+    count = cartPlants.length;
     notifyListeners();
     if (cartPlants.length > 0) {
       lable = true;
+      // count = cartPlants.length;
       notifyListeners();
     } else {
       notifyListeners();
       lable = false;
     }
   }
+
+  incrementQuantity(cartId) {
+    // cartModel.quantity;
+    count++;
+    dbService.incrementquantity(cartId);
+    notifyListeners();
+  }
+
+  TotalAmountModel totalAmountModel = TotalAmountModel();
+  // int count = cartPlants.length;
 
   double totalCost = 0;
   void totalAmount() {
@@ -46,6 +57,7 @@ class CartViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  // bool _label = false;
   // void getlable() {
   //   if (cartPlants.length > 0) {
   //     lable = true;

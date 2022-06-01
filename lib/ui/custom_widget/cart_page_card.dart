@@ -8,13 +8,20 @@ import 'package:week_3_task/core/models/cart_model.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
-class CartScreenCard extends StatelessWidget {
+class CartScreenCard extends StatefulWidget {
   CartModel? cartModel;
 
   CartScreenCard({Key? key, this.cartModel}) : super(key: key);
 
   @override
+  State<CartScreenCard> createState() => _CartScreenCardState();
+}
+
+class _CartScreenCardState extends State<CartScreenCard> {
+  @override
   Widget build(BuildContext context) {
+    CartViewModel cart = Provider.of<CartViewModel>(context);
+    int? count = widget.cartModel!.quantity;
     return SingleChildScrollView(
       child: Container(
         height: 80.h,
@@ -35,7 +42,7 @@ class CartScreenCard extends StatelessWidget {
                   height: 60.h,
                   width: 60.w,
                   child: Image.network(
-                    '${cartModel!.imgUrl}',
+                    '${widget.cartModel!.imgUrl}',
                     fit: BoxFit.fitHeight,
                   ),
                 ),
@@ -48,14 +55,14 @@ class CartScreenCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${cartModel!.title}",
+                        "${widget.cartModel!.title}",
                         style: TextStyle(
                             color: green,
                             fontWeight: FontWeight.w600,
                             fontSize: 17.sp),
                       ),
                       Text(
-                        '${cartModel!.shortInfo}',
+                        '${widget.cartModel!.shortInfo}',
                         style: TextStyle(color: gry, fontSize: 12.sp),
                       ),
                       SizedBox(
@@ -65,13 +72,10 @@ class CartScreenCard extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              // cart.addItem(
-                              //     productDetailById.id,
-                              //     productDetailById.price,
-                              //     productDetailById.title,
-                              //     productDetailById.shortInfo,
-                              //     productDetailById.imgUrl,
-                              //     productDetailById.quantity);
+                              cart.incrementQuantity(widget.cartModel!.cartId);
+                              setState(() {
+                                count = count! + 1;
+                              });
                             },
                             child: Container(
                               height: 15.h,
@@ -91,7 +95,7 @@ class CartScreenCard extends StatelessWidget {
                             width: 8.w,
                           ),
                           Text(
-                            '${cartModel!.quantity}',
+                            '${count}',
                             // 's',
                             style: TextStyle(color: green),
                           ),
@@ -180,7 +184,7 @@ class CartScreenCard extends StatelessWidget {
                         height: 22.h,
                       ),
                       Text(
-                        '\$ ${cartModel!.price}',
+                        '\$ ${widget.cartModel!.price}',
                         style: TextStyle(
                             color: lightgreen, fontWeight: FontWeight.w800),
                       )

@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class TotalAmount {
-  double subTotal;
+class TotalAmountModel {
+  int count;
 
-  TotalAmount({
-    this.subTotal = 0,
+  TotalAmountModel({
+    this.count = 0,
   });
 }
