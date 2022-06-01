@@ -45,6 +45,7 @@ class Home extends StatelessWidget {
                                   const Spacer(),
                                   InkWell(
                                     onTap: () {
+                                      cart.totalAmount();
                                       cart.getCartPlantsData();
                                       Navigator.push(
                                           context,

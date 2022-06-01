@@ -14,7 +14,7 @@ class Cart2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartViewModel = Provider.of<CartViewModel>(context);
+    final cart = Provider.of<CartViewModel>(context);
 
     return Scaffold(
       body: Container(
@@ -59,12 +59,12 @@ class Cart2 extends StatelessWidget {
                   height: 360.h,
                   child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: cartViewModel.cartPlants.length,
+                      itemCount: cart.cartPlants.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 12.0),
                           child: CartScreenCard(
-                            cartModel: cartViewModel.cartPlants[index],
+                            cartModel: cart.cartPlants[index],
                           ),
                         );
                       })),
@@ -88,7 +88,7 @@ class Cart2 extends StatelessWidget {
                           style: TextStyle(color: green, fontSize: 15.sp),
                         ),
                         Text(
-                          '\$ {10}',
+                          '\$ ${cart.totalCost}',
                           style: TextStyle(color: green, fontSize: 15.sp),
                         )
                       ],
@@ -102,7 +102,7 @@ class Cart2 extends StatelessWidget {
                           style: TextStyle(color: green, fontSize: 15.sp),
                         ),
                         Text(
-                          '\$10.40',
+                          '\$10.00',
                           style: TextStyle(color: green, fontSize: 15.sp),
                         )
                       ],
@@ -122,7 +122,7 @@ class Cart2 extends StatelessWidget {
                               fontWeight: FontWeight.w700),
                         ),
                         Text(
-                          '\$ {10.40}',
+                          '\$ ${cart.totalCost + 10.00}',
                           style: TextStyle(
                               color: green,
                               fontSize: 20.sp,

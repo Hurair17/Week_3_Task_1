@@ -18,7 +18,7 @@ class PrdouctDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final homeViewModel = Provider.of<HomeViewModel>(context);
-    // final cartViewModel = Provider.of<CartViewModel>(context);
+    final cartViewModel = Provider.of<CartViewModel>(context);
     int quantity = 1;
     return ChangeNotifierProvider(
       create: (context) => ProductViewModel(),
@@ -292,14 +292,6 @@ class PrdouctDetailScreen extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  // cartViewModel.addItem(
-                                  //     productDetailById.id,
-                                  //     productDetailById.price,
-                                  //     productDetailById.title,
-                                  //     productDetailById.shortInfo,
-                                  //     productDetailById.imgUrl,
-                                  //     productDetailById.quantity);
-
                                   value.putPlantsData(
                                       cartId: plant!.id,
                                       price: plant!.price,
@@ -307,6 +299,8 @@ class PrdouctDetailScreen extends StatelessWidget {
                                       shortInfo: plant!.shortInfo,
                                       imgUrl: plant!.imgUrl,
                                       quantity: plant!.quantity);
+                                  cartViewModel.getCartPlantsData();
+                                  cartViewModel.totalAmount();
 
                                   Navigator.push(
                                     context,

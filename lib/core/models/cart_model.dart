@@ -3,14 +3,14 @@ import 'package:week_3_task/core/models/plant.dart';
 
 class CartModel {
   String? cartId;
-  String? cartImgUrl;
+  String? imgUrl;
   String? shortInfo;
   String? title;
   double? price;
   int? quantity;
   CartModel({
     this.cartId,
-    this.cartImgUrl,
+    this.imgUrl,
     this.shortInfo,
     this.title,
     this.price,
@@ -19,7 +19,7 @@ class CartModel {
   toJson() {
     return {
       'CartId': cartId,
-      'cartImgUrl': cartImgUrl,
+      'imgUrl': imgUrl,
       'shortInfo': shortInfo,
       'title': title,
       'price': price,
@@ -29,7 +29,7 @@ class CartModel {
 
   CartModel.fromJson(json, id) {
     this.cartId = id;
-    cartImgUrl = json['cartImgUrl'] ??
+    imgUrl = json['imgUrl'] ??
         "https://static.vecteezy.com/system/resources/previews/001/196/554/original/person-png.png";
     shortInfo = json['shortInfo'] ?? "This is short info for cart Screen";
     title = json['title'] ?? "Plant";

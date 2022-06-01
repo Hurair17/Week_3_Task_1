@@ -102,12 +102,12 @@ class DatabaseService {
 
   //Add Data to Cart
   Future<void> putPlants(
-      {cartId, price, quantity, shotInfo, title, imgUrl}) async {
+      {cartId, price, quantity, shortInfo, title, imgUrl}) async {
     final cartPlants = <String, dynamic>{
       'cartId': cartId,
       'price': price,
       'quantity': quantity,
-      'shotInfo': shotInfo,
+      'shortInfo': shortInfo,
       'title': title,
       'imgUrl': imgUrl,
     };

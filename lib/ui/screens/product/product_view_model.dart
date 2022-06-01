@@ -16,7 +16,7 @@ class ProductViewModel extends ChangeNotifier {
         price: price,
         quantity: quantity,
         title: title,
-        shotInfo: shortInfo);
+        shortInfo: shortInfo);
     debugPrint('testData Add View Model => }');
     isLoading = false;
     notifyListeners();

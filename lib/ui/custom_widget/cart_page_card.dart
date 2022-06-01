@@ -15,9 +15,6 @@ class CartScreenCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final productDetailById = Provider.of<HomeViewModel>(context).findById(id);
-    // final cart = Provider.of<CartViewModel>(context);
-    // final homeViewModel = Provider.of<HomeViewModel>(context);
     return SingleChildScrollView(
       child: Container(
         height: 80.h,
@@ -28,12 +25,7 @@ class CartScreenCard extends StatelessWidget {
         ),
         child: SizedBox(
           child: InkWell(
-            onTap: () {
-              // Navigator.push(
-              //     context,
-              // MaterialPageRoute(
-              // builder: (context) =>  PrdouctDetailScreen()));
-            },
+            onTap: () {},
             child: Row(
               children: [
                 Container(
@@ -43,7 +35,7 @@ class CartScreenCard extends StatelessWidget {
                   height: 60.h,
                   width: 60.w,
                   child: Image.network(
-                    '${cartModel!.cartImgUrl}',
+                    '${cartModel!.imgUrl}',
                     fit: BoxFit.fitHeight,
                   ),
                 ),
@@ -99,7 +91,7 @@ class CartScreenCard extends StatelessWidget {
                             width: 8.w,
                           ),
                           Text(
-                            '{cart}',
+                            '${cartModel!.quantity}',
                             // 's',
                             style: TextStyle(color: green),
                           ),
@@ -136,6 +128,7 @@ class CartScreenCard extends StatelessWidget {
                   ),
                 ),
                 // const Spacer(),
+                Spacer(),
                 SizedBox(
                   height: 70.h,
                   child: Column(

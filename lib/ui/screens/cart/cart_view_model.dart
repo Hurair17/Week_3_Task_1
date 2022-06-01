@@ -15,6 +15,7 @@ class CartViewModel extends ChangeNotifier {
   // CartViewModel() {
   //   getCartPlantsData();
   // }
+  bool lable = false;
 
   getCartPlantsData() async {
     isLoading = true;
@@ -23,10 +24,6 @@ class CartViewModel extends ChangeNotifier {
     debugPrint('testData Length View Model => ${cartPlants.length}');
     isLoading = false;
     notifyListeners();
-  }
-
-  bool lable = false;
-  void getlable() {
     if (cartPlants.length > 0) {
       lable = true;
       notifyListeners();
@@ -35,6 +32,29 @@ class CartViewModel extends ChangeNotifier {
       lable = false;
     }
   }
+
+  double totalCost = 0;
+  void totalAmount() {
+    double total = 0;
+    // cartPlants.forEach((element) {
+    //   total += element.price! * (element.quantity)!.toDouble();
+    // });
+    for (int i = 0; i < cartPlants.length; i++) {
+      total += cartPlants[i].price! * (cartPlants[i].quantity)!.toDouble();
+    }
+    totalCost = total;
+    notifyListeners();
+  }
+
+  // void getlable() {
+  //   if (cartPlants.length > 0) {
+  //     lable = true;
+  //     notifyListeners();
+  //   } else {
+  //     notifyListeners();
+  //     lable = false;
+  //   }
+  // }
 
   static void getCartPlants() {}
 
