@@ -18,6 +18,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CartViewModel cart = Provider.of<CartViewModel>(context);
     return ChangeNotifierProvider(
       create: (context) => HomeViewModel(),
       child: Consumer<HomeViewModel>(
@@ -44,6 +45,7 @@ class Home extends StatelessWidget {
                                   const Spacer(),
                                   InkWell(
                                     onTap: () {
+                                      cart.getCartPlantsData();
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -63,9 +65,11 @@ class Home extends StatelessWidget {
                                         child: Badge(
                                           showBadge: context
                                               .read<CartViewModel>()
-                                              .getlable,
+                                              .lable,
                                           badgeContent: Text(
-                                              '${context.watch<CartViewModel>().itemCount}'),
+                                            // '${context.watch<CartViewModel>().count}'
+                                            '${context.watch<CartViewModel>().cartPlants.length}',
+                                          ),
                                           badgeColor: Colors.white,
                                           child: Icon(
                                             Icons.shopping_cart_sharp,

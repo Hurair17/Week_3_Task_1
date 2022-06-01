@@ -4,34 +4,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import 'package:week_3_task/core/constants/color.dart';
+import 'package:week_3_task/core/models/cart_model.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
 class CartScreenCard extends StatelessWidget {
-  String? id;
-  final String? ProductId;
-  String? title;
-  String? shortInfo;
-  String? imgUrl;
-  int? quantity;
-  double? price;
+  CartModel? cartModel;
 
-  CartScreenCard({
-    Key? key,
-    this.ProductId,
-    this.id,
-    this.title,
-    this.shortInfo,
-    this.imgUrl,
-    this.quantity,
-    this.price,
-  }) : super(key: key);
+  CartScreenCard({Key? key, this.cartModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // final productDetailById = Provider.of<HomeViewModel>(context).findById(id);
-    final cart = Provider.of<CartViewModel>(context);
-    final homeViewModel = Provider.of<HomeViewModel>(context);
+    // final cart = Provider.of<CartViewModel>(context);
+    // final homeViewModel = Provider.of<HomeViewModel>(context);
     return SingleChildScrollView(
       child: Container(
         height: 80.h,
@@ -56,8 +42,8 @@ class CartScreenCard extends StatelessWidget {
                       color: Colors.yellow),
                   height: 60.h,
                   width: 60.w,
-                  child: Image.asset(
-                    '$imgUrl',
+                  child: Image.network(
+                    '${cartModel!.cartImgUrl}',
                     fit: BoxFit.fitHeight,
                   ),
                 ),
@@ -70,14 +56,14 @@ class CartScreenCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "$title",
+                        "${cartModel!.title}",
                         style: TextStyle(
                             color: green,
                             fontWeight: FontWeight.w600,
                             fontSize: 17.sp),
                       ),
                       Text(
-                        '$shortInfo',
+                        '${cartModel!.shortInfo}',
                         style: TextStyle(color: gry, fontSize: 12.sp),
                       ),
                       SizedBox(
@@ -113,7 +99,7 @@ class CartScreenCard extends StatelessWidget {
                             width: 8.w,
                           ),
                           Text(
-                            '${cart.findByIdShow(id)}',
+                            '{cart}',
                             // 's',
                             style: TextStyle(color: green),
                           ),
@@ -171,7 +157,7 @@ class CartScreenCard extends StatelessWidget {
                               (String value) {
                                 return DropdownMenuItem<String>(
                                   onTap: () {
-                                    cart.remove(ProductId);
+                                    // cart.remove(ProductId);
                                   },
                                   value: value,
                                   child: Center(
@@ -201,7 +187,7 @@ class CartScreenCard extends StatelessWidget {
                         height: 22.h,
                       ),
                       Text(
-                        '\$ $price',
+                        '\$ ${cartModel!.price}',
                         style: TextStyle(
                             color: lightgreen, fontWeight: FontWeight.w800),
                       )

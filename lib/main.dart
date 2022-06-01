@@ -13,7 +13,6 @@ void main() async {
   await Firebase.initializeApp();
   runApp(
     MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_) => CartViewModel()),
       ChangeNotifierProvider(create: ((context) => CartViewModel())),
       ChangeNotifierProvider(create: (_) => HomeViewModel()),
     ], child: const MaterialApp(home: MyApp())),

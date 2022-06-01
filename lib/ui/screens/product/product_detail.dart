@@ -19,7 +19,7 @@ class PrdouctDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // final homeViewModel = Provider.of<HomeViewModel>(context);
     // final cartViewModel = Provider.of<CartViewModel>(context);
-
+    int quantity = 1;
     return ChangeNotifierProvider(
       create: (context) => ProductViewModel(),
       child: Consumer<ProductViewModel>(
@@ -136,7 +136,9 @@ class PrdouctDetailScreen extends StatelessWidget {
 
                               Row(
                                 children: [
-                                  // InkWell(onTap: () {}
+                                  // InkWell(onTap: () {
+                                  // plant!.quantity;
+                                  // }),
                                   // productDetailById.qunatity++,
                                   // homeViewModel.findByIdIncrement(id),
                                   // child:
@@ -298,7 +300,13 @@ class PrdouctDetailScreen extends StatelessWidget {
                                   //     productDetailById.imgUrl,
                                   //     productDetailById.quantity);
 
-                                  value.putPlantsData(plant);
+                                  value.putPlantsData(
+                                      cartId: plant!.id,
+                                      price: plant!.price,
+                                      title: plant!.title,
+                                      shortInfo: plant!.shortInfo,
+                                      imgUrl: plant!.imgUrl,
+                                      quantity: plant!.quantity);
 
                                   Navigator.push(
                                     context,

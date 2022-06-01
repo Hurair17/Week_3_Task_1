@@ -59,28 +59,12 @@ class Cart2 extends StatelessWidget {
                   height: 360.h,
                   child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: cartViewModel.itemCount,
+                      itemCount: cartViewModel.cartPlants.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 12.0),
                           child: CartScreenCard(
-                            ProductId: cartViewModel.items.keys.toList()[index],
-                            id: cartViewModel.items.values.toList()[index].id,
-                            title: cartViewModel.items.values
-                                .toList()[index]
-                                .title,
-                            quantity: cartViewModel.items.values
-                                .toList()[index]
-                                .quantity,
-                            shortInfo: cartViewModel.items.values
-                                .toList()[index]
-                                .shortInfo,
-                            price: cartViewModel.items.values
-                                .toList()[index]
-                                .price,
-                            imgUrl: cartViewModel.items.values
-                                .toList()[index]
-                                .imgUrl,
+                            cartModel: cartViewModel.cartPlants[index],
                           ),
                         );
                       })),
@@ -104,7 +88,7 @@ class Cart2 extends StatelessWidget {
                           style: TextStyle(color: green, fontSize: 15.sp),
                         ),
                         Text(
-                          '\$ ${(cartViewModel.totalAmount).toStringAsFixed(2)}',
+                          '\$ {10}',
                           style: TextStyle(color: green, fontSize: 15.sp),
                         )
                       ],
@@ -138,7 +122,7 @@ class Cart2 extends StatelessWidget {
                               fontWeight: FontWeight.w700),
                         ),
                         Text(
-                          '\$ ${(10.40 + cartViewModel.totalAmount).toStringAsFixed(2)}',
+                          '\$ {10.40}',
                           style: TextStyle(
                               color: green,
                               fontSize: 20.sp,

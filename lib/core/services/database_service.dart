@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:week_3_task/core/models/cart_model.dart';
 import 'package:week_3_task/core/models/plant.dart';
 import 'package:week_3_task/core/models/test_model.dart';
+import 'package:week_3_task/ui/screens/cart/cart2.dart';
 import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
 class DatabaseService {
@@ -88,7 +90,8 @@ class DatabaseService {
         snapshot.docs.forEach((element) {
           listPlant.add(Plant.fromJson(element.data(), element.id));
         });
-        debugPrint('Database data length => ${listPlant.length}');
+        debugPrint(
+            'Database data length => ${listPlant.length} ${listPlant[1]}');
         return listPlant;
       }
     } catch (e) {
@@ -98,49 +101,78 @@ class DatabaseService {
   }
 
   //Add Data to Cart
-  Future<void> putPlants(plant) async {
+  Future<void> putPlants(
+      {cartId, price, quantity, shotInfo, title, imgUrl}) async {
+    final cartPlants = <String, dynamic>{
+      'cartId': cartId,
+      'price': price,
+      'quantity': quantity,
+      'shotInfo': shotInfo,
+      'title': title,
+      'imgUrl': imgUrl,
+    };
     try {
-      //  _firestore.collection('carts').doc.add(plant);
-      _firestore.collection('test_cart').doc(plant.id).set(plant.toJson());
+      final addCollection =
+          _firestore.collection('test_cart').doc('put-user-id-3');
+
+      addCollection.collection('UserCart').doc(cartId).set(cartPlants);
+      debugPrint('pakistan put data 1');
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
-//   Future<List<TestModel>> getTestDataDb() async {
-//     List<TestModel> listTest = [];
-//     try {
-//       QuerySnapshot snapshot =
-//           await _firestore.collection('testing_data').get();
-//       if (snapshot.docs.isEmpty) {
-//         debugPrint("No data found in testing_data");
-//       } else {
-//         snapshot.docs.forEach((element) {
-//           listTest.add(TestModel.fromJson(element.data(), element.id));
-//         });
-//         debugPrint('testing_data length => ${listTest.length}');
-//       }
-//       return listTest;
-//     } catch (e) {
-//       debugPrint('Error getting test data ${e.toString()}');
-//       return [];
-//     }
-//   }
+  //Get Data from Cart
+  // int countCartItem = 0;
+  Future<int> cartItems() async {
+    try {
+      List list = [];
+      QuerySnapshot snapshot = await _firestore
+          .collection('test_cart')
+          .doc('put-user-id-2')
+          .collection('UserCart')
+          .get();
+      if (snapshot.docs.isEmpty) {
+        debugPrint('No data');
+        return 0;
+      } else {
+        debugPrint('pakistan get Cart 4');
+        snapshot.docs.forEach((element) {
+          list.add(CartModel.fromJson(element.data(), element.id));
+        });
+        debugPrint('Cart data length => ${list.length} ');
+        // countCartItem = listCartPlant.length;
+        return list.length;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return 0;
+    }
+  }
 
-// // Fetching on documnet id
-//   Future<TestModel> getOneObject() async {
-//     TestModel testModel = TestModel();
-//     try {
-//       DocumentSnapshot documentSnapshot = await _firestore
-//           .collection('testing_data')
-//           .doc('IryokLgPPSsQbX1AnzT6')
-//           .get();
-//       testModel =
-//           TestModel.fromJson(documentSnapshot.data(), documentSnapshot.id);
-//       return testModel;
-//     } catch (e) {
-//       debugPrint('Error getting test data ${e.toString()}');
-//       return testModel;
-//     }
-//   }
+  Future<List<CartModel>> getCartPlants() async {
+    List<CartModel> listCartPlant = [];
+    try {
+      QuerySnapshot snapshot = await _firestore
+          .collection('test_cart')
+          .doc('put-user-id-3')
+          .collection('UserCart')
+          .get();
+      if (snapshot.docs.isEmpty) {
+        debugPrint('No data');
+        return [];
+      } else {
+        debugPrint('pakistan get Cart 4');
+        snapshot.docs.forEach((element) {
+          listCartPlant.add(CartModel.fromJson(element.data(), element.id));
+        });
+        debugPrint('get Cart data length => ${listCartPlant.length} ');
+        // countCartItem = listCartPlant.length;
+      }
+      return listCartPlant;
+    } catch (e) {
+      debugPrint(e.toString());
+      return [];
+    }
+  }
 }
