@@ -15,6 +15,7 @@ class Cart2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<CartViewModel>(context);
+    // print(cart.total.toString());
 
     return Scaffold(
       body: cart.isLoading
@@ -93,7 +94,7 @@ class Cart2 extends StatelessWidget {
                                 style: TextStyle(color: green, fontSize: 15.sp),
                               ),
                               Text(
-                                '\$ ${(cart.totalCost).toStringAsFixed(2)}',
+                                '\$ ${(cart.total).toStringAsFixed(2)}',
                                 style: TextStyle(color: green, fontSize: 15.sp),
                               )
                             ],
@@ -127,7 +128,7 @@ class Cart2 extends StatelessWidget {
                                     fontWeight: FontWeight.w700),
                               ),
                               Text(
-                                '\$ ${((cart.totalCost) + 10.00).toStringAsFixed(2)}',
+                                '\$ ${((cart.total) + 10.00).toStringAsFixed(2)}',
                                 style: TextStyle(
                                     color: green,
                                     fontSize: 20.sp,

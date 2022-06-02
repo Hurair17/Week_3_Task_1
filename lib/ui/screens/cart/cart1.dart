@@ -103,7 +103,7 @@ class _Cart1State extends State<Cart1> {
                                 style: TextStyle(color: green, fontSize: 15.sp),
                               ),
                               Text(
-                                '\$ ${(cart.totalCost).toStringAsFixed(2)}',
+                                '\$ ${(cart.total).toStringAsFixed(2)}',
                                 style: TextStyle(color: green, fontSize: 15.sp),
                               )
                             ],
@@ -140,7 +140,7 @@ class _Cart1State extends State<Cart1> {
                                     fontWeight: FontWeight.w700),
                               ),
                               Text(
-                                '\$ ${((cart.totalCost) + 10.00).toStringAsFixed(2)}',
+                                '\$ ${((cart.total) + 10.00).toStringAsFixed(2)}',
                                 style: TextStyle(
                                     color: green,
                                     fontSize: 20.sp,

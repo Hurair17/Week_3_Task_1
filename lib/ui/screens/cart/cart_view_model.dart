@@ -1,10 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:week_3_task/core/models/amount_model.dart';
 import 'package:week_3_task/core/models/cart_model.dart';
-import 'package:week_3_task/core/models/plant.dart';
-
 import '../../../core/services/database_service.dart';
 
 class CartViewModel extends ChangeNotifier {
@@ -14,16 +10,24 @@ class CartViewModel extends ChangeNotifier {
   List<CartModel> cartPlants = [];
   bool isLoading = false;
   bool lable = false;
-  // int count = 1;
+  double total = 0;
 
   getCartPlantsData() async {
+    double cost = 0;
     isLoading = true;
     notifyListeners();
     cartPlants = await dbService.getCartPlants();
     debugPrint('testData Length View Model => ${cartPlants.length}');
     isLoading = false;
     count = cartPlants.length;
+    //For Taking Total Amount
+
+    for (int i = 0; i < cartPlants.length; i++) {
+      cost += cartPlants[i].price! * (cartPlants[i].quantity)!.toDouble();
+    }
+    //For Showing Label on cart
     notifyListeners();
+    total = cost;
     if (cartPlants.length > 0) {
       lable = true;
       // count = cartPlants.length;
@@ -48,21 +52,17 @@ class CartViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  TotalAmountModel totalAmountModel = TotalAmountModel();
-  // int count = cartPlants.length;
-
-  double totalCost = 0;
-  void totalAmount() {
-    double total = 0;
-    // cartPlants.forEach((element) {
-    //   total += element.price! * (element.quantity)!.toDouble();
-    // });
-    for (int i = 0; i < cartPlants.length; i++) {
-      total += cartPlants[i].price! * (cartPlants[i].quantity)!.toDouble();
-    }
-    totalCost = total;
-    notifyListeners();
-  }
+  // TotalAmountModel totalAmountModel = TotalAmountModel();
+  // double totalCost = 0;
+  // void totalAmount() {
+  //   double cost = 0;
+  //   notifyListeners();
+  //   for (int i = 0; i < cartPlants.length; i++) {
+  //     cost += cartPlants[i].price! * (cartPlants[i].quantity)!.toDouble();
+  //   }
+  //   total = cost;
+  //   notifyListeners();
+  // }
 
   // bool _label = false;
   // void getlable() {

@@ -102,6 +102,7 @@ class DatabaseService {
   }
 
   //Add Data to Cart
+  //TODO: add user id
   Future<void> addPlantToCart(
       {cartId, price, quantity, shortInfo, title, imgUrl}) async {
     final cartPlants = <String, dynamic>{
@@ -113,10 +114,9 @@ class DatabaseService {
       'imgUrl': imgUrl,
     };
     try {
-      final addCollection =
-          _firestore.collection('test_cart').doc('put-user-id-3');
+      final query = _firestore.collection('test_cart').doc('put-user-id-3');
 
-      addCollection.collection('UserCart').doc(cartId).set(cartPlants);
+      query.collection('UserCart').doc(cartId).set(cartPlants);
       debugPrint('pakistan put data 1');
     } catch (e) {
       debugPrint(e.toString());
@@ -124,44 +124,20 @@ class DatabaseService {
   }
 
   //Delete Data from Cart
+  //TODO: add user id
   Future<void> deleteCartPlant(String cartId) async {
     try {
-      final addCollection =
-          _firestore.collection('test_cart').doc('put-user-id-3');
+      final query = _firestore.collection('test_cart').doc('put-user-id-3');
 
-      addCollection.collection('UserCart').doc(cartId).delete();
+      query.collection('UserCart').doc(cartId).delete();
       debugPrint('pakistan delete data 1');
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
-  // Future<int> cartItems() async {
-  //   try {
-  //     List list = [];
-  //     QuerySnapshot snapshot = await _firestore
-  //         .collection('test_cart')
-  //         .doc('put-user-id-2')
-  //         .collection('UserCart')
-  //         .get();
-  //     if (snapshot.docs.isEmpty) {
-  //       debugPrint('No data');
-  //       return 0;
-  //     } else {
-  //       debugPrint('pakistan get Cart 4');
-  //       snapshot.docs.forEach((element) {
-  //         list.add(CartModel.fromJson(element.data(), element.id));
-  //       });
-  //       debugPrint('Cart data length => ${list.length} ');
-  //       // countCartItem = listCartPlant.length;
-  //       return list.length;
-  //     }
-  //   } catch (e) {
-  //     debugPrint(e.toString());
-  //     return 0;
-  //   }
-  // }
-
+  //Get Cart Plants of the  User
+  //TODO: add user id
   Future<List<CartModel>> getCartPlants() async {
     List<CartModel> listCartPlant = [];
     try {
