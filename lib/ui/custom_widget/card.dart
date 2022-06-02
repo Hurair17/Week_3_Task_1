@@ -24,15 +24,6 @@ class HorizontalCard extends StatelessWidget {
       padding: const EdgeInsets.only(left: 8, right: 8),
       child: InkWell(
         onTap: () {
-          // For Recent visit plant
-          // homeViewModal.addItem(
-          //     productDetailById.id,
-          //     productDetailById.price,
-          //     productDetailById.title,
-          //     productDetailById.shortInfo,
-          //     productDetailById.imgUrl,
-          //     productDetailById.quantity);
-
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -47,19 +38,16 @@ class HorizontalCard extends StatelessWidget {
               width: 180.w,
             ),
             Positioned(
-              top: 120.h,
+              top: 50.h,
               child: Container(
                 width: 180.w,
-                height: 120.h,
+                height: 190.h,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(15.r),
-                    bottomRight: Radius.circular(15.r),
-                  ),
-                  color: darkgren,
+                  borderRadius: BorderRadius.circular(15.r),
+                  color: lightgreen,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 80.0, left: 5, right: 5),
+                  padding: const EdgeInsets.only(top: 160, left: 5, right: 5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -74,16 +62,16 @@ class HorizontalCard extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.r),
-                                color: Color.fromARGB(255, 235, 230, 230)),
-                            height: 20.h,
+                                color: Colors.white),
+                            height: 15.h,
                             width: 50.w,
                             // width: 20.w,
                             child: Center(
                               child: Text(
                                 '\$ ${plant?.price}',
                                 style: TextStyle(
-                                    color: lightgreen,
-                                    fontSize: 13.sp,
+                                    color: darkgren,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.w500),
                               ),
                             ),
@@ -106,7 +94,7 @@ class HorizontalCard extends StatelessWidget {
                       topRight: Radius.circular(15.r),
                       topLeft: Radius.circular(15.r),
                     ),
-                    color: lightgreen,
+                    color: darkgren.withOpacity(0.4),
                   ),
                 ),
                 clipper: BottomWaveClipper(),

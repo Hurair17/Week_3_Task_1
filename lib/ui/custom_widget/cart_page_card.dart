@@ -8,20 +8,15 @@ import 'package:week_3_task/core/models/cart_model.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
 import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
-class CartScreenCard extends StatefulWidget {
+class CartScreenCard extends StatelessWidget {
   CartModel? cartModel;
+  int? count;
 
-  CartScreenCard({Key? key, this.cartModel}) : super(key: key);
+  CartScreenCard({Key? key, this.cartModel, this.count}) : super(key: key);
 
-  @override
-  State<CartScreenCard> createState() => _CartScreenCardState();
-}
-
-class _CartScreenCardState extends State<CartScreenCard> {
   @override
   Widget build(BuildContext context) {
     CartViewModel cart = Provider.of<CartViewModel>(context);
-    int? count = widget.cartModel!.quantity;
     return SingleChildScrollView(
       child: Container(
         height: 80.h,
@@ -38,11 +33,11 @@ class _CartScreenCardState extends State<CartScreenCard> {
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
-                      color: Colors.yellow),
+                      color: lightgreen.withOpacity(0.7)),
                   height: 60.h,
                   width: 60.w,
                   child: Image.network(
-                    '${widget.cartModel!.imgUrl}',
+                    '${cartModel!.imgUrl}',
                     fit: BoxFit.fitHeight,
                   ),
                 ),
@@ -55,14 +50,14 @@ class _CartScreenCardState extends State<CartScreenCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${widget.cartModel!.title}",
+                        "${cartModel!.title}",
                         style: TextStyle(
                             color: green,
                             fontWeight: FontWeight.w600,
                             fontSize: 17.sp),
                       ),
                       Text(
-                        '${widget.cartModel!.shortInfo}',
+                        '${cartModel!.shortInfo}',
                         style: TextStyle(color: gry, fontSize: 12.sp),
                       ),
                       SizedBox(
@@ -72,10 +67,7 @@ class _CartScreenCardState extends State<CartScreenCard> {
                         children: [
                           InkWell(
                             onTap: () {
-                              cart.incrementQuantity(widget.cartModel!.cartId);
-                              setState(() {
-                                count = count! + 1;
-                              });
+                              cart.incrementQuantity(cartModel!.cartId);
                             },
                             child: Container(
                               height: 15.h,
@@ -95,7 +87,7 @@ class _CartScreenCardState extends State<CartScreenCard> {
                             width: 8.w,
                           ),
                           Text(
-                            '${count}',
+                            '${cartModel!.quantity}',
                             // 's',
                             style: TextStyle(color: green),
                           ),
@@ -155,6 +147,7 @@ class _CartScreenCardState extends State<CartScreenCard> {
                                 return DropdownMenuItem<String>(
                                   onTap: () {
                                     // cart.remove(ProductId);
+                                    cart.deleteCartPlant(cartModel!.cartId!);
                                   },
                                   value: value,
                                   child: Center(
@@ -184,9 +177,9 @@ class _CartScreenCardState extends State<CartScreenCard> {
                         height: 22.h,
                       ),
                       Text(
-                        '\$ ${widget.cartModel!.price}',
+                        '\$ ${cartModel!.price}',
                         style: TextStyle(
-                            color: lightgreen, fontWeight: FontWeight.w800),
+                            color: green, fontWeight: FontWeight.w800),
                       )
                     ],
                   ),

@@ -78,6 +78,7 @@ class DatabaseService {
   //   ),
   // ];
 
+  // Get all Data of Plants from the Database
   Future<List<Plant>> getPlants() async {
     List<Plant> listPlant = [];
     try {
@@ -101,7 +102,7 @@ class DatabaseService {
   }
 
   //Add Data to Cart
-  Future<void> putPlants(
+  Future<void> addPlantToCart(
       {cartId, price, quantity, shortInfo, title, imgUrl}) async {
     final cartPlants = <String, dynamic>{
       'cartId': cartId,
@@ -122,33 +123,44 @@ class DatabaseService {
     }
   }
 
-  //Get Data from Cart
-  // int countCartItem = 0;
-  Future<int> cartItems() async {
+  //Delete Data from Cart
+  Future<void> deleteCartPlant(String cartId) async {
     try {
-      List list = [];
-      QuerySnapshot snapshot = await _firestore
-          .collection('test_cart')
-          .doc('put-user-id-2')
-          .collection('UserCart')
-          .get();
-      if (snapshot.docs.isEmpty) {
-        debugPrint('No data');
-        return 0;
-      } else {
-        debugPrint('pakistan get Cart 4');
-        snapshot.docs.forEach((element) {
-          list.add(CartModel.fromJson(element.data(), element.id));
-        });
-        debugPrint('Cart data length => ${list.length} ');
-        // countCartItem = listCartPlant.length;
-        return list.length;
-      }
+      final addCollection =
+          _firestore.collection('test_cart').doc('put-user-id-3');
+
+      addCollection.collection('UserCart').doc(cartId).delete();
+      debugPrint('pakistan delete data 1');
     } catch (e) {
       debugPrint(e.toString());
-      return 0;
     }
   }
+
+  // Future<int> cartItems() async {
+  //   try {
+  //     List list = [];
+  //     QuerySnapshot snapshot = await _firestore
+  //         .collection('test_cart')
+  //         .doc('put-user-id-2')
+  //         .collection('UserCart')
+  //         .get();
+  //     if (snapshot.docs.isEmpty) {
+  //       debugPrint('No data');
+  //       return 0;
+  //     } else {
+  //       debugPrint('pakistan get Cart 4');
+  //       snapshot.docs.forEach((element) {
+  //         list.add(CartModel.fromJson(element.data(), element.id));
+  //       });
+  //       debugPrint('Cart data length => ${list.length} ');
+  //       // countCartItem = listCartPlant.length;
+  //       return list.length;
+  //     }
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //     return 0;
+  //   }
+  // }
 
   Future<List<CartModel>> getCartPlants() async {
     List<CartModel> listCartPlant = [];
@@ -191,6 +203,25 @@ class DatabaseService {
             .collection('UserCart')
             .doc(element.id)
             .update({'quantity': FieldValue.increment(1)});
+      });
+    });
+  }
+
+  Future<void> decrementquantity(cartId) async {
+    _firestore
+        .collection('test_cart')
+        .doc('put-user-id-3')
+        .collection('UserCart')
+        .where("cartId", isEqualTo: cartId)
+        .get()
+        .then((querySnapshot) {
+      querySnapshot.docs.forEach((element) {
+        FirebaseFirestore.instance
+            .collection('test_cart')
+            .doc('put-user-id-3')
+            .collection('UserCart')
+            .doc(element.id)
+            .update({'quantity': FieldValue.increment(-1)});
       });
     });
   }

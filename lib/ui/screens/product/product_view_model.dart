@@ -10,7 +10,7 @@ class ProductViewModel extends ChangeNotifier {
   putPlantsData({cartId, imgUrl, price, quantity, title, shortInfo}) async {
     isLoading = true;
     notifyListeners();
-    _dbService.putPlants(
+    _dbService.addPlantToCart(
         cartId: cartId,
         imgUrl: imgUrl,
         price: price,

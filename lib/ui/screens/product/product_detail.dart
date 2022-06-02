@@ -24,7 +24,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
   int count = 1;
   Widget build(BuildContext context) {
     // final homeViewModel = Provider.of<HomeViewModel>(context);
-    final cartViewModel = Provider.of<CartViewModel>(context);
+    final cart = Provider.of<CartViewModel>(context);
     int quantity = 1;
     return ChangeNotifierProvider(
       create: (context) => ProductViewModel(),
@@ -110,6 +110,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     '${widget.plant!.title}',
@@ -313,6 +314,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                               ),
                               InkWell(
                                 onTap: () {
+                                  cart.totalAmount();
                                   value.putPlantsData(
                                       cartId: widget.plant!.id,
                                       price: widget.plant!.price,
@@ -320,8 +322,8 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                                       shortInfo: widget.plant!.shortInfo,
                                       imgUrl: widget.plant!.imgUrl,
                                       quantity: count);
-                                  cartViewModel.getCartPlantsData();
-                                  cartViewModel.totalAmount();
+                                  cart.getCartPlantsData();
+                                  cart.totalAmount();
 
                                   Navigator.push(
                                     context,
@@ -335,7 +337,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                                   height: 40.h,
                                   width: 270.w,
                                   decoration: BoxDecoration(
-                                    color: darkgren,
+                                    color: green,
                                     borderRadius: BorderRadius.circular(10.r),
                                   ),
                                   child: Row(

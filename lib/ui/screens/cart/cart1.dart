@@ -21,7 +21,7 @@ class _Cart1State extends State<Cart1> {
 
     return Scaffold(
       body: cart.isLoading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : SingleChildScrollView(

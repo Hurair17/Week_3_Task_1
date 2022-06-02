@@ -6,6 +6,7 @@ import 'package:week_3_task/ui/custom_widget/card.dart';
 import 'package:week_3_task/ui/custom_widget/card_htile.dart';
 import 'package:week_3_task/ui/custom_widget/text_form_field.dart';
 import 'package:badges/badges.dart';
+import 'package:week_3_task/ui/screens/cart/cart2.dart';
 import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
 import 'package:week_3_task/ui/screens/cart/cart1.dart';
@@ -15,10 +16,10 @@ import '../cart/cart_view_model.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final CartViewModel cart = Provider.of<CartViewModel>(context);
+    // cart.getCartPlantsData();
     return ChangeNotifierProvider(
       create: (context) => HomeViewModel(),
       child: Consumer<HomeViewModel>(
@@ -50,8 +51,7 @@ class Home extends StatelessWidget {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const Cart1()));
+                                              builder: (context) => Cart1()));
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(

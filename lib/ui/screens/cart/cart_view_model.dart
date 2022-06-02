@@ -34,6 +34,13 @@ class CartViewModel extends ChangeNotifier {
     }
   }
 
+  deleteCartPlant(String cartId) async {
+    await dbService.deleteCartPlant(cartId);
+    notifyListeners();
+    getCartPlantsData();
+    notifyListeners();
+  }
+
   incrementQuantity(cartId) {
     // cartModel.quantity;
     count++;

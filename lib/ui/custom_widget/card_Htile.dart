@@ -46,7 +46,7 @@ class HomeScreenDownCard extends StatelessWidget {
               width: 70.w,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.r),
-                color: Colors.yellow,
+                color: lightgreen,
               ),
               child: Image.asset(
                 '$imgUrl',

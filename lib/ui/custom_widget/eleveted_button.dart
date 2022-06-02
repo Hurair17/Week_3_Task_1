@@ -23,7 +23,7 @@ class CustElevetedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: darkgren,
+        primary: green,
         onPrimary: black,
         elevation: 0,
         shape: RoundedRectangleBorder(
