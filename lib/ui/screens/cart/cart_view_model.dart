@@ -21,6 +21,7 @@ class CartViewModel extends ChangeNotifier {
     isLoading = false;
     count = cartPlants.length;
     //For Taking Total Amount
+    notifyListeners();
 
     for (int i = 0; i < cartPlants.length; i++) {
       cost += cartPlants[i].price! * (cartPlants[i].quantity)!.toDouble();
@@ -28,14 +29,25 @@ class CartViewModel extends ChangeNotifier {
     //For Showing Label on cart
     notifyListeners();
     total = cost;
+    notifyListeners();
     if (cartPlants.length > 0) {
-      lable = true;
-      // count = cartPlants.length;
       notifyListeners();
+
+      lable = true;
+      notifyListeners();
+
+      // count = cartPlants.length;
     } else {
       notifyListeners();
       lable = false;
     }
+  }
+
+  delete2CartPlant(String cartId, int index) async {
+    await dbService.deleteCartPlant(cartId);
+    notifyListeners();
+    cartPlants.removeAt(index);
+    notifyListeners();
   }
 
   deleteCartPlant(String cartId) async {
@@ -45,16 +57,18 @@ class CartViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  incrementQuantity(cartId) {
-    // cartModel.quantity;
-    dbService.incrementquantity(cartId);
+  incrementQuantity(cartId) async {
     notifyListeners();
+    await dbService.incrementquantity(cartId);
+    notifyListeners();
+    await getCartPlantsData();
   }
 
-  decrementQuantity(cartId) {
-    // cartModel.quantity;
-    dbService.decrementquantity(cartId);
+  decrementQuantity(cartId) async {
     notifyListeners();
+    await dbService.decrementquantity(cartId);
+    notifyListeners();
+    await getCartPlantsData();
   }
 
   // TotalAmountModel totalAmountModel = TotalAmountModel();

@@ -9,14 +9,14 @@ class ProductViewModel extends ChangeNotifier {
 
   putPlantsData({cartId, imgUrl, price, quantity, title, shortInfo}) async {
     isLoading = true;
+    cartModel.cartId = cartId;
+    cartModel.imgUrl = imgUrl;
+    cartModel.price = price;
+    cartModel.quantity = quantity;
+    cartModel.title = title;
+    cartModel.shortInfo = shortInfo;
     notifyListeners();
-    _dbService.addPlantToCart(
-        cartId: cartId,
-        imgUrl: imgUrl,
-        price: price,
-        quantity: quantity,
-        title: title,
-        shortInfo: shortInfo);
+    _dbService.addPlantToCart(cartModel: cartModel);
     debugPrint('testData Add View Model => }');
     isLoading = false;
     notifyListeners();

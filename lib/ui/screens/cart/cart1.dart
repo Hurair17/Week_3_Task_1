@@ -76,6 +76,7 @@ class _Cart1State extends State<Cart1> {
                             padding: const EdgeInsets.only(bottom: 8.0),
                             child: CartScreenCard(
                               cartModel: cart.cartPlants[index],
+                              index: index,
                               // count: cart.count,
                             ),
                           );

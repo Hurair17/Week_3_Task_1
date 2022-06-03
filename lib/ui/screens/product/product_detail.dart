@@ -314,19 +314,21 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                                 width: 20.w,
                               ),
                               InkWell(
-                                onTap: () {
+                                onTap: () async {
                                   // cart.totalAmount();
-                                  value.putPlantsData(
+
+                                  await value.putPlantsData(
                                       cartId: widget.plant!.id,
                                       price: widget.plant!.price,
                                       title: widget.plant!.title,
                                       shortInfo: widget.plant!.shortInfo,
                                       imgUrl: widget.plant!.imgUrl,
                                       quantity: count);
-                                  cart.getCartPlantsData();
+                                  await cart.getCartPlantsData();
+
                                   // cart.totalAmount();
 
-                                  Navigator.push(
+                                  await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => Cart1(

@@ -111,26 +111,16 @@ class DatabaseService {
   }
 
   //Add Data to Cart
-  //TODO: Increment if all ready present in cart
-  Future<void> addPlantToCart(
-      {cartId, price, quantity, shortInfo, title, imgUrl}) async {
+  Future<void> addPlantToCart({cartModel}) async {
     String uuid = getUserId();
     debugPrint('Uid Print in Pakistan $uuid');
-    final cartPlants = <String, dynamic>{
-      'cartId': cartId,
-      'price': price,
-      'quantity': quantity,
-      'shortInfo': shortInfo,
-      'title': title,
-      'imgUrl': imgUrl,
-    };
     ///////////////////////////////////////////
     bool check = true;
     await _firestore
         .collection('test_cart')
         .doc(uuid)
         .collection('UserCart')
-        .doc(cartId)
+        .doc(cartModel.cartId)
         .get()
         .then((value) {
       if (value.exists) {
@@ -138,16 +128,16 @@ class DatabaseService {
             .collection('test_cart')
             .doc(uuid)
             .collection('UserCart')
-            .doc(cartId)
-            .update({'quantity': FieldValue.increment(quantity)});
+            .doc(cartModel.cartId)
+            .update({'quantity': FieldValue.increment(cartModel.quantity)});
       } else {
         try {
           _firestore
               .collection('test_cart')
               .doc(uuid)
               .collection('UserCart')
-              .doc(cartId)
-              .set(cartPlants);
+              .doc(cartModel.cartId)
+              .set(cartModel.toJson());
         } catch (e) {
           debugPrint(e.toString());
         }

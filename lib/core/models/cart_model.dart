@@ -18,7 +18,7 @@ class CartModel {
   });
   toJson() {
     return {
-      'CartId': cartId,
+      'cartId': cartId,
       'imgUrl': imgUrl,
       'shortInfo': shortInfo,
       'title': title,

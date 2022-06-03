@@ -44,6 +44,7 @@ class LogInFormProvider extends ChangeNotifier {
 
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => RootBar()));
+        // Get.offAll()
       });
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString());

@@ -10,9 +10,9 @@ import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
 class CartScreenCard extends StatelessWidget {
   CartModel? cartModel;
-  int? count;
+  int? index;
 
-  CartScreenCard({Key? key, this.cartModel, this.count}) : super(key: key);
+  CartScreenCard({Key? key, this.cartModel, this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +141,8 @@ class CartScreenCard extends StatelessWidget {
                                 return DropdownMenuItem<String>(
                                   onTap: () {
                                     // cart.remove(ProductId);
-                                    cart.deleteCartPlant(cartModel!.cartId!);
+                                    cart.delete2CartPlant(
+                                        cartModel!.cartId!, index!);
                                   },
                                   value: value,
                                   child: Center(
