@@ -17,7 +17,6 @@ class ProductViewModel extends ChangeNotifier {
     cartModel.shortInfo = shortInfo;
     notifyListeners();
     _dbService.addPlantToCart(cartModel: cartModel);
-    debugPrint('testData Add View Model => }');
     isLoading = false;
     notifyListeners();
   }

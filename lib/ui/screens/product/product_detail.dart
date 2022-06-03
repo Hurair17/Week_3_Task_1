@@ -324,11 +324,9 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                                       shortInfo: widget.plant!.shortInfo,
                                       imgUrl: widget.plant!.imgUrl,
                                       quantity: count);
-                                  await cart.getCartPlantsData();
+                                  cart.getCartPlantsData();
 
-                                  // cart.totalAmount();
-
-                                  await Navigator.push(
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => Cart1(

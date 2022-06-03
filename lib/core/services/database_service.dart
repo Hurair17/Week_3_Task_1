@@ -189,43 +189,25 @@ class DatabaseService {
     }
   }
 
+  //Increment Quantity of the Plant in Cart
   Future<void> incrementquantity(cartId) async {
     String uuid = getUserId();
-    _firestore
+    await _firestore
         .collection('test_cart')
         .doc(uuid)
         .collection('UserCart')
-        .where("cartId", isEqualTo: cartId)
-        .get()
-        .then((querySnapshot) {
-      querySnapshot.docs.forEach((element) {
-        FirebaseFirestore.instance
-            .collection('test_cart')
-            .doc(uuid)
-            .collection('UserCart')
-            .doc(element.id)
-            .update({'quantity': FieldValue.increment(1)});
-      });
-    });
+        .doc(cartId)
+        .update({'quantity': FieldValue.increment(1)});
   }
 
+  //Decrement Quantity of the Plant in Cart
   Future<void> decrementquantity(cartId) async {
     String uuid = getUserId();
-    _firestore
+    await _firestore
         .collection('test_cart')
         .doc(uuid)
         .collection('UserCart')
-        .where("cartId", isEqualTo: cartId)
-        .get()
-        .then((querySnapshot) {
-      querySnapshot.docs.forEach((element) {
-        FirebaseFirestore.instance
-            .collection('test_cart')
-            .doc(uuid)
-            .collection('UserCart')
-            .doc(element.id)
-            .update({'quantity': FieldValue.increment(-1)});
-      });
-    });
+        .doc(cartId)
+        .update({'quantity': FieldValue.increment(-1)});
   }
 }

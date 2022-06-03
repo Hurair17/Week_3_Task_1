@@ -10,7 +10,6 @@ class CartViewModel extends ChangeNotifier {
   List<CartModel> cartPlants = [];
   bool isLoading = false;
   bool lable = false;
-  double total = 0;
 
   getCartPlantsData() async {
     double cost = 0;
@@ -23,12 +22,12 @@ class CartViewModel extends ChangeNotifier {
     //For Taking Total Amount
     notifyListeners();
 
-    for (int i = 0; i < cartPlants.length; i++) {
-      cost += cartPlants[i].price! * (cartPlants[i].quantity)!.toDouble();
-    }
+    // for (int i = 0; i < cartPlants.length; i++) {
+    //   cost += cartPlants[i].price! * (cartPlants[i].quantity)!.toDouble();
+    // }
     //For Showing Label on cart
     notifyListeners();
-    total = cost;
+    // total = cost;
     notifyListeners();
     if (cartPlants.length > 0) {
       notifyListeners();
@@ -41,6 +40,14 @@ class CartViewModel extends ChangeNotifier {
       notifyListeners();
       lable = false;
     }
+  }
+
+  double get total {
+    double cost = 0.0;
+    for (int i = 0; i < cartPlants.length; i++) {
+      cost += cartPlants[i].price! * (cartPlants[i].quantity)!.toDouble();
+    }
+    return cost;
   }
 
   delete2CartPlant(String cartId, int index) async {
