@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/core/models/cart_model.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
-import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
+// ignore: must_be_immutable
 class CartScreenCard extends StatelessWidget {
   CartModel? cartModel;
   int? index;
@@ -118,7 +118,7 @@ class CartScreenCard extends StatelessWidget {
                   ),
                 ),
                 // const Spacer(),
-                Spacer(),
+                const Spacer(),
                 SizedBox(
                   height: 70.h,
                   child: Column(

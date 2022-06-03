@@ -25,7 +25,7 @@ class _Cart1State extends State<Cart1> {
               child: CircularProgressIndicator(),
             )
           : SingleChildScrollView(
-              physics: AlwaysScrollableScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(),
               child: Container(
                 padding: EdgeInsets.only(top: 50.h, left: 15.w, right: 15.w),
                 child: Column(
@@ -69,7 +69,7 @@ class _Cart1State extends State<Cart1> {
                       // color: gry,
                       child: ListView.builder(
                         // shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: (cart.cartPlants.length),
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(

@@ -48,7 +48,8 @@ class Home extends StatelessWidget {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => Cart1()));
+                                              builder: (context) =>
+                                                  const Cart1()));
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -179,7 +180,8 @@ class Home extends StatelessWidget {
                                         itemCount: 1,
                                         itemBuilder:
                                             (BuildContext context, int index) {
-                                          return Text('HomeScreen Down Card');
+                                          return const Text(
+                                              'HomeScreen Down Card');
                                           // HomeScreenDownCard(
                                           //   id: value.recentView.values
                                           //       .toList()[index]

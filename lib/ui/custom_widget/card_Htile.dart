@@ -1,14 +1,12 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:week_3_task/core/constants/color.dart';
-import 'package:week_3_task/core/models/plant.dart';
-import 'package:week_3_task/ui/screens/product/product_detail.dart';
 
+// ignore: must_be_immutable
 class HomeScreenDownCard extends StatelessWidget {
   String? id;
-  final String? ProductId;
+  final String? productId;
   String? title;
   String? shortInfo;
   String? imgUrl;
@@ -17,7 +15,7 @@ class HomeScreenDownCard extends StatelessWidget {
   HomeScreenDownCard({
     Key? key,
     this.id,
-    this.ProductId,
+    this.productId,
     this.title,
     this.shortInfo,
     this.imgUrl,
@@ -29,14 +27,7 @@ class HomeScreenDownCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: InkWell(
-        onTap: () {
-          //   Navigator.push(
-          //       context,
-          //       MaterialPageRoute(
-          //           builder: (context) => PrdouctDetailScreen(
-          //                 id: id,
-          //               )));
-        },
+        onTap: () {},
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

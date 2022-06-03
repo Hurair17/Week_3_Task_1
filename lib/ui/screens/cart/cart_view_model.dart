@@ -11,7 +11,7 @@ class CartViewModel extends ChangeNotifier {
   bool isLoading = false;
 
   getCartPlantsData() async {
-    double cost = 0;
+    // double cost = 0;
     isLoading = true;
     notifyListeners();
     cartPlants = await dbService.getCartPlants();
@@ -19,20 +19,9 @@ class CartViewModel extends ChangeNotifier {
     isLoading = false;
     count = cartPlants.length;
     notifyListeners();
-    if (cartPlants.length > 0) {
-      notifyListeners();
-
-      // lable = true;
-      notifyListeners();
-
-      // count = cartPlants.length;
-    } else {
-      notifyListeners();
-      // lable = false;
-    }
   }
 
-  bool get lable => cartPlants.length == 0 ? false : true;
+  bool get lable => cartPlants.isEmpty ? false : true;
   // Get Total Amount
   double get total {
     double cost = 0.0;
@@ -61,12 +50,6 @@ class CartViewModel extends ChangeNotifier {
     await dbService.incrementquantity(cartId);
     notifyListeners();
     await getCartPlantsData();
-  }
-
-  totalQuantity(cartId) async {
-    notifyListeners();
-    await dbService.getQuantity(cartId);
-    notifyListeners();
   }
 
   decrementQuantity(cartId) async {
@@ -99,7 +82,7 @@ class CartViewModel extends ChangeNotifier {
   //   }
   // }
 
-  static void getCartPlants() {}
+  // static void getCartPlants() {}
 
   // final _amount = TotalAmount();
   // double get totalAmount {

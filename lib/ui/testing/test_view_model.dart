@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:week_3_task/core/models/test_model.dart';
-
-import '../../core/services/database_service.dart';
 import '../../core/services/test_database.dart';
 
 class TestViewModel extends ChangeNotifier {

@@ -24,7 +24,7 @@ class TestModel {
   }
 
   TestModel.fromJson(json, id) {
-    this.id = id;
+    id = id;
     name = json['name'] ?? "Ali";
     department = json['department'] ?? 'DCSE';
     imageUrl = json['imageUrl'] ??

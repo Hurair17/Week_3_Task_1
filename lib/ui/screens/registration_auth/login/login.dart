@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/ui/custom_widget/custom_form_field.dart';
 import 'package:week_3_task/ui/custom_widget/wavy_path.dart';
@@ -9,8 +7,6 @@ import 'package:week_3_task/ui/custom_widget/wrap_txt_button.dart';
 import 'package:week_3_task/ui/screens/registration_auth/login/login_view_model.dart';
 import 'package:week_3_task/ui/screens/registration_auth/signup/signup.dart';
 import 'package:provider/provider.dart';
-
-import '../../root.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);

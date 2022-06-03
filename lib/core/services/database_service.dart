@@ -94,6 +94,7 @@ class DatabaseService {
         return [];
       } else {
         debugPrint('pakistan get data 1');
+        //ignore: avoid_function_literals_in_foreach_calls
         snapshot.docs.forEach((element) {
           listPlant.add(Plant.fromJson(element.data(), element.id));
         });
@@ -173,6 +174,7 @@ class DatabaseService {
         return [];
       } else {
         debugPrint('pakistan get Cart 4');
+        //ignore: avoid_function_literals_in_foreach_calls
         snapshot.docs.forEach((element) {
           listCartPlant.add(CartModel.fromJson(element.data(), element.id));
         });
@@ -206,17 +208,5 @@ class DatabaseService {
         .collection('UserCart')
         .doc(cartId)
         .update({'quantity': FieldValue.increment(-1)});
-  }
-
-  Future<void> getQuantity(cartId) async {
-    String uuid = getUserId();
-    final snap = await _firestore
-        .collection('test_cart')
-        .doc(uuid)
-        .collection('UserCart')
-        .doc(cartId)
-        .get();
-
-    print('Total Quantity ${snap.data()!['quantity']}');
   }
 }

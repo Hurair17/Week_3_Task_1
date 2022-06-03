@@ -4,7 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:week_3_task/core/models/validation_model/login_model.dart';
 import 'package:week_3_task/core/services/firebase_auth.dart';
 
-import '../../../../core/services/database_service.dart';
 import '../../root.dart';
 
 class LogInFormProvider extends ChangeNotifier {
@@ -13,7 +12,6 @@ class LogInFormProvider extends ChangeNotifier {
   final _auth = FirebaseAuth.instance;
 
   final auth = FirebaseAuthServices().auth;
-  final _dbService = DatabaseService();
 
   void toggleNotification({bool? isNotifiable = true}) {
     this.isNotifiable = isNotifiable;

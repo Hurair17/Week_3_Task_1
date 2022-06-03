@@ -14,6 +14,7 @@ class TestDatabase {
       if (snapshot.docs.isEmpty) {
         debugPrint("No data found in testing_data");
       } else {
+        //ignore: avoid_function_literals_in_foreach_calls
         snapshot.docs.forEach((element) {
           listTest.add(TestModel.fromJson(element.data(), element.id));
         });

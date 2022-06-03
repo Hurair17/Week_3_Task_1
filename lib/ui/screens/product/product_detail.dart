@@ -8,6 +8,7 @@ import 'package:week_3_task/ui/screens/product/product_view_model.dart';
 
 import '../../../core/models/plant.dart';
 
+// ignore: must_be_immutable
 class PrdouctDetailScreen extends StatefulWidget {
   Plant? plant;
   // String? id;
@@ -18,12 +19,10 @@ class PrdouctDetailScreen extends StatefulWidget {
 }
 
 class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
-  @override
   int count = 1;
+  @override
   Widget build(BuildContext context) {
-    // final homeViewModel = Provider.of<HomeViewModel>(context);
     final cart = Provider.of<CartViewModel>(context);
-    int quantity = 1;
     return ChangeNotifierProvider(
       create: (context) => ProductViewModel(),
       child: Consumer<ProductViewModel>(
@@ -174,23 +173,12 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                                     color: green,
                                     child: Center(
                                       child: Text(
-                                        '${count}',
-                                        // '${productDetailById.qunatity}',
-                                        // homeViewModel.findByIdShow(id),
-                                        // '${context.watch<CartViewModel>().show(productDetailById.qunatity)}',
-
-                                        style: TextStyle(color: Colors.white),
+                                        '$count',
+                                        style: const TextStyle(
+                                            color: Colors.white),
                                       ),
                                     ),
                                   ),
-                                  // InkWell(onTap: () {
-                                  //   setState(() {
-                                  //     count--;
-                                  //   });
-                                  // }),
-                                  // productDetailById.qunatity--,
-                                  // homeViewModel.findByIdIdecrement(id),
-                                  //   child:
                                   InkWell(
                                     onTap: () {
                                       setState(() {
