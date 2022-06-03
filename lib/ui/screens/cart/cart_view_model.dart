@@ -9,7 +9,6 @@ class CartViewModel extends ChangeNotifier {
 
   List<CartModel> cartPlants = [];
   bool isLoading = false;
-  bool lable = false;
 
   getCartPlantsData() async {
     double cost = 0;
@@ -19,29 +18,22 @@ class CartViewModel extends ChangeNotifier {
     debugPrint('testData Length View Model => ${cartPlants.length}');
     isLoading = false;
     count = cartPlants.length;
-    //For Taking Total Amount
-    notifyListeners();
-
-    // for (int i = 0; i < cartPlants.length; i++) {
-    //   cost += cartPlants[i].price! * (cartPlants[i].quantity)!.toDouble();
-    // }
-    //For Showing Label on cart
-    notifyListeners();
-    // total = cost;
     notifyListeners();
     if (cartPlants.length > 0) {
       notifyListeners();
 
-      lable = true;
+      // lable = true;
       notifyListeners();
 
       // count = cartPlants.length;
     } else {
       notifyListeners();
-      lable = false;
+      // lable = false;
     }
   }
 
+  bool get lable => cartPlants.length == 0 ? false : true;
+  // Get Total Amount
   double get total {
     double cost = 0.0;
     for (int i = 0; i < cartPlants.length; i++) {

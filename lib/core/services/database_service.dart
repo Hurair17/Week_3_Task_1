@@ -3,9 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:week_3_task/core/models/cart_model.dart';
 import 'package:week_3_task/core/models/plant.dart';
-import 'package:week_3_task/core/models/test_model.dart';
-import 'package:week_3_task/ui/screens/cart/cart2.dart';
-import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
 class DatabaseService {
   final _firestore = FirebaseFirestore.instance;

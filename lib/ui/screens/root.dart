@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/core/services/database_service.dart';
-import 'package:week_3_task/ui/screens/cart/cart2.dart';
 import 'package:week_3_task/ui/screens/home/home.dart';
 import 'package:week_3_task/ui/screens/list/list.dart';
 import 'package:week_3_task/ui/screens/profile/profile_screen.dart';
@@ -18,7 +18,9 @@ class _RootBarState extends State<RootBar> {
   static List<Widget> screen = <Widget>[
     const Home(),
     const Profile(),
-    Cart2(),
+    const Profile(),
+
+    // Cart2(),
     const ListScreen()
   ];
 
@@ -38,6 +40,7 @@ class _RootBarState extends State<RootBar> {
           showUnselectedLabels: false,
           currentIndex: _pageIndex,
           selectedFontSize: 1,
+          fixedColor: darkgren,
           // iconSize: 12,
           onTap: _itemTapedIndex,
           items: const <BottomNavigationBarItem>[

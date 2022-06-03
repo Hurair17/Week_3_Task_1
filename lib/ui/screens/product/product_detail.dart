@@ -3,10 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_screen_image_null_safe/full_screen_image_null_safe.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:provider/provider.dart';
-import 'package:week_3_task/ui/screens/cart/cart1.dart';
-import 'package:week_3_task/ui/screens/cart/cart2.dart';
 import 'package:week_3_task/ui/screens/cart/cart_view_model.dart';
-import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 import 'package:week_3_task/ui/screens/product/product_view_model.dart';
 
 import '../../../core/models/plant.dart';
@@ -316,7 +313,7 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                               InkWell(
                                 onTap: () async {
                                   // cart.totalAmount();
-
+                                  cart.getCartPlantsData();
                                   await value.putPlantsData(
                                       cartId: widget.plant!.id,
                                       price: widget.plant!.price,
@@ -324,15 +321,14 @@ class _PrdouctDetailScreenState extends State<PrdouctDetailScreen> {
                                       shortInfo: widget.plant!.shortInfo,
                                       imgUrl: widget.plant!.imgUrl,
                                       quantity: count);
-                                  cart.getCartPlantsData();
 
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => Cart1(
-                                            // id: productDetailById.id,
-                                            )),
-                                  );
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //       builder: (_) => Cart1(
+                                  //           // id: productDetailById.id,
+                                  //           )),
+                                  // );
                                 },
                                 child: Container(
                                   height: 40.h,
