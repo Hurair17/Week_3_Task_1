@@ -207,4 +207,16 @@ class DatabaseService {
         .doc(cartId)
         .update({'quantity': FieldValue.increment(-1)});
   }
+
+  Future<void> getQuantity(cartId) async {
+    String uuid = getUserId();
+    final snap = await _firestore
+        .collection('test_cart')
+        .doc(uuid)
+        .collection('UserCart')
+        .doc(cartId)
+        .get();
+
+    print('Total Quantity ${snap.data()!['quantity']}');
+  }
 }

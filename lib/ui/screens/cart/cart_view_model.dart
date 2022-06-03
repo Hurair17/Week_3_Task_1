@@ -63,6 +63,12 @@ class CartViewModel extends ChangeNotifier {
     await getCartPlantsData();
   }
 
+  totalQuantity(cartId) async {
+    notifyListeners();
+    await dbService.getQuantity(cartId);
+    notifyListeners();
+  }
+
   decrementQuantity(cartId) async {
     notifyListeners();
     await dbService.decrementquantity(cartId);
