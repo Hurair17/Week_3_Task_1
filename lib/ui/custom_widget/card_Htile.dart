@@ -6,7 +6,7 @@ import 'package:week_3_task/core/constants/color.dart';
 // ignore: must_be_immutable
 class HomeScreenDownCard extends StatelessWidget {
   String? id;
-  final String? productId;
+  // final String? productId;
   String? title;
   String? shortInfo;
   String? imgUrl;
@@ -15,7 +15,7 @@ class HomeScreenDownCard extends StatelessWidget {
   HomeScreenDownCard({
     Key? key,
     this.id,
-    this.productId,
+    // this.productId,
     this.title,
     this.shortInfo,
     this.imgUrl,
@@ -26,10 +26,9 @@ class HomeScreenDownCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: InkWell(
-        onTap: () {},
+      child: SizedBox(
+        width: 220.w,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               padding: EdgeInsets.all(5.r),
@@ -39,7 +38,7 @@ class HomeScreenDownCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.r),
                 color: lightgreen,
               ),
-              child: Image.asset(
+              child: Image.network(
                 '$imgUrl',
                 fit: BoxFit.fitHeight,
               ),

@@ -20,6 +20,12 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<Plant> recentView = [];
+  getRecentView(plant) async {
+    recentView.add(plant);
+    notifyListeners();
+  }
+
   List<Tab> tabsList = const [
     Tab(
       text: 'Recommended',

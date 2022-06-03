@@ -15,16 +15,16 @@ class TestScreen extends StatelessWidget {
         builder: (context, model, child) {
           return Scaffold(
             body: model.isLoading
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : ListView.builder(
                     itemCount: model.testModel.length,
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Container(
-                          padding: EdgeInsets.all(12),
+                          padding: const EdgeInsets.all(12),
                           height: 150.h,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),

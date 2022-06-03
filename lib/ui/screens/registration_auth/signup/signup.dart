@@ -4,7 +4,6 @@ import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/ui/custom_widget/wrap_txt_button.dart';
 import 'package:week_3_task/ui/screens/registration_auth/login/login.dart';
 import 'package:week_3_task/ui/screens/registration_auth/signup/signup_view_model.dart';
-import 'package:week_3_task/ui/screens/root.dart';
 import 'package:week_3_task/ui/custom_widget/custom_form_field.dart';
 
 class SignUp extends StatelessWidget {

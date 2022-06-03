@@ -9,6 +9,7 @@ import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 import 'package:week_3_task/ui/screens/cart/cart1.dart';
 import 'package:provider/provider.dart';
 
+import '../../custom_widget/card_Htile.dart';
 import '../cart/cart_view_model.dart';
 
 class Home extends StatelessWidget {
@@ -177,33 +178,22 @@ class Home extends StatelessWidget {
                                       child: ListView.builder(
                                         scrollDirection: Axis.horizontal,
                                         // itemCount: value.itemCount,
-                                        itemCount: 1,
+                                        itemCount: value.recentView.length,
                                         itemBuilder:
                                             (BuildContext context, int index) {
-                                          return const Text(
-                                              'HomeScreen Down Card');
-                                          // HomeScreenDownCard(
-                                          //   id: value.recentView.values
-                                          //       .toList()[index]
-                                          //       .id,
-                                          //   ProductId:
-                                          //       value.recentView.keys.toList()[index],
-                                          //   title: value.recentView.values
-                                          //       .toList()[index]
-                                          //       .title,
-                                          //   quantity: value.recentView.values
-                                          //       .toList()[index]
-                                          //       .quantity,
-                                          //   shortInfo: value.recentView.values
-                                          //       .toList()[index]
-                                          //       .shortInfo,
-                                          //   price: value.recentView.values
-                                          //       .toList()[index]
-                                          //       .price,
-                                          //   imgUrl: value.recentView.values
-                                          //       .toList()[index]
-                                          //       .imgUrl,
-                                          // );
+                                          return HomeScreenDownCard(
+                                            id: value.recentView[index].id,
+                                            title:
+                                                value.recentView[index].title,
+                                            quantity: value
+                                                .recentView[index].quantity,
+                                            shortInfo: value
+                                                .recentView[index].shortInfo,
+                                            price:
+                                                value.recentView[index].price,
+                                            imgUrl:
+                                                value.recentView[index].imgUrl,
+                                          );
                                         },
                                       ),
                                     ),

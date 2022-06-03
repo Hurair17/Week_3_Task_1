@@ -1,10 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:week_3_task/core/constants/color.dart';
 import 'package:week_3_task/core/models/plant.dart';
 import 'package:week_3_task/ui/custom_widget/wavy_path.dart';
 import 'package:week_3_task/ui/screens/product/product_detail.dart';
+
+import '../screens/home/home_view_model.dart';
 
 // ignore: must_be_immutable
 class HorizontalCard extends StatelessWidget {
@@ -16,12 +19,13 @@ class HorizontalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final homeViewModal = Provider.of<HomeViewModel>(context);
+    final home = Provider.of<HomeViewModel>(context);
 
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8),
       child: InkWell(
         onTap: () {
+          home.getRecentView(plant);
           Navigator.push(
               context,
               MaterialPageRoute(
