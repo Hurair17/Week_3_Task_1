@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (_) {
         // return Login();
-        return Material(child: Home());
+        return Material(child: Login());
       },
     );
   }

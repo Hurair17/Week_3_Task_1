@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:week_3_task/core/models/cart_model.dart';
 import 'package:week_3_task/core/models/plant.dart';
@@ -8,6 +9,14 @@ import 'package:week_3_task/ui/screens/home/home_view_model.dart';
 
 class DatabaseService {
   final _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  String getUserId() {
+    final User? user = auth.currentUser;
+    final uuid = user!.uid;
+    return uuid;
+    // here you write the codes to input the data into firestore
+  }
+
   // getPlants() {
   // List<Plant> plants = [
   //   Plant(
@@ -102,9 +111,11 @@ class DatabaseService {
   }
 
   //Add Data to Cart
-  //TODO: add user id
+  //TODO: Increment if all ready present in cart
   Future<void> addPlantToCart(
       {cartId, price, quantity, shortInfo, title, imgUrl}) async {
+    String uuid = getUserId();
+    debugPrint('Uid Print in Pakistan $uuid');
     final cartPlants = <String, dynamic>{
       'cartId': cartId,
       'price': price,
@@ -113,21 +124,45 @@ class DatabaseService {
       'title': title,
       'imgUrl': imgUrl,
     };
-    try {
-      final query = _firestore.collection('test_cart').doc('put-user-id-3');
+    ///////////////////////////////////////////
+    bool check = true;
+    await _firestore
+        .collection('test_cart')
+        .doc(uuid)
+        .collection('UserCart')
+        .doc(cartId)
+        .get()
+        .then((value) {
+      if (value.exists) {
+        _firestore
+            .collection('test_cart')
+            .doc(uuid)
+            .collection('UserCart')
+            .doc(cartId)
+            .update({'quantity': FieldValue.increment(quantity)});
+      } else {
+        try {
+          _firestore
+              .collection('test_cart')
+              .doc(uuid)
+              .collection('UserCart')
+              .doc(cartId)
+              .set(cartPlants);
+        } catch (e) {
+          debugPrint(e.toString());
+        }
+      }
+    });
 
-      query.collection('UserCart').doc(cartId).set(cartPlants);
-      debugPrint('pakistan put data 1');
-    } catch (e) {
-      debugPrint(e.toString());
-    }
+    //////////////////////////////////////////
+    if (check) {}
   }
 
   //Delete Data from Cart
-  //TODO: add user id
   Future<void> deleteCartPlant(String cartId) async {
+    String uuid = getUserId();
     try {
-      final query = _firestore.collection('test_cart').doc('put-user-id-3');
+      final query = _firestore.collection('test_cart').doc(uuid);
 
       query.collection('UserCart').doc(cartId).delete();
       debugPrint('pakistan delete data 1');
@@ -137,13 +172,13 @@ class DatabaseService {
   }
 
   //Get Cart Plants of the  User
-  //TODO: add user id
   Future<List<CartModel>> getCartPlants() async {
     List<CartModel> listCartPlant = [];
+    String uuid = getUserId();
     try {
       QuerySnapshot snapshot = await _firestore
           .collection('test_cart')
-          .doc('put-user-id-3')
+          .doc(uuid)
           .collection('UserCart')
           .get();
       if (snapshot.docs.isEmpty) {
@@ -165,9 +200,10 @@ class DatabaseService {
   }
 
   Future<void> incrementquantity(cartId) async {
+    String uuid = getUserId();
     _firestore
         .collection('test_cart')
-        .doc('put-user-id-3')
+        .doc(uuid)
         .collection('UserCart')
         .where("cartId", isEqualTo: cartId)
         .get()
@@ -175,7 +211,7 @@ class DatabaseService {
       querySnapshot.docs.forEach((element) {
         FirebaseFirestore.instance
             .collection('test_cart')
-            .doc('put-user-id-3')
+            .doc(uuid)
             .collection('UserCart')
             .doc(element.id)
             .update({'quantity': FieldValue.increment(1)});
@@ -184,9 +220,10 @@ class DatabaseService {
   }
 
   Future<void> decrementquantity(cartId) async {
+    String uuid = getUserId();
     _firestore
         .collection('test_cart')
-        .doc('put-user-id-3')
+        .doc(uuid)
         .collection('UserCart')
         .where("cartId", isEqualTo: cartId)
         .get()
@@ -194,7 +231,7 @@ class DatabaseService {
       querySnapshot.docs.forEach((element) {
         FirebaseFirestore.instance
             .collection('test_cart')
-            .doc('put-user-id-3')
+            .doc(uuid)
             .collection('UserCart')
             .doc(element.id)
             .update({'quantity': FieldValue.increment(-1)});

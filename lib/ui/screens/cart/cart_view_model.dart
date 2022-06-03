@@ -47,8 +47,13 @@ class CartViewModel extends ChangeNotifier {
 
   incrementQuantity(cartId) {
     // cartModel.quantity;
-    count++;
     dbService.incrementquantity(cartId);
+    notifyListeners();
+  }
+
+  decrementQuantity(cartId) {
+    // cartModel.quantity;
+    dbService.decrementquantity(cartId);
     notifyListeners();
   }
 

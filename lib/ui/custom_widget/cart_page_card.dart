@@ -96,13 +96,7 @@ class CartScreenCard extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              // cart.removeItem(
-                              //     productDetailById.id,
-                              //     productDetailById.price,
-                              //     productDetailById.title,
-                              //     productDetailById.shortInfo,
-                              //     productDetailById.imgUrl,
-                              //     productDetailById.quantity);
+                              cart.decrementQuantity(cartModel!.cartId);
                             },
                             child: Container(
                               height: 15.h,
