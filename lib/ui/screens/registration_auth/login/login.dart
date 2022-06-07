@@ -178,8 +178,7 @@ class _LoginState extends State<Login> {
                     child: TextButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          provider.signIn(provider.logInModel.email!,
-                              provider.logInModel.password!, context);
+                          provider.login();
                         }
                       },
                       child: Text(
